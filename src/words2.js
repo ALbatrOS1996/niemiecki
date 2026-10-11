@@ -1,0 +1,480 @@
+/* ============================================================
+   ŚCIEŻKA A2–C2 – lekcje ułożone progresywnie
+   L(poziom, id, nazwa) – nowa lekcja; W(...) jak w words.js.
+   W przykładzie słowo docelowe ujęte w {…} – służy do ćwiczeń z luką.
+   ============================================================ */
+var UA = window.UA || (window.UA = {});
+(function () {
+  var cur;
+  function L(level, id, name) { cur = id; UA.TOPICS.push({ id: id, name: name, level: level }); }
+  function W(ua, pos, pl, forms, sim, ex, exPl) {
+    UA.WORDS.push({ ua: ua, pos: pos, pl: pl, forms: forms || '', sim: sim, ex: ex || '', exPl: exPl || '', topic: cur });
+  }
+
+  /* ===================== A2 ===================== */
+  L('A2', 'a2_reisen', 'Podróże');
+  W('die Reise', 'ж', 'podróż', 'lm. die Reisen', 'o', 'Wir planen eine {Reise} nach Österreich.', 'Planujemy podróż do Austrii.');
+  W('das Flugzeug', 'с', 'samolot', 'lm. die Flugzeuge', 'o', 'Das {Flugzeug} landet pünktlich.', 'Samolot ląduje punktualnie.');
+  W('der Flughafen', 'ч', 'lotnisko', 'lm. die Flughäfen', 'o', 'Wie komme ich zum {Flughafen}?', 'Jak dojadę na lotnisko?');
+  W('der Koffer', 'ч', 'walizka', 'lm. die Koffer', 'p', 'Mein {Koffer} ist sehr schwer.', 'Moja walizka jest bardzo ciężka.');
+  W('der Reisepass', 'ч', 'paszport', 'lm. die Reisepässe', 'p', 'Zeigen Sie bitte Ihren {Reisepass}.', 'Proszę pokazać paszport.');
+  W('die Grenze', 'ж', 'granica', 'lm. die Grenzen', 'p', 'Wir haben die {Grenze} nachts überquert.', 'Przekroczyliśmy granicę w nocy.');
+  W('das Hotel', 'с', 'hotel', 'lm. die Hotels', 't', 'Das {Hotel} liegt im Zentrum.', 'Hotel leży w centrum.');
+  W('buchen', 'д', 'rezerwować', 'bucht · buchte · hat gebucht', 'o', 'Ich habe ein Zimmer für zwei Nächte {gebucht}.', 'Zarezerwowałem pokój na dwie noce.');
+  W('der Urlaub', 'ч', 'urlop', 'lm. die Urlaube', 'p', 'Im Sommer habe ich {Urlaub}.', 'Latem mam urlop.');
+  W('die Sehenswürdigkeit', 'ж', 'zabytek, atrakcja', 'lm. die Sehenswürdigkeiten', 'o', 'Der Kölner Dom ist die bekannteste {Sehenswürdigkeit} der Stadt.', 'Katedra kolońska to najsłynniejszy zabytek miasta.');
+  W('abfahren', 'д', 'odjeżdżać', 'fährt ab · fuhr ab · ist abgefahren', 'o', 'Der Zug {fährt} um 8 Uhr {ab}.', 'Pociąg odjeżdża o 8.');
+  W('umsteigen', 'д', 'przesiadać się', 'steigt um · stieg um · ist umgestiegen', 'o', 'In Hannover müssen Sie {umsteigen}.', 'W Hanowerze musi pan się przesiąść.');
+
+  L('A2', 'a2_kleidung', 'Ubrania');
+  W('die Kleidung', 'ж', 'ubranie, odzież', 'bez lm.', 'o', 'Wo kann man billige {Kleidung} kaufen?', 'Gdzie można kupić tanie ubrania?');
+  W('die Hose', 'ж', 'spodnie (lp.!)', 'lm. die Hosen', 'o', 'Die {Hose} ist zu lang.', 'Spodnie są za długie.');
+  W('das Hemd', 'с', 'koszula', 'lm. die Hemden', 'o', 'Er trägt ein weißes {Hemd}.', 'On nosi białą koszulę.');
+  W('das Kleid', 'с', 'sukienka', 'lm. die Kleider', 'o', 'Das {Kleid} steht dir gut.', 'Dobrze ci w tej sukience.');
+  W('der Rock', 'ч', 'spódnica', 'lm. die Röcke', 'f', 'Sie trägt einen kurzen {Rock}.', 'Ona nosi krótką spódnicę.');
+  W('die Jacke', 'ж', 'kurtka', 'lm. die Jacken', 'o', 'Nimm eine {Jacke} mit, es ist kalt.', 'Weź kurtkę, jest zimno.');
+  W('der Mantel', 'ч', 'płaszcz', 'lm. die Mäntel', 'p', 'Der {Mantel} ist warm.', 'Płaszcz jest ciepły.');
+  W('der Schuh', 'ч', 'but', 'lm. die Schuhe', 'o', 'Diese {Schuhe} sind bequem.', 'Te buty są wygodne.');
+  W('die Größe', 'ж', 'rozmiar; wielkość', 'lm. die Größen', 'o', 'Haben Sie das in {Größe} 40?', 'Czy ma pani to w rozmiarze 40?');
+  W('anprobieren', 'д', 'przymierzać', 'probiert an · probierte an · hat anprobiert', 'p', 'Kann ich das {anprobieren}?', 'Czy mogę to przymierzyć?');
+  W('tragen', 'д', 'nosić (ubranie); nieść', 'trägt · trug · hat getragen', 'o', 'Sie {trägt} gern Rot.', 'Ona lubi nosić czerwień.');
+  W('passen', 'д', 'pasować (rozmiarem)', 'passt · passte · hat gepasst', 'p', 'Die Jacke {passt} mir nicht.', 'Kurtka na mnie nie pasuje.');
+
+  L('A2', 'a2_freizeit', 'Czas wolny i sport');
+  W('die Freizeit', 'ж', 'czas wolny', 'bez lm.', 'o', 'In meiner {Freizeit} lese ich viel.', 'W czasie wolnym dużo czytam.');
+  W('das Hobby', 'с', 'hobby', 'lm. die Hobbys', 't', 'Mein {Hobby} ist Fotografie.', 'Moje hobby to fotografia.');
+  W('der Sport', 'ч', 'sport', 'bez lm.', 't', 'Ich mache dreimal pro Woche {Sport}.', 'Uprawiam sport trzy razy w tygodniu.');
+  W('die Mannschaft', 'ж', 'drużyna', 'lm. die Mannschaften', 'o', 'Unsere {Mannschaft} hat gewonnen.', 'Nasza drużyna wygrała.');
+  W('gewinnen', 'д', 'wygrywać', 'gewinnt · gewann · hat gewonnen', 'o', 'Wer hat das Spiel {gewonnen}?', 'Kto wygrał mecz?');
+  W('verlieren', 'д', 'przegrywać; gubić', 'verliert · verlor · hat verloren', 'o', 'Wir haben zwei zu eins {verloren}.', 'Przegraliśmy dwa do jednego.');
+  W('schwimmen', 'д', 'pływać', 'schwimmt · schwamm · ist geschwommen', 'o', 'Im Sommer {schwimmen} wir im See.', 'Latem pływamy w jeziorze.');
+  W('wandern', 'д', 'wędrować (po górach)', 'wandert · wanderte · ist gewandert', 'p', 'Am Wochenende {wandern} wir in den Alpen.', 'W weekend wędrujemy po Alpach.');
+  W('das Kino', 'с', 'kino', 'lm. die Kinos', 't', 'Gehen wir heute ins {Kino}?', 'Idziemy dziś do kina?');
+  W('das Konzert', 'с', 'koncert', 'lm. die Konzerte', 't', 'Das {Konzert} beginnt um acht.', 'Koncert zaczyna się o ósmej.');
+  W('das Wochenende', 'с', 'weekend', 'lm. die Wochenenden', 'o', 'Schönes {Wochenende}!', 'Miłego weekendu!');
+  W('sich treffen', 'д', 'spotykać się', 'trifft sich · traf sich · hat sich getroffen', 'o', 'Wir {treffen} uns um sechs vor dem Kino.', 'Spotykamy się o szóstej przed kinem.');
+
+  L('A2', 'a2_arbeit', 'Praca i biuro');
+  W('die Firma', 'ж', 'firma', 'lm. die Firmen', 't', 'Ich arbeite bei einer kleinen {Firma}.', 'Pracuję w małej firmie.');
+  W('das Büro', 'с', 'biuro', 'lm. die Büros', 't', 'Ich bin bis fünf im {Büro}.', 'Jestem w biurze do piątej.');
+  W('der Chef', 'ч', 'szef', 'lm. die Chefs · ż. die Chefin', 't', 'Mein {Chef} ist heute nicht da.', 'Mojego szefa dziś nie ma.');
+  W('der Kollege', 'ч', 'kolega z pracy', 'lm. die Kollegen · ż. die Kollegin', 'p', 'Mein {Kollege} hilft mir oft.', 'Mój kolega często mi pomaga.');
+  W('das Gehalt', 'с', 'pensja', 'lm. die Gehälter', 'o', 'Das {Gehalt} kommt am Monatsende.', 'Pensja przychodzi pod koniec miesiąca.');
+  W('der Termin', 'ч', 'termin, umówione spotkanie', 'lm. die Termine', 'p', 'Ich habe morgen einen {Termin} beim Arzt.', 'Mam jutro wizytę u lekarza.');
+  W('die Besprechung', 'ж', 'narada, zebranie', 'lm. die Besprechungen', 'o', 'Die {Besprechung} dauert eine Stunde.', 'Zebranie trwa godzinę.');
+  W('sich bewerben', 'д', 'ubiegać się (o pracę)', 'bewirbt sich · bewarb sich · hat sich beworben', 'o', 'Ich {bewerbe} mich um die Stelle.', 'Ubiegam się o to stanowisko.');
+  W('die Stelle', 'ж', 'posada; miejsce', 'lm. die Stellen', 'o', 'Sie hat eine neue {Stelle} gefunden.', 'Ona znalazła nową posadę.');
+  W('der Lebenslauf', 'ч', 'życiorys, CV', 'lm. die Lebensläufe', 'o', 'Schicken Sie uns Ihren {Lebenslauf}.', 'Proszę przesłać nam swoje CV.');
+  W('verdienen', 'д', 'zarabiać', 'verdient · verdiente · hat verdient', 'o', 'Er {verdient} gut.', 'On dobrze zarabia.');
+  W('die Überstunde', 'ж', 'nadgodzina', 'lm. die Überstunden', 'o', 'Diese Woche habe ich viele {Überstunden} gemacht.', 'W tym tygodniu zrobiłem dużo nadgodzin.');
+
+  L('A2', 'a2_gefuehle', 'Uczucia i charakter');
+  W('froh', 'п', 'zadowolony, radosny', '', 'o', 'Ich bin {froh}, dass du da bist.', 'Cieszę się, że jesteś.');
+  W('traurig', 'п', 'smutny', '', 'o', 'Warum bist du so {traurig}?', 'Dlaczego jesteś taki smutny?');
+  W('wütend', 'п', 'wściekły', '', 'o', 'Er war sehr {wütend} auf mich.', 'Był na mnie bardzo wściekły.');
+  W('nervös', 'п', 'zdenerwowany', '', 'p', 'Vor der Prüfung bin ich immer {nervös}.', 'Przed egzaminem zawsze się denerwuję.');
+  W('die Angst', 'ж', 'strach', 'lm. die Ängste', 'o', 'Ich habe {Angst} vor Hunden.', 'Boję się psów.');
+  W('die Liebe', 'ж', 'miłość', 'bez lm.', 'o', 'Das war {Liebe} auf den ersten Blick.', 'To była miłość od pierwszego wejrzenia.');
+  W('nett', 'п', 'miły', '', 'o', 'Deine Schwester ist sehr {nett}.', 'Twoja siostra jest bardzo miła.');
+  W('freundlich', 'п', 'uprzejmy, życzliwy', '', 'o', 'Die Verkäuferin war sehr {freundlich}.', 'Sprzedawczyni była bardzo uprzejma.');
+  W('ehrlich', 'п', 'szczery, uczciwy', '', 'o', 'Sei bitte {ehrlich} zu mir.', 'Bądź ze mną szczery, proszę.');
+  W('faul', 'п', 'leniwy', '', 'o', 'Am Sonntag bin ich gern {faul}.', 'W niedzielę lubię się lenić.');
+  W('fleißig', 'п', 'pracowity', '', 'o', 'Sie ist eine sehr {fleißige} Schülerin.', 'Ona jest bardzo pilną uczennicą.');
+  W('sich freuen', 'д', 'cieszyć się', 'freut sich · freute sich · hat sich gefreut', 'o', 'Ich {freue} mich sehr!', 'Bardzo się cieszę!');
+
+  L('A2', 'a2_haushalt', 'Dom i obowiązki');
+  W('putzen', 'д', 'sprzątać, czyścić', 'putzt · putzte · hat geputzt', 'o', 'Am Samstag {putzen} wir die Wohnung.', 'W sobotę sprzątamy mieszkanie.');
+  W('kochen', 'д', 'gotować', 'kocht · kochte · hat gekocht', 'o', 'Mein Mann {kocht} sehr gut.', 'Mój mąż bardzo dobrze gotuje.');
+  W('waschen', 'д', 'prać; myć', 'wäscht · wusch · hat gewaschen', 'o', 'Ich muss heute Wäsche {waschen}.', 'Muszę dziś zrobić pranie.');
+  W('aufräumen', 'д', 'sprzątać (porządkować)', 'räumt auf · räumte auf · hat aufgeräumt', 'o', 'Räum bitte dein Zimmer {auf}!', 'Posprzątaj, proszę, swój pokój!');
+  W('der Müll', 'ч', 'śmieci', 'bez lm.', 'o', 'Kannst du den {Müll} rausbringen?', 'Możesz wynieść śmieci?');
+  W('der Kühlschrank', 'ч', 'lodówka', 'lm. die Kühlschränke', 'o', 'Der {Kühlschrank} ist leer.', 'Lodówka jest pusta.');
+  W('die Waschmaschine', 'ж', 'pralka', 'lm. die Waschmaschinen', 'p', 'Die {Waschmaschine} ist kaputt.', 'Pralka jest zepsuta.');
+  W('die Miete', 'ж', 'czynsz', 'lm. die Mieten', 'o', 'Die {Miete} ist sehr hoch.', 'Czynsz jest bardzo wysoki.');
+  W('umziehen', 'д', 'przeprowadzać się', 'zieht um · zog um · ist umgezogen', 'o', 'Wir {ziehen} nächsten Monat {um}.', 'Przeprowadzamy się w przyszłym miesiącu.');
+  W('der Garten', 'ч', 'ogród', 'lm. die Gärten', 'o', 'Die Kinder spielen im {Garten}.', 'Dzieci bawią się w ogrodzie.');
+  W('die Treppe', 'ж', 'schody', 'lm. die Treppen', 'o', 'Nimm die {Treppe}, der Aufzug ist kaputt.', 'Idź schodami, winda jest zepsuta.');
+  W('der Aufzug', 'ч', 'winda', 'lm. die Aufzüge', 'o', 'Wir fahren mit dem {Aufzug} in den fünften Stock.', 'Jedziemy windą na piąte piętro.');
+
+  L('A2', 'a2_restaurant', 'Restauracja i gotowanie');
+  W('die Speisekarte', 'ж', 'karta dań, menu', 'lm. die Speisekarten', 'o', 'Die {Speisekarte}, bitte.', 'Poproszę kartę dań.');
+  W('bestellen', 'д', 'zamawiać', 'bestellt · bestellte · hat bestellt', 'o', 'Möchten Sie jetzt {bestellen}?', 'Czy chce pan już zamówić?');
+  W('der Kellner', 'ч', 'kelner', 'lm. die Kellner · ż. die Kellnerin', 'p', 'Der {Kellner} bringt die Rechnung.', 'Kelner przynosi rachunek.');
+  W('die Vorspeise', 'ж', 'przystawka', 'lm. die Vorspeisen', 'o', 'Als {Vorspeise} nehme ich eine Suppe.', 'Na przystawkę wezmę zupę.');
+  W('die Nachspeise', 'ж', 'deser', 'lm. die Nachspeisen', 'o', 'Zur {Nachspeise} gibt es Eis.', 'Na deser są lody.');
+  W('das Trinkgeld', 'с', 'napiwek', 'bez lm.', 'o', 'In Deutschland gibt man etwa zehn Prozent {Trinkgeld}.', 'W Niemczech daje się około dziesięciu procent napiwku.');
+  W('scharf', 'п', 'ostry (smak, nóż)', '', 'o', 'Ist das Gericht sehr {scharf}?', 'Czy to danie jest bardzo ostre?');
+  W('süß', 'п', 'słodki', '', 'o', 'Der Kuchen ist zu {süß}.', 'Ciasto jest za słodkie.');
+  W('braten', 'д', 'smażyć', 'brät · briet · hat gebraten', 'o', 'Ich {brate} das Fleisch in Butter.', 'Smażę mięso na maśle.');
+  W('das Rezept', 'с', 'przepis; recepta', 'lm. die Rezepte', 'p', 'Gibst du mir das {Rezept}?', 'Dasz mi przepis?');
+  W('der Durst', 'ч', 'pragnienie', 'Ich habe Durst – chce mi się pić', 'o', 'Ich habe großen {Durst}.', 'Bardzo chce mi się pić.');
+  W('satt', 'п', 'syty, najedzony', '', 'o', 'Danke, ich bin schon {satt}.', 'Dziękuję, już się najadłem.');
+
+  L('A2', 'a2_technik', 'Technologia');
+  W('das Handy', 'с', 'telefon komórkowy', 'lm. die Handys', 'o', 'Mein {Handy} ist leer.', 'Mój telefon się rozładował.');
+  W('der Rechner', 'ч', 'komputer; kalkulator', 'lm. die Rechner · też: der Computer', 'o', 'Der {Rechner} ist sehr langsam.', 'Komputer jest bardzo wolny.');
+  W('das Passwort', 'с', 'hasło', 'lm. die Passwörter', 'p', 'Ich habe mein {Passwort} vergessen.', 'Zapomniałem hasła.');
+  W('herunterladen', 'д', 'pobierać (z sieci)', 'lädt herunter · lud herunter · hat heruntergeladen', 'o', 'Du kannst die App kostenlos {herunterladen}.', 'Możesz pobrać aplikację za darmo.');
+  W('die Nachricht', 'ж', 'wiadomość', 'lm. die Nachrichten', 'o', 'Schick mir eine {Nachricht}!', 'Wyślij mi wiadomość!');
+  W('der Bildschirm', 'ч', 'ekran', 'lm. die Bildschirme', 'o', 'Der {Bildschirm} ist zu dunkel.', 'Ekran jest za ciemny.');
+  W('das Netz', 'с', 'sieć', 'lm. die Netze', 'o', 'Hier habe ich kein {Netz}.', 'Tu nie mam zasięgu.');
+  W('aufladen', 'д', 'ładować (baterię)', 'lädt auf · lud auf · hat aufgeladen', 'o', 'Ich muss mein Handy {aufladen}.', 'Muszę naładować telefon.');
+  W('speichern', 'д', 'zapisywać (plik)', 'speichert · speicherte · hat gespeichert', 'o', 'Vergiss nicht, die Datei zu {speichern}!', 'Nie zapomnij zapisać pliku!');
+  W('die Datei', 'ж', 'plik', 'lm. die Dateien', 'o', 'Ich schicke dir die {Datei} per E-Mail.', 'Wyślę ci plik mailem.');
+  W('drucken', 'д', 'drukować', 'druckt · druckte · hat gedruckt', 'p', 'Kannst du das bitte {drucken}?', 'Możesz to wydrukować?');
+  W('kaputt', 'п', 'zepsuty', '', 'p', 'Der Drucker ist schon wieder {kaputt}.', 'Drukarka znowu jest zepsuta.');
+
+  /* ===================== B1 ===================== */
+  L('B1', 'b1_medien', 'Media i informacja');
+  W('die Zeitung', 'ж', 'gazeta', 'lm. die Zeitungen', 'o', 'Ich lese jeden Morgen die {Zeitung}.', 'Codziennie rano czytam gazetę.');
+  W('die Sendung', 'ж', 'program, audycja; przesyłka', 'lm. die Sendungen', 'o', 'Die {Sendung} beginnt um acht.', 'Program zaczyna się o ósmej.');
+  W('der Bericht', 'ч', 'reportaż, raport', 'lm. die Berichte', 'o', 'Der {Bericht} war sehr informativ.', 'Reportaż był bardzo pouczający.');
+  W('die Werbung', 'ж', 'reklama', 'bez lm.', 'o', 'Im Fernsehen gibt es zu viel {Werbung}.', 'W telewizji jest za dużo reklam.');
+  W('die Schlagzeile', 'ж', 'nagłówek', 'lm. die Schlagzeilen', 'o', 'Die {Schlagzeile} war irreführend.', 'Nagłówek wprowadzał w błąd.');
+  W('veröffentlichen', 'д', 'publikować', 'veröffentlicht · veröffentlichte · hat veröffentlicht', 'o', 'Die Zeitung hat das Interview {veröffentlicht}.', 'Gazeta opublikowała wywiad.');
+  W('die Quelle', 'ж', 'źródło', 'lm. die Quellen', 'o', 'Prüfe immer die {Quelle}!', 'Zawsze sprawdzaj źródło!');
+  W('die Falschmeldung', 'ж', 'fałszywa informacja, fake news', 'lm. die Falschmeldungen', 'o', 'Im Netz verbreiten sich {Falschmeldungen} sehr schnell.', 'W sieci fałszywe informacje rozchodzą się bardzo szybko.');
+  W('der Zuschauer', 'ч', 'widz', 'lm. die Zuschauer', 'o', 'Die {Zuschauer} waren begeistert.', 'Widzowie byli zachwyceni.');
+  W('die Meinung', 'ж', 'opinia, zdanie', 'lm. die Meinungen', 'o', 'Meiner {Meinung} nach ist das falsch.', 'Moim zdaniem to błąd.');
+  W('aktuell', 'п', 'aktualny, bieżący', '', 'p', 'Das ist ein sehr {aktuelles} Thema.', 'To bardzo aktualny temat.');
+  W('die Zensur', 'ж', 'cenzura', 'bez lm.', 't', 'In einer Demokratie gibt es keine {Zensur}.', 'W demokracji nie ma cenzury.');
+
+  L('B1', 'b1_gesellschaft', 'Społeczeństwo');
+  W('die Gesellschaft', 'ж', 'społeczeństwo; towarzystwo; spółka', 'lm. die Gesellschaften', 'o', 'Die {Gesellschaft} wird immer älter.', 'Społeczeństwo coraz bardziej się starzeje.');
+  W('die Bevölkerung', 'ж', 'ludność', 'bez lm.', 'o', 'Die {Bevölkerung} wächst langsam.', 'Ludność rośnie powoli.');
+  W('der Bürger', 'ч', 'obywatel', 'lm. die Bürger · ż. die Bürgerin', 'o', 'Jeder {Bürger} hat Rechte und Pflichten.', 'Każdy obywatel ma prawa i obowiązki.');
+  W('die Gleichberechtigung', 'ж', 'równouprawnienie', 'bez lm.', 'o', 'Die {Gleichberechtigung} von Mann und Frau steht im Grundgesetz.', 'Równouprawnienie kobiet i mężczyzn jest zapisane w Ustawie Zasadniczej.');
+  W('die Armut', 'ж', 'bieda, ubóstwo', 'bez lm.', 'o', 'Viele Kinder leben in {Armut}.', 'Wiele dzieci żyje w biedzie.');
+  W('die Arbeitslosigkeit', 'ж', 'bezrobocie', 'bez lm.', 'o', 'Die {Arbeitslosigkeit} ist gesunken.', 'Bezrobocie spadło.');
+  W('die Rente', 'ж', 'emerytura', 'lm. die Renten', 'f', 'Mein Vater geht nächstes Jahr in {Rente}.', 'Mój ojciec w przyszłym roku przechodzi na emeryturę.');
+  W('der Einwanderer', 'ч', 'imigrant', 'lm. die Einwanderer', 'o', 'Viele {Einwanderer} kommen aus Osteuropa.', 'Wielu imigrantów pochodzi z Europy Wschodniej.');
+  W('die Integration', 'ж', 'integracja', 'bez lm.', 't', 'Sprache ist der Schlüssel zur {Integration}.', 'Język jest kluczem do integracji.');
+  W('das Ehrenamt', 'с', 'wolontariat, funkcja honorowa', 'lm. die Ehrenämter', 'o', 'Sie arbeitet im {Ehrenamt} bei der Tafel.', 'Ona jest wolontariuszką w banku żywności.');
+  W('die Steuer', 'ж', 'podatek', 'lm. die Steuern · das Steuer – kierownica!', 'o', 'Wir zahlen hohe {Steuern}.', 'Płacimy wysokie podatki.');
+  W('die Gerechtigkeit', 'ж', 'sprawiedliwość', 'bez lm.', 'o', 'Es geht um soziale {Gerechtigkeit}.', 'Chodzi o sprawiedliwość społeczną.');
+
+  L('B1', 'b1_umwelt', 'Środowisko');
+  W('die Umwelt', 'ж', 'środowisko', 'bez lm.', 'o', 'Wir müssen die {Umwelt} schützen.', 'Musimy chronić środowisko.');
+  W('der Klimawandel', 'ч', 'zmiana klimatu', 'bez lm.', 'o', 'Der {Klimawandel} betrifft alle.', 'Zmiana klimatu dotyczy wszystkich.');
+  W('die Verschmutzung', 'ж', 'zanieczyszczenie', 'lm. die Verschmutzungen', 'o', 'Die {Verschmutzung} der Luft ist gefährlich.', 'Zanieczyszczenie powietrza jest niebezpieczne.');
+  W('der Abfall', 'ч', 'odpady', 'lm. die Abfälle', 'o', 'In Deutschland trennt man den {Abfall}.', 'W Niemczech segreguje się odpady.');
+  W('trennen', 'д', 'oddzielać; segregować', 'trennt · trennte · hat getrennt', 'o', 'Wir {trennen} Papier, Glas und Plastik.', 'Segregujemy papier, szkło i plastik.');
+  W('die Energie', 'ж', 'energia', 'lm. die Energien', 't', 'Wir sparen {Energie}.', 'Oszczędzamy energię.');
+  W('erneuerbar', 'п', 'odnawialny', '', 'o', '{Erneuerbare} Energien sind die Zukunft.', 'Energie odnawialne to przyszłość.');
+  W('der Naturschutz', 'ч', 'ochrona przyrody', 'bez lm.', 'o', 'Der {Naturschutz} ist hier besonders streng.', 'Ochrona przyrody jest tu szczególnie surowa.');
+  W('die Dürre', 'ж', 'susza', 'lm. die Dürren', 'o', 'Die {Dürre} hat die Ernte zerstört.', 'Susza zniszczyła plony.');
+  W('die Überschwemmung', 'ж', 'powódź', 'lm. die Überschwemmungen', 'o', 'Nach dem Regen kam die {Überschwemmung}.', 'Po deszczu przyszła powódź.');
+  W('nachhaltig', 'п', 'zrównoważony, trwały', '', 'o', 'Wir wollen {nachhaltig} leben.', 'Chcemy żyć w sposób zrównoważony.');
+  W('verschwenden', 'д', 'marnować', 'verschwendet · verschwendete · hat verschwendet', 'o', '{Verschwende} kein Wasser!', 'Nie marnuj wody!');
+
+  L('B1', 'b1_studium', 'Edukacja i studia');
+  W('die Universität', 'ж', 'uniwersytet', 'lm. die Universitäten · potocznie: die Uni', 't', 'Er studiert an der {Universität} Heidelberg.', 'On studiuje na Uniwersytecie w Heidelbergu.');
+  W('studieren', 'д', 'studiować', 'studiert · studierte · hat studiert', 't', 'Ich {studiere} Geschichte.', 'Studiuję historię.');
+  W('das Fach', 'с', 'przedmiot; dziedzina', 'lm. die Fächer', 'o', 'Mein Lieblings{fach} ist Geschichte.', 'Mój ulubiony przedmiot to historia.');
+  W('die Vorlesung', 'ж', 'wykład', 'lm. die Vorlesungen', 'o', 'Die {Vorlesung} fällt heute aus.', 'Wykład dziś się nie odbędzie.');
+  W('das Stipendium', 'с', 'stypendium', 'lm. die Stipendien', 't', 'Sie hat ein {Stipendium} bekommen.', 'Ona dostała stypendium.');
+  W('die Abschlussarbeit', 'ж', 'praca dyplomowa', 'lm. die Abschlussarbeiten', 'o', 'Ich schreibe gerade meine {Abschlussarbeit}.', 'Piszę właśnie pracę dyplomową.');
+  W('bestehen', 'д', 'zdać (egzamin); istnieć', 'besteht · bestand · hat bestanden', 'o', 'Ich habe die Prüfung {bestanden}!', 'Zdałem egzamin!');
+  W('durchfallen', 'д', 'oblać (egzamin)', 'fällt durch · fiel durch · ist durchgefallen', 'o', 'Leider ist er {durchgefallen}.', 'Niestety oblał.');
+  W('das Zeugnis', 'с', 'świadectwo', 'lm. die Zeugnisse', 'o', 'Am Ende des Schuljahres bekommen die Schüler ihr {Zeugnis}.', 'Pod koniec roku szkolnego uczniowie dostają świadectwo.');
+  W('das Abitur', 'с', 'matura', 'bez lm.', 'o', 'Nach dem {Abitur} will sie studieren.', 'Po maturze chce studiować.');
+  W('die Ausbildung', 'ж', 'kształcenie zawodowe', 'lm. die Ausbildungen', 'o', 'Er macht eine {Ausbildung} als Mechaniker.', 'On uczy się zawodu mechanika.');
+  W('die Bibliothek', 'ж', 'biblioteka', 'lm. die Bibliotheken', 't', 'Ich lerne in der {Bibliothek}.', 'Uczę się w bibliotece.');
+
+  L('B1', 'b1_beziehungen', 'Relacje');
+  W('die Beziehung', 'ж', 'związek, relacja', 'lm. die Beziehungen', 'o', 'Sie haben eine gute {Beziehung}.', 'Mają dobrą relację.');
+  W('sich verlieben', 'д', 'zakochać się', 'verliebt sich · verliebte sich · hat sich verliebt', 'o', 'Er hat sich in sie {verliebt}.', 'Zakochał się w niej.');
+  W('heiraten', 'д', 'brać ślub, poślubić (bez „z”!)', 'heiratet · heiratete · hat geheiratet', 'o', 'Sie hat ihn letztes Jahr {geheiratet}.', 'Wyszła za niego w zeszłym roku.');
+  W('die Hochzeit', 'ж', 'wesele, ślub', 'lm. die Hochzeiten', 'o', 'Wir sind zur {Hochzeit} eingeladen.', 'Jesteśmy zaproszeni na wesele.');
+  W('sich trennen', 'д', 'rozstać się', 'trennt sich · trennte sich · hat sich getrennt', 'o', 'Sie haben sich nach zehn Jahren {getrennt}.', 'Rozstali się po dziesięciu latach.');
+  W('der Streit', 'ч', 'kłótnia', 'lm. die Streitigkeiten', 'o', 'Wir hatten einen kleinen {Streit}.', 'Mieliśmy małą kłótnię.');
+  W('sich versöhnen', 'д', 'pogodzić się', 'versöhnt sich · versöhnte sich · hat sich versöhnt', 'o', 'Nach dem Streit haben wir uns {versöhnt}.', 'Po kłótni się pogodziliśmy.');
+  W('vertrauen', 'д', 'ufać (+ celownik)', 'vertraut · vertraute · hat vertraut', 'o', 'Ich {vertraue} dir.', 'Ufam ci.');
+  W('eifersüchtig', 'п', 'zazdrosny', '', 'o', 'Er ist sehr {eifersüchtig}.', 'On jest bardzo zazdrosny.');
+  W('die Verwandten (Pl.)', 'мн', 'krewni', 'der/die Verwandte', 'o', 'Zu Weihnachten besuchen wir unsere {Verwandten}.', 'Na święta odwiedzamy krewnych.');
+  W('der Bekannte', 'ч', 'znajomy', 'lm. die Bekannten (odmiana przymiotnikowa)', 'o', 'Ein {Bekannter} hat mir die Wohnung empfohlen.', 'Znajomy polecił mi to mieszkanie.');
+  W('sich verstehen', 'д', 'dogadywać się', 'versteht sich · verstand sich · hat sich verstanden', 'o', 'Wir {verstehen} uns sehr gut.', 'Bardzo dobrze się dogadujemy.');
+
+  L('B1', 'b1_gesundheit', 'Zdrowie i ciało');
+  W('die Krankheit', 'ж', 'choroba', 'lm. die Krankheiten', 'o', 'Die {Krankheit} ist nicht gefährlich.', 'Choroba nie jest groźna.');
+  W('die Erkältung', 'ж', 'przeziębienie', 'lm. die Erkältungen', 'o', 'Ich habe eine leichte {Erkältung}.', 'Mam lekkie przeziębienie.');
+  W('der Husten', 'ч', 'kaszel', 'bez lm.', 'o', 'Der {Husten} wird nicht besser.', 'Kaszel nie mija.');
+  W('die Verletzung', 'ж', 'uraz, kontuzja', 'lm. die Verletzungen', 'o', 'Die {Verletzung} ist nicht schwer.', 'Uraz nie jest poważny.');
+  W('verschreiben', 'д', 'przepisywać (lek)', 'verschreibt · verschrieb · hat verschrieben', 'o', 'Der Arzt hat mir Tabletten {verschrieben}.', 'Lekarz przepisał mi tabletki.');
+  W('die Krankenkasse', 'ж', 'kasa chorych (ubezpieczenie)', 'lm. die Krankenkassen', 'o', 'Die {Krankenkasse} zahlt die Behandlung.', 'Kasa chorych płaci za leczenie.');
+  W('die Behandlung', 'ж', 'leczenie', 'lm. die Behandlungen', 'o', 'Die {Behandlung} dauert drei Wochen.', 'Leczenie trwa trzy tygodnie.');
+  W('die Kur', 'ж', 'kuracja (uzdrowiskowa)', 'lm. die Kuren', 'f', 'Meine Oma fährt zur {Kur} an die Ostsee.', 'Moja babcia jedzie na kurację nad Bałtyk.');
+  W('sich erholen', 'д', 'odpoczywać, dochodzić do siebie', 'erholt sich · erholte sich · hat sich erholt', 'o', 'Im Urlaub {erhole} ich mich.', 'Na urlopie odpoczywam.');
+  W('die Ernährung', 'ж', 'odżywianie', 'bez lm.', 'o', 'Gesunde {Ernährung} ist wichtig.', 'Zdrowe odżywianie jest ważne.');
+  W('der Schmerz', 'ч', 'ból', 'lm. die Schmerzen', 'o', 'Ich habe starke {Schmerzen}.', 'Mam silne bóle.');
+  W('impfen', 'д', 'szczepić', 'impft · impfte · hat geimpft', 'o', 'Hast du dich gegen Grippe {impfen} lassen?', 'Zaszczepiłeś się na grypę?');
+
+  L('B1', 'b1_meinung', 'Wyrażanie opinii');
+  W('meiner Meinung nach', 'ф', 'moim zdaniem', '', 'o', '{Meiner Meinung nach} ist das zu teuer.', 'Moim zdaniem to za drogie.');
+  W('ich finde, dass …', 'ф', 'uważam, że…', 'czasownik na końcu zdania podrzędnego', 'o', '{Ich finde, dass} du recht hast.', 'Uważam, że masz rację.');
+  W('zustimmen', 'д', 'zgadzać się (+ celownik)', 'stimmt zu · stimmte zu · hat zugestimmt', 'o', 'Da muss ich dir {zustimmen}.', 'Tu muszę się z tobą zgodzić.');
+  W('widersprechen', 'д', 'sprzeciwiać się, zaprzeczać', 'widerspricht · widersprach · hat widersprochen', 'o', 'Ich möchte Ihnen {widersprechen}.', 'Chciałbym się z panem nie zgodzić.');
+  W('recht haben', 'ф', 'mieć rację', 'hat recht · hatte recht · hat recht gehabt', 'o', 'Du {hast recht}.', 'Masz rację.');
+  W('der Vorteil', 'ч', 'zaleta, korzyść', 'lm. die Vorteile', 'o', 'Ein großer {Vorteil} ist der Preis.', 'Dużą zaletą jest cena.');
+  W('der Nachteil', 'ч', 'wada', 'lm. die Nachteile', 'o', 'Der {Nachteil} ist, dass es lange dauert.', 'Wadą jest to, że to długo trwa.');
+  W('überzeugen', 'д', 'przekonywać', 'überzeugt · überzeugte · hat überzeugt', 'o', 'Das Argument hat mich {überzeugt}.', 'Ten argument mnie przekonał.');
+  W('einerseits … andererseits', 'з', 'z jednej strony… z drugiej strony', '', 'o', '{Einerseits} ist es praktisch, andererseits teuer.', 'Z jednej strony to praktyczne, z drugiej drogie.');
+  W('trotzdem', 'пр', 'mimo to', '', 'o', 'Es regnet, {trotzdem} gehen wir spazieren.', 'Pada, mimo to idziemy na spacer.');
+  W('außerdem', 'пр', 'poza tym', '', 'o', 'Es ist billig und {außerdem} gesund.', 'To tanie, a poza tym zdrowe.');
+  W('deshalb', 'пр', 'dlatego', '', 'o', 'Ich bin krank, {deshalb} bleibe ich zu Hause.', 'Jestem chory, dlatego zostaję w domu.');
+
+  L('B1', 'b1_adjektive', 'Przymiotniki opisowe');
+  W('wichtig', 'п', 'ważny', '', 'o', 'Das ist sehr {wichtig} für mich.', 'To dla mnie bardzo ważne.');
+  W('möglich', 'п', 'możliwy', '', 'o', 'Ist das {möglich}?', 'Czy to możliwe?');
+  W('notwendig', 'п', 'konieczny', '', 'o', 'Eine Reform ist {notwendig}.', 'Reforma jest konieczna.');
+  W('gefährlich', 'п', 'niebezpieczny', '', 'o', 'Diese Straße ist {gefährlich}.', 'Ta ulica jest niebezpieczna.');
+  W('pünktlich', 'п', 'punktualny', '', 'p', 'Der Zug ist {pünktlich}.', 'Pociąg jest punktualny.');
+  W('zuverlässig', 'п', 'niezawodny, rzetelny', '', 'o', 'Er ist ein {zuverlässiger} Kollege.', 'On jest rzetelnym kolegą.');
+  W('selbstständig', 'п', 'samodzielny; na własny rachunek', '', 'o', 'Sie arbeitet {selbstständig}.', 'Ona prowadzi własną działalność.');
+  W('neugierig', 'п', 'ciekawski, ciekawy (czegoś)', '', 'o', 'Ich bin {neugierig}, wie es weitergeht.', 'Jestem ciekaw, co dalej.');
+  W('höflich', 'п', 'uprzejmy', '', 'o', 'Sei bitte {höflich}!', 'Bądź, proszę, uprzejmy!');
+  W('bequem', 'п', 'wygodny', '', 'o', 'Das Sofa ist sehr {bequem}.', 'Kanapa jest bardzo wygodna.');
+  W('ruhig', 'п', 'spokojny, cichy', '', 'o', 'Die Gegend ist sehr {ruhig}.', 'Okolica jest bardzo spokojna.');
+  W('laut', 'п', 'głośny', '', 'o', 'Die Musik ist zu {laut}.', 'Muzyka jest za głośna.');
+
+  /* ===================== B2 ===================== */
+  L('B2', 'b2_wirtschaft', 'Gospodarka');
+  W('die Wirtschaft', 'ж', 'gospodarka', 'lm. die Wirtschaften', 'o', 'Die deutsche {Wirtschaft} wächst langsam.', 'Niemiecka gospodarka rośnie powoli.');
+  W('das Unternehmen', 'с', 'przedsiębiorstwo', 'lm. die Unternehmen', 'o', 'Das {Unternehmen} hat 500 Mitarbeiter.', 'Przedsiębiorstwo ma 500 pracowników.');
+  W('der Umsatz', 'ч', 'obrót, przychód', 'lm. die Umsätze', 'o', 'Der {Umsatz} ist um zehn Prozent gestiegen.', 'Obroty wzrosły o dziesięć procent.');
+  W('der Gewinn', 'ч', 'zysk; wygrana', 'lm. die Gewinne', 'o', 'Die Firma macht keinen {Gewinn}.', 'Firma nie przynosi zysku.');
+  W('die Inflation', 'ж', 'inflacja', 'bez lm.', 't', 'Die {Inflation} ist hoch.', 'Inflacja jest wysoka.');
+  W('der Arbeitsmarkt', 'ч', 'rynek pracy', 'lm. die Arbeitsmärkte', 'o', 'Auf dem {Arbeitsmarkt} fehlen Fachkräfte.', 'Na rynku pracy brakuje fachowców.');
+  W('die Fachkraft', 'ж', 'fachowiec, wykwalifikowany pracownik', 'lm. die Fachkräfte', 'o', 'Deutschland sucht ausländische {Fachkräfte}.', 'Niemcy szukają zagranicznych fachowców.');
+  W('investieren', 'д', 'inwestować', 'investiert · investierte · hat investiert', 't', 'Die Regierung {investiert} in Bildung.', 'Rząd inwestuje w edukację.');
+  W('der Wettbewerb', 'ч', 'konkurencja; konkurs', 'lm. die Wettbewerbe', 'o', 'Der {Wettbewerb} ist hart.', 'Konkurencja jest ostra.');
+  W('die Insolvenz', 'ж', 'niewypłacalność, upadłość', 'lm. die Insolvenzen · też: der Konkurs', 'p', 'Die Firma hat {Insolvenz} angemeldet.', 'Firma ogłosiła upadłość.');
+  W('der Verbraucher', 'ч', 'konsument', 'lm. die Verbraucher', 'o', 'Die {Verbraucher} kaufen weniger.', 'Konsumenci kupują mniej.');
+  W('die Nachfrage', 'ж', 'popyt', 'bez lm. · das Angebot – podaż', 'o', 'Die {Nachfrage} nach E-Autos steigt.', 'Popyt na samochody elektryczne rośnie.');
+
+  L('B2', 'b2_politik', 'Polityka');
+  W('die Regierung', 'ж', 'rząd', 'lm. die Regierungen', 'o', 'Die {Regierung} plant eine Reform.', 'Rząd planuje reformę.');
+  W('der Bundestag', 'ч', 'Bundestag (parlament federalny)', 'bez lm.', 'o', 'Der {Bundestag} hat das Gesetz beschlossen.', 'Bundestag uchwalił ustawę.');
+  W('der Bundeskanzler', 'ч', 'kanclerz federalny', 'ż. die Bundeskanzlerin', 'p', 'Der {Bundeskanzler} hält eine Rede.', 'Kanclerz wygłasza przemówienie.');
+  W('die Wahl', 'ж', 'wybory; wybór', 'lm. die Wahlen', 'o', 'Die {Wahl} findet im September statt.', 'Wybory odbędą się we wrześniu.');
+  W('wählen', 'д', 'wybierać; głosować', 'wählt · wählte · hat gewählt', 'o', 'Wen hast du {gewählt}?', 'Na kogo głosowałeś?');
+  W('die Partei', 'ж', 'partia', 'lm. die Parteien', 'p', 'Welche {Partei} hat gewonnen?', 'Która partia wygrała?');
+  W('die Opposition', 'ж', 'opozycja', 'bez lm.', 't', 'Die {Opposition} kritisiert den Plan.', 'Opozycja krytykuje plan.');
+  W('das Gesetz', 'с', 'ustawa, prawo', 'lm. die Gesetze', 'o', 'Das neue {Gesetz} tritt im Januar in Kraft.', 'Nowa ustawa wchodzi w życie w styczniu.');
+  W('die Verfassung', 'ж', 'konstytucja', 'lm. die Verfassungen · w RFN: das Grundgesetz', 'o', 'Die {Verfassung} garantiert die Freiheit.', 'Konstytucja gwarantuje wolność.');
+  W('die Koalition', 'ж', 'koalicja', 'lm. die Koalitionen', 't', 'Die {Koalition} ist zerbrochen.', 'Koalicja się rozpadła.');
+  W('der Abgeordnete', 'ч', 'poseł', 'lm. die Abgeordneten (odmiana przymiotnikowa)', 'o', 'Der {Abgeordnete} stimmte dagegen.', 'Poseł głosował przeciw.');
+  W('die Demokratie', 'ж', 'demokracja', 'lm. die Demokratien', 't', 'Die {Demokratie} braucht engagierte Bürger.', 'Demokracja potrzebuje zaangażowanych obywateli.');
+
+  L('B2', 'b2_wissenschaft', 'Nauka i badania');
+  W('die Wissenschaft', 'ж', 'nauka', 'lm. die Wissenschaften', 'o', 'Die {Wissenschaft} macht große Fortschritte.', 'Nauka robi wielkie postępy.');
+  W('die Forschung', 'ж', 'badania naukowe', 'lm. die Forschungen', 'o', 'Die {Forschung} braucht mehr Geld.', 'Badania potrzebują więcej pieniędzy.');
+  W('untersuchen', 'д', 'badać', 'untersucht · untersuchte · hat untersucht', 'o', 'Die Studie {untersucht} das Verhalten von Jugendlichen.', 'Badanie analizuje zachowanie młodzieży.');
+  W('das Ergebnis', 'с', 'wynik', 'lm. die Ergebnisse', 'o', 'Das {Ergebnis} ist überraschend.', 'Wynik jest zaskakujący.');
+  W('die Untersuchung', 'ж', 'badanie, dochodzenie', 'lm. die Untersuchungen', 'o', 'Die {Untersuchung} läuft noch.', 'Badanie wciąż trwa.');
+  W('der Beweis', 'ч', 'dowód', 'lm. die Beweise', 'o', 'Es gibt keinen {Beweis}.', 'Nie ma dowodu.');
+  W('die Erfindung', 'ж', 'wynalazek', 'lm. die Erfindungen', 'o', 'Der Buchdruck war eine geniale {Erfindung}.', 'Druk był genialnym wynalazkiem.');
+  W('entdecken', 'д', 'odkrywać', 'entdeckt · entdeckte · hat entdeckt', 'o', 'Röntgen {entdeckte} 1895 die X-Strahlen.', 'Röntgen odkrył w 1895 r. promienie X.');
+  W('die These', 'ж', 'teza', 'lm. die Thesen', 't', 'Seine {These} ist umstritten.', 'Jego teza jest kontrowersyjna.');
+  W('nachweisen', 'д', 'wykazać, udowodnić', 'weist nach · wies nach · hat nachgewiesen', 'o', 'Man konnte den Effekt {nachweisen}.', 'Udało się wykazać ten efekt.');
+  W('die Voraussetzung', 'ж', 'warunek wstępny', 'lm. die Voraussetzungen', 'o', 'Gute Daten sind die {Voraussetzung} für die Analyse.', 'Dobre dane są warunkiem analizy.');
+  W('zuverlässige Daten', 'ф', 'wiarygodne dane', '', 'o', 'Wir brauchen {zuverlässige Daten}.', 'Potrzebujemy wiarygodnych danych.');
+
+  L('B2', 'b2_kultur', 'Kultura i sztuka');
+  W('die Ausstellung', 'ж', 'wystawa', 'lm. die Ausstellungen', 'o', 'Die {Ausstellung} ist bis Mai geöffnet.', 'Wystawa jest otwarta do maja.');
+  W('das Gemälde', 'с', 'obraz (malowany)', 'lm. die Gemälde', 'o', 'Das {Gemälde} stammt von Dürer.', 'Obraz pochodzi od Dürera.');
+  W('der Schriftsteller', 'ч', 'pisarz', 'lm. die Schriftsteller · ż. die Schriftstellerin', 'o', 'Thomas Mann ist ein berühmter {Schriftsteller}.', 'Thomas Mann to sławny pisarz.');
+  W('die Aufführung', 'ж', 'przedstawienie, wykonanie', 'lm. die Aufführungen', 'o', 'Die {Aufführung} war ausverkauft.', 'Przedstawienie było wyprzedane.');
+  W('die Bühne', 'ж', 'scena', 'lm. die Bühnen', 'o', 'Der Schauspieler steht auf der {Bühne}.', 'Aktor stoi na scenie.');
+  W('das Denkmal', 'с', 'pomnik; zabytek', 'lm. die Denkmäler', 'o', 'Das {Denkmal} erinnert an die Opfer.', 'Pomnik upamiętnia ofiary.');
+  W('der Roman', 'ч', 'powieść', 'lm. die Romane', 'f', 'Der {Roman} spielt in Danzig.', 'Akcja powieści toczy się w Gdańsku.');
+  W('das Werk', 'с', 'dzieło; zakład', 'lm. die Werke', 'o', 'Das ist sein bekanntestes {Werk}.', 'To jego najbardziej znane dzieło.');
+  W('darstellen', 'д', 'przedstawiać', 'stellt dar · stellte dar · hat dargestellt', 'o', 'Das Bild {stellt} eine Schlacht {dar}.', 'Obraz przedstawia bitwę.');
+  W('die Kritik', 'ж', 'krytyka; recenzja', 'lm. die Kritiken', 't', 'Der Film bekam gute {Kritiken}.', 'Film dostał dobre recenzje.');
+  W('das Erbe', 'с', 'dziedzictwo, spadek', 'bez lm.', 'o', 'Das kulturelle {Erbe} muss geschützt werden.', 'Dziedzictwo kulturowe musi być chronione.');
+  W('beeindruckend', 'п', 'imponujący', '', 'o', 'Die Kathedrale ist {beeindruckend}.', 'Katedra jest imponująca.');
+
+  L('B2', 'b2_konnektoren', 'Spójniki i łączniki');
+  W('obwohl', 'з', 'chociaż (czasownik na końcu)', '', 'o', 'Er kommt, {obwohl} er krank ist.', 'On przychodzi, chociaż jest chory.');
+  W('während', 'з', 'podczas gdy; podczas (+ dopełniacz)', '', 'o', '{Während} ich koche, liest er.', 'Podczas gdy gotuję, on czyta.');
+  W('nachdem', 'з', 'po tym, jak', '', 'o', '{Nachdem} wir gegessen hatten, gingen wir spazieren.', 'Po tym, jak zjedliśmy, poszliśmy na spacer.');
+  W('bevor', 'з', 'zanim', '', 'o', 'Ruf mich an, {bevor} du kommst.', 'Zadzwoń, zanim przyjdziesz.');
+  W('damit', 'з', 'aby, żeby', '', 'o', 'Ich spreche langsam, {damit} du mich verstehst.', 'Mówię powoli, żebyś mnie zrozumiał.');
+  W('sodass', 'з', 'tak że', '', 'o', 'Es regnete stark, {sodass} wir zu Hause blieben.', 'Mocno padało, tak że zostaliśmy w domu.');
+  W('falls', 'з', 'w razie gdyby', '', 'o', '{Falls} du Hilfe brauchst, ruf mich an.', 'Gdybyś potrzebował pomocy, zadzwoń.');
+  W('je … desto', 'з', 'im… tym', '', 'o', '{Je} länger ich lerne, desto besser verstehe ich.', 'Im dłużej się uczę, tym lepiej rozumiem.');
+  W('sowohl … als auch', 'з', 'zarówno… jak i', '', 'o', 'Sie spricht {sowohl} Deutsch als auch Polnisch.', 'Ona mówi zarówno po niemiecku, jak i po polsku.');
+  W('weder … noch', 'з', 'ani… ani', '', 'o', 'Ich habe {weder} Zeit noch Lust.', 'Nie mam ani czasu, ani ochoty.');
+  W('stattdessen', 'пр', 'zamiast tego', '', 'o', 'Er rief nicht an, {stattdessen} schrieb er eine E-Mail.', 'Nie zadzwonił, zamiast tego napisał maila.');
+  W('folglich', 'пр', 'w konsekwencji, zatem', '', 'o', 'Die Preise steigen, {folglich} sinkt die Nachfrage.', 'Ceny rosną, w konsekwencji spada popyt.');
+
+  L('B2', 'b2_recht', 'Prawo i administracja');
+  W('das Gericht', 'с', 'sąd; danie (potrawa)', 'lm. die Gerichte', 'f', 'Der Fall kommt vor {Gericht}.', 'Sprawa trafi do sądu.');
+  W('der Richter', 'ч', 'sędzia', 'lm. die Richter · ż. die Richterin', 'o', 'Der {Richter} verkündet das Urteil.', 'Sędzia ogłasza wyrok.');
+  W('das Urteil', 'с', 'wyrok; osąd', 'lm. die Urteile', 'o', 'Das {Urteil} ist rechtskräftig.', 'Wyrok jest prawomocny.');
+  W('der Anwalt', 'ч', 'adwokat', 'lm. die Anwälte · ż. die Anwältin', 'o', 'Ich spreche zuerst mit meinem {Anwalt}.', 'Najpierw porozmawiam z moim adwokatem.');
+  W('der Vertrag', 'ч', 'umowa', 'lm. die Verträge', 'o', 'Lesen Sie den {Vertrag} genau.', 'Proszę dokładnie przeczytać umowę.');
+  W('unterschreiben', 'д', 'podpisywać', 'unterschreibt · unterschrieb · hat unterschrieben', 'o', 'Bitte {unterschreiben} Sie hier.', 'Proszę tu podpisać.');
+  W('die Behörde', 'ж', 'urząd', 'lm. die Behörden', 'o', 'Die {Behörde} hat den Antrag abgelehnt.', 'Urząd odrzucił wniosek.');
+  W('der Antrag', 'ч', 'wniosek', 'lm. die Anträge', 'o', 'Ich stelle einen {Antrag} auf Elterngeld.', 'Składam wniosek o zasiłek rodzicielski.');
+  W('die Genehmigung', 'ж', 'zezwolenie', 'lm. die Genehmigungen', 'o', 'Dafür braucht man eine {Genehmigung}.', 'Do tego potrzeba zezwolenia.');
+  W('verbieten', 'д', 'zabraniać', 'verbietet · verbot · hat verboten', 'o', 'Rauchen ist hier {verboten}.', 'Palenie jest tu zabronione.');
+  W('die Strafe', 'ж', 'kara', 'lm. die Strafen', 'o', 'Er musste eine {Strafe} zahlen.', 'Musiał zapłacić karę.');
+  W('der Zeuge', 'ч', 'świadek', 'lm. die Zeugen · ż. die Zeugin', 'o', 'Der {Zeuge} sagte vor Gericht aus.', 'Świadek zeznawał w sądzie.');
+
+  L('B2', 'b2_abstrakt', 'Pojęcia abstrakcyjne');
+  W('die Entwicklung', 'ж', 'rozwój', 'lm. die Entwicklungen', 'o', 'Die {Entwicklung} der Technik ist rasant.', 'Rozwój techniki jest błyskawiczny.');
+  W('die Ursache', 'ж', 'przyczyna', 'lm. die Ursachen', 'o', 'Was ist die {Ursache} des Problems?', 'Jaka jest przyczyna problemu?');
+  W('die Folge', 'ж', 'skutek, następstwo', 'lm. die Folgen', 'o', 'Der Krieg hatte schreckliche {Folgen}.', 'Wojna miała straszne skutki.');
+  W('die Verantwortung', 'ж', 'odpowiedzialność', 'bez lm.', 'o', 'Wir tragen {Verantwortung} für unsere Kinder.', 'Ponosimy odpowiedzialność za nasze dzieci.');
+  W('die Freiheit', 'ж', 'wolność', 'lm. die Freiheiten', 'o', 'Die {Freiheit} ist ein hohes Gut.', 'Wolność to wielkie dobro.');
+  W('der Zusammenhang', 'ч', 'związek, kontekst', 'lm. die Zusammenhänge', 'o', 'In diesem {Zusammenhang} muss man sagen …', 'W tym kontekście trzeba powiedzieć…');
+  W('die Herausforderung', 'ж', 'wyzwanie', 'lm. die Herausforderungen', 'o', 'Das ist eine große {Herausforderung}.', 'To wielkie wyzwanie.');
+  W('die Lösung', 'ж', 'rozwiązanie', 'lm. die Lösungen', 'o', 'Wir suchen eine {Lösung}.', 'Szukamy rozwiązania.');
+  W('der Einfluss', 'ч', 'wpływ', 'lm. die Einflüsse', 'o', 'Die Medien haben großen {Einfluss}.', 'Media mają duży wpływ.');
+  W('die Absicht', 'ж', 'zamiar', 'lm. die Absichten', 'o', 'Das war nicht meine {Absicht}.', 'To nie był mój zamiar.');
+  W('die Gewohnheit', 'ж', 'nawyk, przyzwyczajenie', 'lm. die Gewohnheiten', 'o', 'Das ist eine schlechte {Gewohnheit}.', 'To zły nawyk.');
+  W('die Erfahrung', 'ж', 'doświadczenie', 'lm. die Erfahrungen', 'o', 'Sie hat viel {Erfahrung} im Unterrichten.', 'Ona ma duże doświadczenie w nauczaniu.');
+
+  /* ===================== C1 ===================== */
+  L('C1', 'c1_redewendungen', 'Idiomy (1)');
+  W('Daumen drücken', 'ф', 'trzymać kciuki', 'Ich drücke dir die Daumen', 'o', 'Ich {drücke} dir die {Daumen}!', 'Trzymam za ciebie kciuki!');
+  W('ins Fettnäpfchen treten', 'ф', 'popełnić gafę', '', 'o', 'Mit dieser Bemerkung ist er voll {ins Fettnäpfchen getreten}.', 'Tą uwagą zaliczył niezłą gafę.');
+  W('Tomaten auf den Augen haben', 'ф', 'nie widzieć czegoś oczywistego', '', 'o', 'Hast du {Tomaten auf den Augen}?', 'Ślepy jesteś?');
+  W('die Nase voll haben', 'ф', 'mieć dość', 'von etw. die Nase voll haben', 'o', 'Ich {habe die Nase voll} von diesem Lärm.', 'Mam dość tego hałasu.');
+  W('auf dem Holzweg sein', 'ф', 'być w błędzie, iść złą drogą', '', 'o', 'Mit dieser Theorie {bist} du {auf dem Holzweg}.', 'Z tą teorią jesteś w błędzie.');
+  W('jemandem auf den Wecker gehen', 'ф', 'działać komuś na nerwy', '', 'o', 'Du {gehst} mir {auf den Wecker}!', 'Działasz mi na nerwy!');
+  W('Schwein haben', 'ф', 'mieć farta', '', 'o', 'Da {hast} du aber {Schwein} gehabt!', 'Ale miałeś farta!');
+  W('die Katze im Sack kaufen', 'ф', 'kupić kota w worku', '', 'p', 'Ich will nicht {die Katze im Sack kaufen}.', 'Nie chcę kupować kota w worku.');
+  W('um den heißen Brei herumreden', 'ф', 'owijać w bawełnę', '', 'o', 'Hör auf, {um den heißen Brei herumzureden}!', 'Przestań owijać w bawełnę!');
+  W('etwas auf die lange Bank schieben', 'ф', 'odkładać coś na później', '', 'o', 'Wir sollten das nicht {auf die lange Bank schieben}.', 'Nie powinniśmy tego odkładać.');
+  W('Hals- und Beinbruch!', 'ф', 'połamania nóg! (powodzenia)', '', 'o', 'Morgen ist deine Prüfung? {Hals- und Beinbruch}!', 'Jutro egzamin? Połamania nóg!');
+  W('ich verstehe nur Bahnhof', 'ф', 'nic nie rozumiem („rozumiem tylko dworzec”)', '', 'o', 'Tut mir leid, {ich verstehe nur Bahnhof}.', 'Przykro mi, nic z tego nie rozumiem.');
+
+  L('C1', 'c1_amtsdeutsch', 'Język urzędowy');
+  W('die Anmeldung', 'ж', 'zameldowanie; zgłoszenie', 'lm. die Anmeldungen', 'o', 'Die {Anmeldung} beim Bürgeramt ist Pflicht.', 'Zameldowanie w urzędzie jest obowiązkowe.');
+  W('der Bescheid', 'ч', 'decyzja (urzędowa); informacja', 'lm. die Bescheide · Bescheid sagen – dać znać', 'o', 'Ich habe den {Bescheid} vom Finanzamt bekommen.', 'Dostałem decyzję z urzędu skarbowego.');
+  W('die Frist', 'ж', 'termin (ostateczny)', 'lm. die Fristen', 'o', 'Die {Frist} endet am 31. Mai.', 'Termin upływa 31 maja.');
+  W('beantragen', 'д', 'wnioskować o coś', 'beantragt · beantragte · hat beantragt', 'o', 'Ich möchte einen neuen Pass {beantragen}.', 'Chcę złożyć wniosek o nowy paszport.');
+  W('die Bescheinigung', 'ж', 'zaświadczenie', 'lm. die Bescheinigungen', 'o', 'Ich brauche eine {Bescheinigung} vom Arbeitgeber.', 'Potrzebuję zaświadczenia od pracodawcy.');
+  W('der Widerspruch', 'ч', 'odwołanie; sprzeczność', 'lm. die Widersprüche', 'o', 'Gegen den Bescheid lege ich {Widerspruch} ein.', 'Od tej decyzji składam odwołanie.');
+  W('zuständig', 'п', 'właściwy, odpowiedzialny (za)', '', 'o', 'Wer ist dafür {zuständig}?', 'Kto jest za to odpowiedzialny?');
+  W('die Unterlagen (Pl.)', 'мн', 'dokumenty, papiery', 'tylko lm.', 'o', 'Bitte bringen Sie alle {Unterlagen} mit.', 'Proszę przynieść wszystkie dokumenty.');
+  W('ausfüllen', 'д', 'wypełniać (formularz)', 'füllt aus · füllte aus · hat ausgefüllt', 'o', 'Bitte {füllen} Sie das Formular {aus}.', 'Proszę wypełnić formularz.');
+  W('gemäß', 'з', 'zgodnie z (+ celownik)', '', 'o', '{Gemäß} § 5 ist das nicht erlaubt.', 'Zgodnie z § 5 jest to niedozwolone.');
+  W('hinsichtlich', 'з', 'w odniesieniu do (+ dopełniacz)', '', 'o', '{Hinsichtlich} Ihrer Anfrage teilen wir mit …', 'W odniesieniu do Pana zapytania informujemy…');
+  W('die Vollmacht', 'ж', 'pełnomocnictwo', 'lm. die Vollmachten', 'o', 'Ohne {Vollmacht} geht es nicht.', 'Bez pełnomocnictwa się nie da.');
+
+  L('C1', 'c1_verben', 'Czasowniki zaawansowane');
+  W('beeinflussen', 'д', 'wpływać na', 'beeinflusst · beeinflusste · hat beeinflusst', 'o', 'Werbung {beeinflusst} unser Verhalten.', 'Reklama wpływa na nasze zachowanie.');
+  W('berücksichtigen', 'д', 'uwzględniać', 'berücksichtigt · berücksichtigte · hat berücksichtigt', 'o', 'Man muss alle Faktoren {berücksichtigen}.', 'Trzeba uwzględnić wszystkie czynniki.');
+  W('verzichten', 'д', 'rezygnować (auf + biernik)', 'verzichtet · verzichtete · hat verzichtet', 'o', 'Ich {verzichte} auf Zucker.', 'Rezygnuję z cukru.');
+  W('vermeiden', 'д', 'unikać', 'vermeidet · vermied · hat vermieden', 'o', 'Wir sollten Fehler {vermeiden}.', 'Powinniśmy unikać błędów.');
+  W('erfordern', 'д', 'wymagać', 'erfordert · erforderte · hat erfordert', 'o', 'Die Aufgabe {erfordert} viel Geduld.', 'Zadanie wymaga dużo cierpliwości.');
+  W('gewährleisten', 'д', 'zapewniać, gwarantować', 'gewährleistet · gewährleistete · hat gewährleistet', 'o', 'Die Sicherheit muss {gewährleistet} sein.', 'Bezpieczeństwo musi być zapewnione.');
+  W('sich auseinandersetzen', 'д', 'zmierzyć się z czymś, analizować (mit)', 'setzt sich auseinander · hat sich auseinandergesetzt', 'o', 'Wir müssen uns mit der Vergangenheit {auseinandersetzen}.', 'Musimy zmierzyć się z przeszłością.');
+  W('hervorheben', 'д', 'podkreślać', 'hebt hervor · hob hervor · hat hervorgehoben', 'o', 'Ich möchte einen Punkt {hervorheben}.', 'Chciałbym podkreślić jeden punkt.');
+  W('bewältigen', 'д', 'poradzić sobie z czymś', 'bewältigt · bewältigte · hat bewältigt', 'o', 'Wir haben die Krise {bewältigt}.', 'Poradziliśmy sobie z kryzysem.');
+  W('beitragen', 'д', 'przyczyniać się (zu)', 'trägt bei · trug bei · hat beigetragen', 'o', 'Jeder kann zum Klimaschutz {beitragen}.', 'Każdy może przyczynić się do ochrony klimatu.');
+  W('ablehnen', 'д', 'odrzucać, odmawiać', 'lehnt ab · lehnte ab · hat abgelehnt', 'o', 'Er hat das Angebot {abgelehnt}.', 'Odrzucił ofertę.');
+  W('voraussetzen', 'д', 'zakładać, wymagać (jako warunku)', 'setzt voraus · setzte voraus · hat vorausgesetzt', 'o', 'Die Stelle {setzt} Englischkenntnisse {voraus}.', 'Stanowisko wymaga znajomości angielskiego.');
+
+  L('C1', 'c1_adjektive', 'Przymiotniki zaawansowane');
+  W('umstritten', 'п', 'kontrowersyjny, sporny', '', 'o', 'Die Reform ist politisch {umstritten}.', 'Reforma jest politycznie kontrowersyjna.');
+  W('nachvollziehbar', 'п', 'zrozumiały, dający się prześledzić', '', 'o', 'Ihre Entscheidung ist {nachvollziehbar}.', 'Pani decyzja jest zrozumiała.');
+  W('erheblich', 'п', 'znaczny', '', 'o', 'Die Kosten sind {erheblich} gestiegen.', 'Koszty znacznie wzrosły.');
+  W('vorläufig', 'п', 'tymczasowy', '', 'o', 'Das ist nur ein {vorläufiges} Ergebnis.', 'To tylko wynik wstępny.');
+  W('zweifelhaft', 'п', 'wątpliwy', '', 'o', 'Der Erfolg ist {zweifelhaft}.', 'Sukces jest wątpliwy.');
+  W('anspruchsvoll', 'п', 'wymagający', '', 'o', 'Das ist eine {anspruchsvolle} Aufgabe.', 'To wymagające zadanie.');
+  W('vielfältig', 'п', 'różnorodny', '', 'o', 'Die Gründe sind {vielfältig}.', 'Przyczyny są różnorodne.');
+  W('bedenklich', 'п', 'niepokojący', '', 'o', 'Die Entwicklung ist {bedenklich}.', 'Ten rozwój sytuacji jest niepokojący.');
+  W('unvermeidlich', 'п', 'nieunikniony', '', 'o', 'Der Konflikt war {unvermeidlich}.', 'Konflikt był nieunikniony.');
+  W('selbstverständlich', 'п', 'oczywisty; oczywiście', '', 'o', 'Das ist doch {selbstverständlich}!', 'To przecież oczywiste!');
+  W('ausschlaggebend', 'п', 'rozstrzygający, decydujący', '', 'o', 'Der Preis war {ausschlaggebend}.', 'Cena była decydująca.');
+  W('nachhaltig wirksam', 'ф', 'trwale skuteczny', '', 'o', 'Die Maßnahme war {nachhaltig wirksam}.', 'Środek okazał się trwale skuteczny.');
+
+  L('C1', 'c1_nomen', 'Rzeczowniki abstrakcyjne');
+  W('die Auswirkung', 'ж', 'skutek, oddziaływanie', 'lm. die Auswirkungen', 'o', 'Die {Auswirkungen} der Krise sind spürbar.', 'Skutki kryzysu są odczuwalne.');
+  W('die Maßnahme', 'ж', 'środek, działanie', 'lm. die Maßnahmen', 'o', 'Die Regierung ergreift neue {Maßnahmen}.', 'Rząd podejmuje nowe działania.');
+  W('der Ansatz', 'ч', 'podejście', 'lm. die Ansätze', 'o', 'Das ist ein interessanter {Ansatz}.', 'To ciekawe podejście.');
+  W('die Voraussicht', 'ж', 'przezorność', 'bez lm.', 'o', 'Mit etwas {Voraussicht} hätten wir das verhindert.', 'Z odrobiną przezorności zapobieglibyśmy temu.');
+  W('die Wahrnehmung', 'ж', 'postrzeganie', 'lm. die Wahrnehmungen', 'o', 'Die öffentliche {Wahrnehmung} hat sich verändert.', 'Postrzeganie społeczne się zmieniło.');
+  W('der Widerstand', 'ч', 'opór', 'lm. die Widerstände', 'o', 'Gegen den Plan gibt es {Widerstand}.', 'Wobec planu jest opór.');
+  W('die Bereitschaft', 'ж', 'gotowość', 'bez lm.', 'o', 'Es fehlt die {Bereitschaft} zum Kompromiss.', 'Brakuje gotowości do kompromisu.');
+  W('die Grundlage', 'ж', 'podstawa', 'lm. die Grundlagen', 'o', 'Vertrauen ist die {Grundlage} jeder Beziehung.', 'Zaufanie jest podstawą każdej relacji.');
+  W('der Bestandteil', 'ч', 'element składowy', 'lm. die Bestandteile', 'o', 'Sport ist ein fester {Bestandteil} meines Lebens.', 'Sport jest stałym elementem mojego życia.');
+  W('die Gegebenheit', 'ж', 'uwarunkowanie, okoliczność', 'lm. die Gegebenheiten', 'o', 'Man muss sich den örtlichen {Gegebenheiten} anpassen.', 'Trzeba się dostosować do lokalnych warunków.');
+  W('das Anliegen', 'с', 'sprawa, prośba; troska', 'lm. die Anliegen', 'o', 'Was ist Ihr {Anliegen}?', 'W jakiej sprawie pan przychodzi?');
+  W('die Zuversicht', 'ж', 'ufność, optymizm', 'bez lm.', 'o', 'Wir blicken mit {Zuversicht} in die Zukunft.', 'Patrzymy z ufnością w przyszłość.');
+
+  L('C1', 'c1_geschichte', 'Historia Niemiec');
+  W('die Reformation', 'ж', 'reformacja', 'bez lm.', 't', 'Die {Reformation} begann 1517 in Wittenberg.', 'Reformacja zaczęła się w 1517 r. w Wittenberdze.');
+  W('der Dreißigjährige Krieg', 'ч', 'wojna trzydziestoletnia', '1618–1648', 'o', 'Der {Dreißigjährige Krieg} verwüstete Mitteleuropa.', 'Wojna trzydziestoletnia spustoszyła Europę Środkową.');
+  W('das Kaiserreich', 'с', 'cesarstwo', 'lm. die Kaiserreiche', 'o', 'Das Deutsche {Kaiserreich} wurde 1871 gegründet.', 'Cesarstwo Niemieckie założono w 1871 r.');
+  W('die Weimarer Republik', 'ж', 'Republika Weimarska', '1918–1933', 'o', 'Die {Weimarer Republik} war die erste deutsche Demokratie.', 'Republika Weimarska była pierwszą niemiecką demokracją.');
+  W('die Machtergreifung', 'ж', 'przejęcie władzy (1933)', 'bez lm.', 'o', 'Nach der {Machtergreifung} 1933 wurde die Demokratie abgeschafft.', 'Po przejęciu władzy w 1933 r. zniesiono demokrację.');
+  W('der Widerstand gegen den Nationalsozialismus', 'ф', 'opór wobec nazizmu', '', 'o', 'Die Weiße Rose ist ein Symbol für den {Widerstand gegen den Nationalsozialismus}.', 'Biała Róża jest symbolem oporu wobec nazizmu.');
+  W('die Vertreibung', 'ж', 'wypędzenie, wysiedlenie', 'lm. die Vertreibungen', 'o', 'Die {Vertreibung} nach 1945 ist bis heute ein sensibles Thema.', 'Wysiedlenia po 1945 r. to do dziś drażliwy temat.');
+  W('die Mauer', 'ж', 'mur (berliński)', 'lm. die Mauern', 'p', 'Die {Mauer} fiel am 9. November 1989.', 'Mur upadł 9 listopada 1989 r.');
+  W('die Wende', 'ж', 'przełom (1989/90)', 'bez lm.', 'o', 'Nach der {Wende} änderte sich alles.', 'Po przełomie wszystko się zmieniło.');
+  W('die Wiedervereinigung', 'ж', 'zjednoczenie Niemiec (1990)', 'bez lm.', 'o', 'Die {Wiedervereinigung} fand am 3. Oktober 1990 statt.', 'Zjednoczenie nastąpiło 3 października 1990 r.');
+  W('die Versöhnung', 'ж', 'pojednanie', 'bez lm.', 'o', 'Der Brief der polnischen Bischöfe war ein Schritt zur {Versöhnung}.', 'List biskupów polskich był krokiem ku pojednaniu.');
+  W('die Vergangenheitsbewältigung', 'ж', 'rozliczenie z przeszłością', 'bez lm.', 'o', 'Die {Vergangenheitsbewältigung} prägt die deutsche Politik.', 'Rozliczenie z przeszłością kształtuje niemiecką politykę.');
+
+  /* ===================== C2 ===================== */
+  L('C2', 'c2_literatur', 'Język literacki');
+  W('die Sehnsucht', 'ж', 'tęsknota', 'lm. die Sehnsüchte', 'o', 'Die {Sehnsucht} nach der Heimat ließ ihn nicht los.', 'Tęsknota za ojczyzną nie dawała mu spokoju.');
+  W('die Dämmerung', 'ж', 'zmierzch; świt', 'lm. die Dämmerungen', 'o', 'In der {Dämmerung} kehrte er heim.', 'O zmierzchu wrócił do domu.');
+  W('vergänglich', 'п', 'przemijający', '', 'o', 'Alles Irdische ist {vergänglich}.', 'Wszystko, co ziemskie, przemija.');
+  W('die Wehmut', 'ж', 'nostalgiczny smutek', 'bez lm.', 'o', 'Mit {Wehmut} dachte sie an ihre Kindheit.', 'Z nostalgią myślała o dzieciństwie.');
+  W('schimmern', 'д', 'migotać, połyskiwać', 'schimmert · schimmerte · hat geschimmert', 'o', 'Der See {schimmerte} im Mondlicht.', 'Jezioro połyskiwało w świetle księżyca.');
+  W('das Verhängnis', 'с', 'fatum, zguba', 'lm. die Verhängnisse', 'o', 'Sein Stolz wurde ihm zum {Verhängnis}.', 'Duma stała się jego zgubą.');
+  W('die Einsamkeit', 'ж', 'samotność', 'bez lm.', 'o', 'Die {Einsamkeit} des Dichters war selbst gewählt.', 'Samotność poety była z wyboru.');
+  W('der Abgrund', 'ч', 'otchłań, przepaść', 'lm. die Abgründe', 'o', 'Er blickte in den {Abgrund}.', 'Spojrzał w otchłań.');
+  W('das Fernweh', 'с', 'tęsknota za dalekimi krajami', 'bez lm.', 'o', 'Jeden Herbst packt mich das {Fernweh}.', 'Każdej jesieni dopada mnie tęsknota za podróżami.');
+  W('die Geborgenheit', 'ж', 'poczucie bezpieczeństwa, ciepło', 'bez lm.', 'o', 'Bei ihr fand er {Geborgenheit}.', 'Przy niej znalazł poczucie bezpieczeństwa.');
+  W('die Schadenfreude', 'ж', 'radość z cudzego nieszczęścia', 'bez lm.', 'o', 'In seinem Lächeln lag {Schadenfreude}.', 'W jego uśmiechu była złośliwa satysfakcja.');
+  W('der Zeitgeist', 'ч', 'duch czasu', 'bez lm.', 'o', 'Der Roman fängt den {Zeitgeist} der Zwanziger ein.', 'Powieść oddaje ducha lat dwudziestych.');
+
+  L('C2', 'c2_gehoben', 'Styl wysoki');
+  W('sich erübrigen', 'д', 'stać się zbędnym', 'erübrigt sich · erübrigte sich · hat sich erübrigt', 'o', 'Damit {erübrigt} sich jede weitere Diskussion.', 'Tym samym wszelka dalsza dyskusja staje się zbędna.');
+  W('anheimfallen', 'д', 'paść ofiarą, przypaść (komuś)', 'fällt anheim · fiel anheim · ist anheimgefallen', 'o', 'Die Stadt ist dem Vergessen {anheimgefallen}.', 'Miasto popadło w zapomnienie.');
+  W('obliegen', 'д', 'spoczywać na kimś (o obowiązku)', 'obliegt · oblag · hat oblegen', 'o', 'Die Entscheidung {obliegt} dem Vorstand.', 'Decyzja należy do zarządu.');
+  W('unbeschadet', 'з', 'bez uszczerbku dla (+ dopełniacz)', '', 'o', '{Unbeschadet} dieser Regelung gilt Folgendes.', 'Bez uszczerbku dla tej regulacji obowiązuje, co następuje.');
+  W('mithin', 'пр', 'zatem, tym samym', '', 'o', 'Die Bedingung ist erfüllt, {mithin} ist der Vertrag gültig.', 'Warunek jest spełniony, zatem umowa jest ważna.');
+  W('zuweilen', 'пр', 'niekiedy', '', 'o', '{Zuweilen} besuchte er das Grab seines Vaters.', 'Niekiedy odwiedzał grób ojca.');
+  W('gleichwohl', 'пр', 'niemniej jednak', '', 'o', 'Die Aufgabe war schwer, {gleichwohl} gelang sie.', 'Zadanie było trudne, niemniej się powiodło.');
+  W('dergestalt', 'пр', 'w taki sposób', '', 'o', 'Er formulierte es {dergestalt}, dass niemand widersprach.', 'Sformułował to w taki sposób, że nikt nie zaprotestował.');
+  W('erachten', 'д', 'uważać za (für)', 'erachtet · erachtete · hat erachtet', 'o', 'Ich {erachte} es für notwendig.', 'Uważam to za konieczne.');
+  W('fernerhin', 'пр', 'ponadto, w dalszej kolejności', '', 'o', '{Fernerhin} ist zu beachten, dass …', 'Ponadto należy zauważyć, że…');
+  W('hinfällig', 'п', 'nieaktualny, bezprzedmiotowy', '', 'o', 'Der Plan ist damit {hinfällig}.', 'Plan jest tym samym nieaktualny.');
+  W('obschon', 'з', 'aczkolwiek, choć (podniośle)', '', 'o', '{Obschon} er müde war, arbeitete er weiter.', 'Choć był zmęczony, pracował dalej.');
+
+  L('C2', 'c2_redewendungen2', 'Idiomy (2)');
+  W('jemandem einen Bären aufbinden', 'ф', 'nabić kogoś w butelkę', '', 'o', 'Du willst mir doch {einen Bären aufbinden}!', 'Chcesz mnie nabić w butelkę!');
+  W('den Nagel auf den Kopf treffen', 'ф', 'trafić w sedno', '', 'o', 'Mit dieser Analyse hast du {den Nagel auf den Kopf getroffen}.', 'Tą analizą trafiłeś w sedno.');
+  W('etwas aus dem Ärmel schütteln', 'ф', 'zrobić coś bez wysiłku, z rękawa', '', 'o', 'So eine Rede kann man nicht {aus dem Ärmel schütteln}.', 'Takiej mowy nie da się wygłosić z marszu.');
+  W('kein Blatt vor den Mund nehmen', 'ф', 'mówić bez ogródek', '', 'o', 'Sie {nimmt kein Blatt vor den Mund}.', 'Ona mówi bez ogródek.');
+  W('sich ins Zeug legen', 'ф', 'przyłożyć się, dać z siebie wszystko', '', 'o', 'Für das Projekt {hat} er sich richtig {ins Zeug gelegt}.', 'Przy tym projekcie naprawdę się przyłożył.');
+  W('etwas über einen Kamm scheren', 'ф', 'wrzucać wszystko do jednego worka', '', 'o', 'Man darf nicht alle {über einen Kamm scheren}.', 'Nie można wszystkich wrzucać do jednego worka.');
+  W('die Kirche im Dorf lassen', 'ф', 'nie przesadzać', '', 'o', 'Lass mal {die Kirche im Dorf}!', 'Nie przesadzaj!');
+  W('jemandem reinen Wein einschenken', 'ф', 'powiedzieć komuś gorzką prawdę', '', 'o', 'Ich muss dir {reinen Wein einschenken}.', 'Muszę ci powiedzieć prawdę.');
+  W('wie die Faust aufs Auge passen', 'ф', 'pasować jak pięść do nosa (lub: idealnie – ironicznie)', '', 'o', 'Die Krawatte {passt} {wie die Faust aufs Auge}.', 'Ten krawat pasuje jak pięść do nosa.');
+  W('mit jemandem ein Hühnchen zu rupfen haben', 'ф', 'mieć z kimś na pieńku', '', 'o', 'Mit dir {habe} ich noch {ein Hühnchen zu rupfen}.', 'Mam z tobą jeszcze do pogadania.');
+  W('auf großem Fuß leben', 'ф', 'żyć na wysokiej stopie', '', 'o', 'Seit dem Lottogewinn {leben} sie {auf großem Fuß}.', 'Od wygranej w lotto żyją na wysokiej stopie.');
+  W('das ist nicht mein Bier', 'ф', 'to nie moja sprawa', '', 'o', 'Mach, was du willst – {das ist nicht mein Bier}.', 'Rób, co chcesz – to nie moja sprawa.');
+
+  L('C2', 'c2_stil', 'Pułapki dla Polaków');
+  W('sich erinnern an', 'д', 'pamiętać, przypominać sobie (an + biernik)', 'erinnert sich · erinnerte sich · hat sich erinnert', 'o', 'Ich {erinnere} mich gut an diesen Tag.', 'Dobrze pamiętam ten dzień.');
+  W('Lust haben auf', 'ф', 'mieć ochotę na', '', 'o', 'Ich {habe} {Lust} auf Pizza.', 'Mam ochotę na pizzę.');
+  W('sich freuen auf', 'ф', 'cieszyć się na (coś, co będzie)', 'sich freuen über – cieszyć się z (czegoś, co jest)', 'o', 'Ich freue mich {auf} die Ferien.', 'Cieszę się na wakacje.');
+  W('Angst haben vor', 'ф', 'bać się (vor + celownik)', '', 'o', 'Sie hat Angst {vor} der Prüfung.', 'Ona boi się egzaminu.');
+  W('stolz sein auf', 'ф', 'być dumnym z (auf + biernik)', '', 'o', 'Wir sind {stolz} auf dich.', 'Jesteśmy z ciebie dumni.');
+  W('sich interessieren für', 'д', 'interesować się (für + biernik)', '', 'o', 'Ich {interessiere} mich für Geschichte.', 'Interesuję się historią.');
+  W('fragen nach', 'ф', 'pytać o (nach + celownik)', '', 'o', 'Er hat {nach} dir gefragt.', 'Pytał o ciebie.');
+  W('denken an', 'ф', 'myśleć o (an + biernik)', '', 'o', 'Ich denke oft {an} meine Kindheit.', 'Często myślę o dzieciństwie.');
+  W('sich bedanken für', 'д', 'dziękować za', 'bedankt sich · bedankte sich · hat sich bedankt', 'o', 'Ich möchte mich für Ihre Hilfe {bedanken}.', 'Chciałbym podziękować za pomoc.');
+  W('sich kümmern um', 'д', 'troszczyć się o, zajmować się', 'kümmert sich · kümmerte sich · hat sich gekümmert', 'o', 'Wer {kümmert} sich um die Kinder?', 'Kto zajmuje się dziećmi?');
+  W('sich verlassen auf', 'д', 'polegać na (auf + biernik)', 'verlässt sich · verließ sich · hat sich verlassen', 'o', 'Auf ihn kann man sich {verlassen}.', 'Na nim można polegać.');
+  W('teilnehmen an', 'д', 'brać udział w (an + celownik)', 'nimmt teil · nahm teil · hat teilgenommen', 'o', 'Ich habe an dem Kurs {teilgenommen}.', 'Brałem udział w kursie.');
+})();
