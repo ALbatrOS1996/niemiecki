@@ -28,9 +28,8 @@ docs = os.path.join(D, 'docs')
 os.makedirs(docs, exist_ok=True)
 html = bundle(True)
 open(os.path.join(docs, 'index.html'), 'w', encoding='utf-8').write(html)
-ver = hashlib.sha1(html.encode('utf-8')).hexdigest()[:10]
-open(os.path.join(docs, 'sw.js'), 'w', encoding='utf-8').write(r('sw.js').replace('__VERSION__', ver))
 manifest = {
+    'id': 'niemiecki-dla-polaka',
     'name': 'Niemiecki dla Polaka', 'short_name': 'Niemiecki', 'lang': 'pl',
     'description': 'Nauka języka niemieckiego dla osób polskojęzycznych.',
     'start_url': './', 'scope': './', 'display': 'standalone', 'orientation': 'portrait',
@@ -41,7 +40,10 @@ manifest = {
         {'src': 'icon-maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}
     ]
 }
-open(os.path.join(docs, 'manifest.webmanifest'), 'w', encoding='utf-8').write(json.dumps(manifest, ensure_ascii=False, indent=1))
+mtxt = json.dumps(manifest, ensure_ascii=False, indent=1)
+open(os.path.join(docs, 'manifest.webmanifest'), 'w', encoding='utf-8').write(mtxt)
+ver = hashlib.sha1((html + mtxt).encode('utf-8')).hexdigest()[:10]
+open(os.path.join(docs, 'sw.js'), 'w', encoding='utf-8').write(r('sw.js').replace('__VERSION__', ver))
 open(os.path.join(docs, '.nojekyll'), 'w').write('')
 for f in ['icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png']:
     src = os.path.join(S, 'icons', f)
