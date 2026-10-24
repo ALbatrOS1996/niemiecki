@@ -43,6 +43,8 @@
     route: '<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
     headphones: '<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>',
     tag: '<path d="M12 2H2v10l9.29 9.29a1 1 0 0 0 1.42 0l8.58-8.58a1 1 0 0 0 0-1.42z"/><circle cx="7" cy="7" r="1.5"/>',
+    globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+    table: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/>',
     lock: '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
   };
   function ic(n, c) { return '<svg class="ic ' + (c || '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (IC[n] || '') + '</svg>'; }
@@ -66,7 +68,7 @@
   /* ---------- Nawigacja ---------- */
   var NAV = [
     ['start', 'Start', 'home', 1], ['sciezka', 'Ścieżka', 'route', 1], ['sluchanie', 'Słuchanie', 'headphones', 1], ['wymowa', 'Wymowa', 'ear', 1],
-    ['rodzajniki', 'Der · die · das', 'tag'], ['dialogi', 'Dialogi', 'chat'], ['alfabet', 'Litery i dźwięki', 'abc'], ['przyjaciele', 'Fałszywi przyjaciele', 'alert'], ['gramatyka', 'Gramatyka', 'book'],
+    ['rodzajniki', 'Der · die · das', 'tag'], ['czasowniki', 'Czasowniki nieregularne', 'table'], ['dialogi', 'Dialogi', 'chat'], ['alfabet', 'Litery i dźwięki', 'abc'], ['przyjaciele', 'Fałszywi przyjaciele', 'alert'], ['gramatyka', 'Gramatyka', 'book'],
     ['dyktando', 'Dyktando', 'pen'], ['slownik', 'Słownik', 'search'], ['ustawienia', 'Ustawienia', 'gear']
   ];
   function renderNav(cur) {
@@ -114,7 +116,9 @@
   /* ============================================================
      POZIOMY I ŚCIEŻKA A1 → C2
      ============================================================ */
-  var LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  var LEVELS = ['TR', 'AR', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  var THEME = { TR: ['Podróż', 'Podróż – praktyczne słownictwo na wyjazd'], AR: ['Archiwum', 'Archiwum i historia – kwerendy, dokumenty, źródła'] };
+  function lvLabel(lv) { return THEME[lv] ? THEME[lv][0] : lv; }
   var LEVEL_NAME = { A1: 'początkujący', A2: 'podstawowy', B1: 'średni', B2: 'średnio zaawansowany', C1: 'zaawansowany', C2: 'biegły' };
   S.unlocked = S.unlocked || {};
   S.stats.listen = S.stats.listen || 0;
@@ -125,7 +129,7 @@
   function unitById(id) { return UA.TOPICS.filter(function (t) { return t.id === id; })[0]; }
   function unlocked(u) {
     var i = UA.TOPICS.indexOf(u);
-    if (i <= 0 || S.unlocked[u.id]) return true;
+    if (i <= 0 || THEME[u.level] || S.unlocked[u.id]) return true; // ścieżki tematyczne otwarte od razu
     var prev = UA.TOPICS[i - 1];
     return unlocked(prev) && unitProg(prev) >= 0.7;
   }
@@ -139,6 +143,7 @@
     var r = 21, c = 2 * Math.PI * r;
     return '<span class="ring"><svg viewBox="0 0 50 50" aria-hidden="true"><circle cx="25" cy="25" r="' + r + '" class="rbg"/><circle cx="25" cy="25" r="' + r + '" class="rfg" stroke-dasharray="' + c + '" stroke-dashoffset="' + (c * (1 - p)) + '"/></svg><b>' + label + '</b></span>';
   }
+  G.BADGES.push(['verb', 'Verbprofi', '50 poprawnych form czasowników nieregularnych', function () { return (S.stats.verbs || 0) >= 50; }]);
   G.BADGES.push(['ucho', 'Zuhörer', '30 trafnych odpowiedzi w ćwiczeniach ze słuchu', function () { return S.stats.listen >= 30; }]);
   G.BADGES.push(['lvB1', 'Niveau B1', 'Odblokowany poziom B1', function () { return levelUnlocked('B1'); }]);
   G.BADGES.push(['lvC1', 'Niveau C1', 'Odblokowany poziom C1', function () { return levelUnlocked('C1'); }]);
@@ -160,7 +165,7 @@
     h += '<a class="card nextunit" href="#/etap/' + cu.id + '">' + ring(unitProg(cu), Math.round(unitProg(cu) * 100) + '%') + '<div><p class="kicker">Twoja lekcja · ' + cu.level + '</p><b>' + esc(cu.name) + '</b><small>' + unitWords(cu.id).filter(seen).length + ' z ' + unitWords(cu.id).length + ' słów poznanych</small></div>' + ic('next') + '</a>';
     h += '<section class="kpis"><div class="kpi"><b>' + r.learning + '</b><small>słów rozpoznajesz</small></div><div class="kpi"><b>' + p.learning + '</b><small>słów potrafisz napisać</small></div><div class="kpi"><b>' + r.known + '</b><small>opanowane na stałe</small></div><div class="kpi"><b>' + S.stats.listen + '</b><small>trafień ze słuchu</small></div></section>';
     h += '<h2 class="sec">Ćwiczenia</h2><section class="tiles">' + [
-      ['sciezka', 'route', 'Ścieżka A1–C2', UA.TOPICS.length + ' lekcji'], ['sluchanie', 'headphones', 'Słuchanie', 'słowa, zdania, czytanki'],
+      ['sciezka', 'route', 'Ścieżka A1–C2', UA.TOPICS.length + ' lekcji'], ['czasowniki', 'table', 'Czasowniki nieregularne', UA.VERBS.length + ' czasowników + zadania'], ['etap/tr_bahn', 'globe', 'Podróż', 'pociąg, hotel, jedzenie, pomoc'], ['etap/ar_archiv', 'book', 'Archiwum i historia', 'kwerendy, dokumenty, kurrenta'], ['sluchanie', 'headphones', 'Słuchanie', 'słowa, zdania, czytanki'],
       ['rodzajniki', 'tag', 'Der · die · das', 'rodzajnik i liczba mnoga'], ['wymowa', 'ear', 'Wymowa', 'umlauty, długie samogłoski, ch'], ['dialogi', 'chat', 'Dialogi', Object.keys(S.dialogs).length + '/' + UA.DIALOGS.length + ' przećwiczone'],
       ['przyjaciele', 'alert', 'Fałszywi przyjaciele', S.stats.ff + ' trafień'], ['gramatyka', 'book', 'Gramatyka', 'tylko to, co inne'],
       ['alfabet', 'abc', 'Litery i dźwięki', 'ä, ö, ü, ei, ie, sch…'], ['dyktando', 'pen', 'Dyktando', 'słuchaj i pisz']
@@ -185,11 +190,12 @@
   V.nauka = function () { location.replace('#/trening/all'); };
   V.sciezka = function () {
     var cu = currentUnit();
-    var h = head('Ścieżka A1 → C2', 'Lekcje otwierają się po kolei: następna – gdy poznasz 70% słów poprzedniej. Możesz też przeskoczyć dalej, zdając test lekcji.');
+    var h = head('Ścieżka', 'Ścieżki tematyczne „Podróż” oraz „Archiwum i historia” są otwarte od razu. W ścieżce A1 → C2 lekcje otwierają się po kolei: następna – gdy poznasz 70% słów poprzedniej (albo po zdanym teście lekcji).');
     h += '<div class="row"><a class="btn primary" href="#/trening/all">' + ic('play') + 'Codzienny trening</a><a class="btn" href="#/test">' + ic('check') + 'Test wejściowy (słowa przezroczyste)</a></div>';
     LEVELS.forEach(function (lv) {
       var units = UA.TOPICS.filter(function (t) { return t.level === lv; }), ws = levelWords(lv), kn = ws.filter(seen).length, text = (UA.TEXTS || []).filter(function (t) { return t.level === lv; })[0];
-      h += '<section class="lvl ' + (levelUnlocked(lv) ? '' : 'locked') + '"><div class="lvlh"><span class="lvtag lv-' + lv + '">' + lv + '</span><div><b>Poziom ' + lv + ' – ' + LEVEL_NAME[lv] + '</b><small>' + kn + ' / ' + ws.length + ' słów · ' + units.length + ' lekcji</small></div></div>' + bar(kn, ws.length) +
+      if (lv === 'TR') h += '<h2 class="sec">Ścieżki tematyczne – otwarte od razu</h2>'; if (lv === 'A1') h += '<h2 class="sec">Ścieżka A1 → C2</h2>';
+      h += '<section class="lvl ' + (levelUnlocked(lv) ? '' : 'locked') + '"><div class="lvlh"><span class="lvtag lv-' + lv + '">' + lvLabel(lv) + '</span><div><b>' + (THEME[lv] ? THEME[lv][1] : 'Poziom ' + lv + ' – ' + LEVEL_NAME[lv]) + '</b><small>' + kn + ' / ' + ws.length + ' słów · ' + units.length + ' lekcji</small></div></div>' + bar(kn, ws.length) +
         '<div class="units">' + units.map(function (u) {
           var ok = unlocked(u), p = unitProg(u);
           return '<a class="unode ' + (ok ? '' : 'lock') + (u === cu ? ' cur' : '') + (p >= 1 ? ' done' : '') + '" href="#/etap/' + u.id + '">' + (ok ? ring(p, p >= 1 ? '✓' : Math.round(p * 100) + '%') : '<span class="ring lockic">' + ic('lock') + '</span>') + '<span class="uname">' + esc(u.name) + '</span><small>' + unitWords(u.id).length + ' słów</small></a>';
@@ -202,11 +208,14 @@
     var u = unitById(id); if (!u) return location.replace('#/sciezka');
     var ws = unitWords(id), ok = unlocked(u), p = unitProg(u), idx = UA.TOPICS.indexOf(u), nxt = UA.TOPICS[idx + 1];
     var fresh = ws.filter(function (w) { return !SRS.card(w, 'r'); }).length, due = ws.filter(function (w) { return ['r', 'p'].some(function (d) { var c = SRS.card(w, d); return c && c.d <= U.today(); }); }).length;
-    var h = head('<span class="lvtag lv-' + u.level + '">' + u.level + '</span> ' + esc(u.name), ws.length + ' słów · poznane: ' + Math.round(p * 100) + '%', '#/sciezka');
+    var h = head('<span class="lvtag lv-' + u.level + '\">' + lvLabel(u.level) + '</span> ' + esc(u.name), ws.length + ' słów · poznane: ' + Math.round(p * 100) + '%', '#/sciezka');
     if (!ok) h += '<section class="card warn"><h2>' + ic('lock') + ' Lekcja zablokowana</h2><p>Otworzy się, gdy poznasz 70% słów poprzedniej lekcji. Jeśli znasz już ten materiał – zdaj test lekcji (min. 80%), a odblokujesz ją od razu.</p></section>';
     h += '<section class="card unithead">' + ring(p, Math.round(p * 100) + '%') + '<div class="row">' +
       (ok ? '<a class="btn primary" href="#/trening/' + id + '">' + ic('play') + (fresh ? 'Ucz się (' + fresh + ' nowych)' : 'Trening lekcji') + '</a>' : '') +
       '<button class="btn" id="utest">' + ic('target') + 'Test lekcji (10 pytań)</button>' + (due ? '<span class="muted small">' + due + ' słów czeka na powtórkę</span>' : '') + '</div></section>';
+    var tips = (UA.TIPS || {})[id], dls = UA.DIALOGS.filter(function (d) { return d.unit === id; });
+    if (dls.length) h += '<div class="row">' + dls.map(function (d) { return '<a class="btn" href="#/dialog/' + d.id + '">' + ic('chat') + 'Dialog: ' + esc(d.t) + '</a>'; }).join('') + '</div>';
+    if (tips) h += '<section class="card tipcard"><h2>' + ic('alert') + ' Dobrze wiedzieć</h2><ul>' + tips.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul></section>';
     h += '<section class="wlist">' + ws.map(function (w) {
       var r = SRS.card(w, 'r'), pc = SRS.card(w, 'p');
       return '<div class="wrow">' + say(w.ua) + '<div class="wmain"><div>' + uaw(w.ua) + '</div><div class="pl">' + esc(w.pl) + '</div>' + (w.ex ? '<div class="forms" lang="de">' + st(w.ex) + '</div>' : '') + '</div><div class="wside"><span class="tag ' + SIM[w.sim][1] + '">' + SIM[w.sim][0] + '</span><span class="dots" title="rozpoznawanie / produkcja"><i class="' + (r && r.n ? (r.i >= 21 ? 'k' : 'l') : '') + '"></i><i class="' + (pc && pc.n ? (pc.i >= 21 ? 'k' : 'l') : '') + '"></i></span></div></div>';
@@ -384,7 +393,7 @@
     }
     function intro(e) {
       e.shown = true; var w = e.w;
-      $('#stage').innerHTML = '<div class="card fc introcard"><span class="newtag">nowe słowo</span><div class="meta">' + esc(POS[w.pos] || '') + ' · ' + lvOf(w) + '</div><div class="big">' + uaw(w.ua) + '</div><div class="sayrow">' + sayBoth(w.ua) + '</div><div class="pl bigpl">' + esc(w.pl) + '</div>' +
+      $('#stage').innerHTML = '<div class="card fc introcard"><span class="newtag">nowe słowo</span><div class="meta">' + esc(POS[w.pos] || '') + ' · ' + lvLabel(lvOf(w)) + '</div><div class="big">' + uaw(w.ua) + '</div><div class="sayrow">' + sayBoth(w.ua) + '</div><div class="pl bigpl">' + esc(w.pl) + '</div>' +
         (w.forms ? '<div class="forms" lang="de">' + st(w.forms) + '</div>' : '') + '<div class="tags"><span class="tag ' + SIM[w.sim][1] + '">' + SIM[w.sim][0] + '</span></div>' +
         (w.ex ? '<div class="ex"><p lang="de">' + st(w.ex) + ' ' + say(w.ex) + '</p><p class="muted">' + esc(w.exPl) + '</p></div>' : '') + '</div><div class="actions"><button class="btn primary block" id="gotit">Zapamiętane – sprawdź mnie <kbd>Enter</kbd></button></div>';
       if (S.settings.autoplay) SP.speak(w.ua);
@@ -465,21 +474,21 @@
     if (lv === 'moje') { var m = UA.WORDS.filter(seen); return m.length >= 12 ? m : levelWords('A1'); }
     return levelWords(lv);
   }
-  function defaultLv() { var lv = 'A1'; LEVELS.forEach(function (l) { if (levelUnlocked(l) && levelWords(l).some(seen)) lv = l; }); return lv; }
+  function defaultLv() { var lv = 'A1'; LEVELS.forEach(function (l) { if (THEME[l]) return; if (levelUnlocked(l) && levelWords(l).some(seen)) lv = l; }); return lv; }
   V.sluchanie = function (mode, lv) {
     lv = lv || defaultLv();
     if (mode) return listenRun(mode, lv);
     var vs = SP.voiceStatus();
     var h = head('Słuchanie', 'Aplikacja czyta na głos słowa, zdania i teksty – Ty sprawdzasz, czy zrozumiałeś. Przycisk „wolniej” odtwarza nagranie w tempie 0,65×.');
     if (!vs.ok) h += voiceHelp(vs);
-    h += '<div class="chips" role="group" aria-label="Poziom">' + LEVELS.concat(['moje']).map(function (l) { return '<a class="chip ' + (l === lv ? 'on' : '') + '" href="#/sluchanie//' + l + '">' + (l === 'moje' ? 'Moje słowa' : l) + '</a>'; }).join('') + '</div>';
+    h += '<div class="chips" role="group" aria-label="Poziom">' + LEVELS.concat(['moje']).map(function (l) { return '<a class="chip ' + (l === lv ? 'on' : '') + '" href="#/sluchanie//' + l + '">' + (l === 'moje' ? 'Moje słowa' : lvLabel(l)) + '</a>'; }).join('') + '</div>';
     h += '<section class="tiles">' + [
       ['slowa', 'headphones', 'Usłysz i zrozum', 'słowo → tłumaczenie'], ['pisownia', 'pen', 'Pisownia ze słuchu', 'które słowo słyszysz?'],
       ['zdania', 'chat', 'Zdania', 'co znaczy usłyszane zdanie?'], ['prawda', 'check', 'Prawda czy fałsz?', 'czy tłumaczenie pasuje?']
-    ].map(function (t) { return '<a class="tile" href="#/sluchanie/' + t[0] + '/' + lv + '">' + ic(t[1]) + '<b>' + t[2] + '</b><small>' + t[3] + ' · ' + (lv === 'moje' ? 'moje słowa' : lv) + '</small></a>'; }).join('') + '</section>';
+    ].map(function (t) { return '<a class="tile" href="#/sluchanie/' + t[0] + '/' + lv + '">' + ic(t[1]) + '<b>' + t[2] + '</b><small>' + t[3] + ' · ' + (lv === 'moje' ? 'moje słowa' : lvLabel(lv)) + '</small></a>'; }).join('') + '</section>';
     h += '<h2 class="sec">Czytanki ze słuchu</h2><section class="dlist">' + (UA.TEXTS || []).map(function (t) {
       var okL = levelUnlocked(t.level), sc = S.stats.texts[t.id];
-      return '<a class="card dl" href="#/czytanka/' + t.id + '"><span class="lvtag lv-' + t.level + '">' + t.level + '</span><div><b>' + esc(t.t) + '</b><small lang="de">' + st(t.ua) + (okL ? '' : ' · poziom jeszcze zablokowany – możesz spróbować') + '</small></div>' + (sc != null ? '<span class="tag sim-t">' + sc + '/3</span>' : '') + '</a>';
+      return '<a class="card dl" href="#/czytanka/' + t.id + '"><span class="lvtag lv-' + t.level + '\">' + lvLabel(t.level) + '</span><div><b>' + esc(t.t) + '</b><small lang="de">' + st(t.ua) + (okL ? '' : ' · poziom jeszcze zablokowany – możesz spróbować') + '</small></div>' + (sc != null ? '<span class="tag sim-t">' + sc + '/3</span>' : '') + '</a>';
     }).join('') + '</section>';
     h += '<h2 class="sec">Więcej ze słuchu</h2><section class="row"><a class="btn" href="#/dyktando">' + ic('pen') + 'Dyktando</a><a class="btn" href="#/wymowa/pary/lang">' + ic('ear') + 'Długie i krótkie samogłoski</a><a class="btn" href="#/dialogi">' + ic('chat') + 'Dialogi</a></section>';
     main.innerHTML = h;
@@ -499,12 +508,12 @@
       return { title: 'Czy tłumaczenie pasuje do nagrania?', prompt: listenBtn(w.ex) + '<p class="trq">„' + esc(shown.exPl) + '”</p>', say: w.ex, listen: true, opts: ['Tak, pasuje', 'Nie, nie pasuje'], a: truth ? 0 : 1, reveal: '<div class="ex"><p lang="de">' + st(w.ex) + ' ' + say(w.ex) + '</p><p class="muted">' + esc(w.exPl) + '</p></div>' };
     });
     var names = { slowa: 'Usłysz i zrozum', pisownia: 'Pisownia ze słuchu', zdania: 'Zdania ze słuchu', prawda: 'Prawda czy fałsz?' };
-    runMC({ title: names[mode] + ' · ' + (lv === 'moje' ? 'moje słowa' : lv), back: back, items: items, counter: 'listen', again: function () { listenRun(mode, lv); } });
+    runMC({ title: names[mode] + ' · ' + (lv === 'moje' ? 'moje słowa' : lvLabel(lv)), back: back, items: items, counter: 'listen', again: function () { listenRun(mode, lv); } });
   }
   V.czytanka = function (id) {
     var t = (UA.TEXTS || []).filter(function (x) { return x.id === id; })[0]; if (!t) return location.replace('#/sluchanie');
     var showT = false, showP = false, rate = S.settings.rate;
-    var h = head('<span class="lvtag lv-' + t.level + '">' + t.level + '</span> ' + esc(t.t), '<span lang="de">' + st(t.ua) + '</span> · najpierw posłuchaj, potem odpowiedz na pytania. Tekst możesz odsłonić.', '#/sluchanie');
+    var h = head('<span class="lvtag lv-' + t.level + '\">' + lvLabel(t.level) + '</span> ' + esc(t.t), '<span lang="de">' + st(t.ua) + '</span> · najpierw posłuchaj, potem odpowiedz na pytania. Tekst możesz odsłonić.', '#/sluchanie');
     h += '<section class="card"><div class="row"><button class="btn primary" id="play">' + ic('play') + 'Odtwórz tekst</button><button class="btn" id="slow">' + ic('slow') + 'Wolniej</button><button class="btn" id="tt">' + ic('eye') + 'Pokaż tekst</button><button class="btn ghost" id="tp">Tłumaczenie</button></div><div id="txt"></div></section>';
     h += '<h2 class="sec">Pytania</h2>' + t.qs.map(function (q, i) { return '<div class="card qz" data-q="' + i + '"><p><b>' + (i + 1) + '.</b> ' + esc(q[0]) + '</p><div class="opts">' + q[1].map(function (o, k) { return '<button class="btn opt" data-k="' + k + '"><span>' + esc(o) + '</span></button>'; }).join('') + '</div></div>'; }).join('') + '<div id="sum"></div>';
     main.innerHTML = h;
@@ -564,8 +573,8 @@
      SŁOWNIK
      ============================================================ */
   V.slownik = function (topic) {
-    var h = head('Słownik', UA.WORDS.length + ' słów od A1 do C2. Szukaj po niemiecku (umlauty można pisać jako ae, oe, ue) lub po polsku.');
-    h += '<div class="filters"><input id="q" type="search" placeholder="Szukaj…" aria-label="Szukaj"><select id="ft" aria-label="Temat"><option value="">Wszystkie tematy</option>' + UA.TOPICS.map(function (t) { return '<option value="' + t.id + '"' + (t.id === topic ? ' selected' : '') + '>' + t.level + ' · ' + esc(t.name) + '</option>'; }).join('') + '</select>' +
+    var h = head('Słownik', UA.WORDS.length + ' słów: A1–C2, podróż, archiwum i historia. Szukaj po niemiecku (umlauty można pisać jako ae, oe, ue) lub po polsku.');
+    h += '<div class="filters"><input id="q" type="search" placeholder="Szukaj…" aria-label="Szukaj"><select id="ft" aria-label="Temat"><option value="">Wszystkie tematy</option>' + UA.TOPICS.map(function (t) { return '<option value="' + t.id + '"' + (t.id === topic ? ' selected' : '') + '>' + lvLabel(t.level) + ' · ' + esc(t.name) + '</option>'; }).join('') + '</select>' +
       '<select id="fs" aria-label="Podobieństwo"><option value="">Każde podobieństwo</option>' + Object.keys(SIM).map(function (k) { return '<option value="' + k + '">' + SIM[k][0] + '</option>'; }).join('') + '</select></div><div id="list" class="wlist"></div>';
     main.innerHTML = h;
     function draw() {
@@ -744,6 +753,109 @@
       });
     }
     q();
+  }
+
+
+  /* ============================================================
+     CZASOWNIKI NIEREGULARNE – tabela i zadania
+     ============================================================ */
+  var VF = { du: [2, 'du … (Präsens)'], er: [3, 'er / sie / es … (Präsens)'], prat: [4, 'Präteritum (er / sie / es)'], part: [6, 'Partizip II'] };
+  function vRegDu(v) { var st0 = v[0].replace(/e?n$/, ''); return st0 + (/[dt]$/.test(st0) ? 'est' : /[sßxz]$/.test(st0) ? 't' : 'st'); }
+  function vChange(v) { return v[2] !== vRegDu(v); }
+  function vMixed(v) { return /te$/.test(v[4]); }
+  function vStat(v, ok) { S.vstat = S.vstat || {}; var x = S.vstat[v[0]] || { ok: 0, bad: 0 }; if (ok) { x.ok++; S.stats.verbs = (S.stats.verbs || 0) + 1; } else x.bad++; S.vstat[v[0]] = x; G.save(); }
+  function vHard(v) { var x = (S.vstat || {})[v[0]]; return !!(x && x.bad > x.ok); }
+  function vPick(n) {
+    var hard = U.shuffle(UA.VERBS.filter(vHard)).slice(0, Math.ceil(n / 2)), out = hard.slice();
+    U.shuffle(UA.VERBS).forEach(function (v) { if (out.length < n && out.indexOf(v) < 0) out.push(v); });
+    return U.shuffle(out);
+  }
+  function vSay(v) { return v[0] + ', ' + v[3] + ', ' + v[4] + ', ' + v[5] + ' ' + v[6]; }
+  function vRow(v) {
+    var x = (S.vstat || {})[v[0]], dot = x ? (x.ok >= 3 && x.ok > x.bad ? 'k' : 'l') : '';
+    return '<tr><td>' + say(vSay(v)) + '</td><td data-l="Infinitiv"><b lang="de">' + esc(v[0]) + '</b><small>' + esc(v[1]) + '</small></td>' +
+      '<td data-l="du / er"><span lang="de" class="' + (vChange(v) ? 'vchg' : '') + '">' + esc(v[2]) + ' / ' + esc(v[3]) + '</span></td>' +
+      '<td data-l="Präteritum"><span lang="de">' + esc(v[4]) + '</span></td>' +
+      '<td data-l="Perfekt"><span lang="de"><span class="' + (v[5] === 'ist' ? 'vaux-ist' : 'vaux-hat') + '">' + v[5] + '</span> ' + esc(v[6]) + '</span></td>' +
+      '<td><span class="dots" title="opanowanie"><i class="' + dot + '"></i></span></td></tr>';
+  }
+  function vCard(v) {
+    return '<div class="reveal"><div class="big sm" lang="de">' + esc(v[0]) + '</div><div class="pl">' + esc(v[1]) + '</div><table class="tbl vmini"><tr><td>du</td><td lang="de">' + esc(v[2]) + '</td></tr><tr><td>er / sie / es</td><td lang="de">' + esc(v[3]) + '</td></tr><tr><td>Präteritum</td><td lang="de">' + esc(v[4]) + '</td></tr><tr><td>Perfekt</td><td lang="de">' + v[5] + ' ' + esc(v[6]) + '</td></tr></table>' + say(vSay(v)) + '</div>';
+  }
+  V.czasowniki = function (mode) {
+    S.vstat = S.vstat || {};
+    if (mode === 'forma' || mode === 'perfekt') return verbType(mode);
+    if (mode === 'abc') return verbAbc();
+    if (mode === 'hilf') return verbHilf();
+    var h = head('Czasowniki nieregularne', UA.VERBS.length + ' najważniejszych czasowników mocnych, mieszanych i modalnych: Präsens (du / er), Präteritum i Perfekt. Kolor pokazuje zmianę samogłoski i czasownik posiłkowy.');
+    h += '<section class="tiles">' + [
+      ['forma', 'pen', 'Wpisz formę', 'du, er, Präteritum, Partizip II'], ['perfekt', 'pen', 'Perfekt', 'hat / ist + Partizip II'],
+      ['abc', 'target', 'Wybierz Präteritum', 'ABCD'], ['hilf', 'check', 'haben czy sein?', 'czasownik posiłkowy w Perfekt']
+    ].map(function (t) { return '<a class="tile" href="#/czasowniki/' + t[0] + '">' + ic(t[1]) + '<b>' + t[2] + '</b><small>' + t[3] + '</small></a>'; }).join('') + '</section>';
+    h += '<div class="filters"><input id="vq" type="search" placeholder="Szukaj po niemiecku lub po polsku…" aria-label="Szukaj"></div><div class="chips" id="vf">' +
+      [['all', 'Wszystkie'], ['chg', 'Zmiana samogłoski (du/er)'], ['ist', 'Perfekt z „sein”'], ['mix', 'Mieszane i modalne (-te)'], ['hard', 'Moje trudne']].map(function (c, i) { return '<button class="chip' + (i ? '' : ' on') + '" data-f="' + c[0] + '">' + c[1] + '</button>'; }).join('') + '</div>';
+    h += '<div class="vwrap"><table class="vtab"><thead><tr><th></th><th>Infinitiv</th><th>du / er (Präsens)</th><th>Präteritum</th><th>Perfekt</th><th></th></tr></thead><tbody id="vbody"></tbody></table></div>';
+    h += '<p class="muted small">Legenda: <span class="vchg">pogrubienie</span> – zmiana samogłoski w 2. i 3. osobie Präsens; <span class="vaux-ist">ist</span> – Perfekt z „sein” (ruch, zmiana stanu, sein, bleiben, werden).</p>';
+    main.innerHTML = h;
+    var f = 'all';
+    function draw() {
+      var q = norm($('#vq').value);
+      var vs = UA.VERBS.filter(function (v) {
+        if (f === 'chg' && !vChange(v)) return false; if (f === 'ist' && v[5] !== 'ist') return false; if (f === 'mix' && !vMixed(v)) return false; if (f === 'hard' && !vHard(v)) return false;
+        return !q || v.some(function (x, i) { return i !== 5 && norm(x).indexOf(q) >= 0; });
+      });
+      $('#vbody').innerHTML = vs.map(vRow).join('') || '<tr><td colspan="6" class="muted">' + (f === 'hard' ? 'Brak – zrób kilka zadań, a tu pojawią się czasowniki, w których się mylisz.' : 'Brak wyników.') + '</td></tr>';
+    }
+    $('#vq').oninput = draw;
+    $$('#vf .chip').forEach(function (b) { b.onclick = function () { f = b.getAttribute('data-f'); $$('#vf .chip').forEach(function (x) { x.classList.toggle('on', x === b); }); draw(); }; });
+    draw();
+  };
+  function verbType(mode) {
+    var items = vPick(12), k = 0, good = 0, cur = null, finished = false;
+    main.innerHTML = head(mode === 'perfekt' ? 'Perfekt' : 'Wpisz formę', mode === 'perfekt' ? 'Wpisz czasownik posiłkowy i imiesłów, np. „ist gefahren”. Umlauty możesz pisać jako ae, oe, ue, ß jako ss.' : 'Wpisz wskazaną formę. Umlauty możesz pisać jako ae, oe, ue, ß jako ss.', '#/czasowniki') + '<div class="sessbar"></div><div id="stage"></div>';
+    function keyh(e) { if (e.key === 'Enter' && finished) { var nx = $('#nx'); if (nx) { e.preventDefault(); nx.click(); } } }
+    document.addEventListener('keydown', keyh); cleanup = function () { document.removeEventListener('keydown', keyh); };
+    function q() {
+      if (k >= items.length) {
+        G.addXP(good * 3); if (good >= items.length - 1) G.confetti(); G.checkBadges();
+        $('.sessbar').innerHTML = '';
+        $('#stage').innerHTML = '<section class="card empty"><h2>' + good + '/' + items.length + '</h2><p>' + (good >= items.length - 2 ? 'Sehr gut!' : 'Czasowniki z błędami trafią do filtra „Moje trudne” i będą wracać częściej.') + '</p><div class="row center"><button class="btn primary" id="again">Jeszcze raz</button><a class="btn" href="#/czasowniki">Tabela</a></div></section>';
+        $('#again').onclick = function () { verbType(mode); }; return;
+      }
+      var v = items[k], key = mode === 'perfekt' ? null : U.pick(['du', 'er', 'prat', 'part']);
+      var exp = mode === 'perfekt' ? v[5] + ' ' + v[6] : v[VF[key][0]], label = mode === 'perfekt' ? 'er / sie / es … (Perfekt)' : VF[key][1];
+      cur = { v: v, exp: exp }; finished = false;
+      $('.sessbar').innerHTML = bar(k, items.length) + '<span>' + (k + 1) + '/' + items.length + '</span>';
+      $('#stage').innerHTML = '<div class="card fc qcard"><p class="qtitle">' + esc(label) + '</p><div class="big" lang="de">' + esc(v[0]) + '</div><div class="meta">' + esc(v[1]) + '</div>' +
+        '<div class="ansrow"><input id="ans" class="answer" placeholder="' + (mode === 'perfekt' ? 'np. hat gemacht' : 'forma…') + '"><button class="btn primary" id="chk">Sprawdź</button></div><div id="kbh"></div></div><div id="fb"></div>';
+      var inp = $('#ans'); $('#kbh').appendChild(UA.KB(inp, check)); $('#chk').onclick = check;
+      if (!('ontouchstart' in window) || S.settings.sysKb) inp.focus();
+      function check() {
+        if (finished) return;
+        var a = norm(inp.value).replace(/^(er|sie|es|du|ich) /, ''); if (!a) return;
+        var ok = a === norm(exp); finished = true; inp.disabled = true; $('#kbh').innerHTML = '';
+        if (ok) good++; vStat(v, ok); G.sfx(ok ? 'ok' : 'bad'); SP.speak(vSay(v));
+        $('#fb').innerHTML = '<div class="verdict ' + (ok ? 'ok' : 'bad') + '"><b>' + (ok ? G.praise() : 'Niezupełnie.') + '</b> ' + (ok ? '' : 'Poprawnie: <b lang="de">' + esc(exp) + '</b>') + '</div>' + vCard(v) + '<button class="btn primary block" id="nx">Dalej <kbd>Enter</kbd></button>';
+        $('#nx').onclick = function () { k++; q(); };
+      }
+    }
+    q();
+  }
+  function verbAbc() {
+    var items = vPick(10).map(function (v) {
+      var stem = v[0].replace(/e?n$/, ''), cand = [stem + 'te'].concat(U.shuffle(UA.VERBS.filter(function (x) { return x !== v; })).slice(0, 6).map(function (x) { return x[4]; }));
+      var opts = [v[4]]; cand.forEach(function (c) { if (opts.length < 4 && opts.indexOf(c) < 0) opts.push(c); }); opts = U.shuffle(opts);
+      return { title: 'Präteritum (er / sie / es)', prompt: '<div class="big" lang="de">' + esc(v[0]) + '</div><div class="meta">' + esc(v[1]) + '</div>', opts: opts.map(function (o) { return '<span lang="de">' + esc(o) + '</span>'; }), a: opts.indexOf(v[4]), sayAfter: vSay(v), reveal: vCard(v), onAnswer: function (ok) { vStat(v, ok); } };
+    });
+    runMC({ title: 'Wybierz Präteritum', back: '#/czasowniki', items: items, again: verbAbc, onEnd: function () { G.checkBadges(); return ''; } });
+  }
+  function verbHilf() {
+    var ist = U.shuffle(UA.VERBS.filter(function (v) { return v[5] === 'ist'; })).slice(0, 5), hat = U.shuffle(UA.VERBS.filter(function (v) { return v[5] === 'hat'; })).slice(0, 5);
+    var items = U.shuffle(ist.concat(hat)).map(function (v) {
+      var opts = ['hat', 'ist'];
+      return { title: 'haben czy sein?', prompt: '<p class="cloze" lang="de">Er <span class="gap">…</span> ' + esc(v[6]) + '.</p><p class="muted">' + esc(v[0]) + ' – ' + esc(v[1]) + '</p>', opts: opts, a: opts.indexOf(v[5]), sayAfter: 'Er ' + v[5] + ' ' + v[6], reveal: vCard(v), onAnswer: function (ok) { vStat(v, ok); } };
+    });
+    runMC({ title: 'haben czy sein?', back: '#/czasowniki', items: items, again: verbHilf, onEnd: function () { G.checkBadges(); return '<div class="fb ok"><b>Reguła:</b><p>„sein” – czasowniki ruchu i zmiany stanu bez dopełnienia (fahren, gehen, kommen, fallen, sterben, werden) oraz sein i bleiben. Reszta – „haben”.</p></div>'; } });
   }
 
   /* ============================================================
@@ -987,7 +1099,7 @@
     h += '<section class="card"><h2>' + ic('vol') + ' Głos</h2><p>' + (vs.ok ? 'Używany głos: <b>' + esc(vs.name) + '</b>' : esc(vs.msg)) + '</p><button class="btn" data-say="Hallo! Das ist die deutsche Sprache.">' + ic('play') + ' Test głosu</button></section>';
     if (!vs.ok) h += voiceHelp(vs);
     h += '<section class="card"><h2>Postęp</h2><p class="muted">Postęp jest zapisany tylko w tej przeglądarce. Zrób kopię, żeby przenieść go na inne urządzenie.</p><div class="row"><button class="btn" id="exp">Eksportuj (plik)</button><label class="btn">Importuj<input type="file" id="imp" accept=".json,application/json" hidden></label><button class="btn danger" id="rst">Wyzeruj wszystko</button></div></section>';
-    h += '<section class="card note"><h2>O treściach</h2><p>Słownictwo: ' + UA.WORDS.length + ' słów w ' + UA.TOPICS.length + ' lekcjach (A1–C2), ' + (UA.TEXTS || []).length + ' czytanek, ' + UA.FRIENDS.length + ' fałszywych przyjaciół, ' + UA.DIALOGS.length + ' dialogów, ' + UA.GRAMMAR.length + ' lekcji gramatyki. Niemiecki standardowy (Niemcy), nowa pisownia.</p><p><b>Ważne:</b> treść przygotowano bez udziału native speakera. Przykłady i dialogi warto skonsultować z germanistą – tego nie zastąpi ani model językowy, ani synteza mowy.</p></section>';
+    h += '<section class="card note"><h2>O treściach</h2><p>Słownictwo: ' + UA.WORDS.length + ' słów w ' + UA.TOPICS.length + ' lekcjach (A1–C2 + „Podróż” i „Archiwum i historia”), ' + UA.VERBS.length + ' czasowników nieregularnych, ' + (UA.TEXTS || []).length + ' czytanek, ' + UA.FRIENDS.length + ' fałszywych przyjaciół, ' + UA.DIALOGS.length + ' dialogów, ' + UA.GRAMMAR.length + ' lekcji gramatyki. Niemiecki standardowy (Niemcy), nowa pisownia.</p><p><b>Ważne:</b> treść przygotowano bez udziału native speakera. Przykłady i dialogi warto skonsultować z germanistą – tego nie zastąpi ani model językowy, ani synteza mowy.</p></section>';
     main.innerHTML = h;
     function upd(k, v) { s[k] = v; G.save(); }
     $('#npd').onchange = function () { upd('newPerDay', Math.max(0, Math.min(50, +this.value || 0))); };

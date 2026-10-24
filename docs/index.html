@@ -467,6 +467,28 @@ a { color: var(--primary-d); }
 .kb-de .key { font-size: 1.15rem; min-width: 2.6em; }
 .tbl td .g-der, .tbl td .g-die, .tbl td .g-das { font-size: 1.05rem; }
 
+/* ścieżki tematyczne i czasowniki nieregularne */
+.lv-TR { background: linear-gradient(135deg, #2563eb, #0d9488); } .lv-AR { background: linear-gradient(135deg, #7c4a1e, #b45309); }
+.lvtag { padding: 0 10px; }
+.tipcard { border-left: 5px solid var(--gold-l); }
+.tipcard ul { margin: .3em 0 0; padding-left: 1.2em; } .tipcard li { margin: .35em 0; }
+.vwrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.vtab { width: 100%; border-collapse: collapse; font-size: .98rem; }
+.vtab th { text-align: left; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 10px 8px; border-bottom: 1px solid var(--line); background: var(--surface2); position: sticky; top: 0; }
+.vtab td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.vtab td small { display: block; color: var(--muted); font-size: .8rem; }
+.vtab tr:hover td { background: var(--surface2); }
+.vchg { font-weight: 800; color: var(--gold-l); }
+.vaux-ist { font-weight: 800; color: var(--g-die); } .vaux-hat { color: var(--muted); }
+.vmini { margin: 6px auto; } .vmini td:first-child { color: var(--muted); }
+@media (max-width: 640px) {
+  .vtab thead { display: none; }
+  .vtab tr { display: grid; grid-template-columns: 44px 1fr 1fr 24px; grid-template-areas: "s i i d" "s a b d" "s c c d"; gap: 2px 8px; padding: 10px 8px; border-bottom: 1px solid var(--line); }
+  .vtab td { border: 0; padding: 0; }
+  .vtab td:nth-child(1) { grid-area: s; } .vtab td:nth-child(2) { grid-area: i; } .vtab td:nth-child(3) { grid-area: a; } .vtab td:nth-child(4) { grid-area: b; } .vtab td:nth-child(5) { grid-area: c; } .vtab td:nth-child(6) { grid-area: d; }
+  .vtab td[data-l]:not(:nth-child(2))::before { content: attr(data-l) ': '; color: var(--muted); font-size: .75rem; }
+}
+
 </style>
 </head>
 <body>
@@ -1327,6 +1349,274 @@ var UA = window.UA || (window.UA = {});
 </script>
 <script>
 /* ============================================================
+   ŚCIEŻKI TEMATYCZNE (otwarte od razu, niezależne od A1–C2)
+   TR – Podróż: praktyczne słownictwo na wyjazd
+   AR – Archiwum i historia: kwerendy, dokumenty, pismo, historia ziem polskich
+   W(...) jak w words.js; słowo docelowe w przykładzie w {…}.
+   ============================================================ */
+var UA = window.UA || (window.UA = {});
+(function () {
+  var cur;
+  function L(level, id, name) { cur = id; UA.TOPICS.push({ id: id, name: name, level: level }); }
+  function W(ua, pos, pl, forms, sim, ex, exPl) {
+    UA.WORDS.push({ ua: ua, pos: pos, pl: pl, forms: forms || '', sim: sim, ex: ex || '', exPl: exPl || '', topic: cur });
+  }
+
+  /* ===================== PODRÓŻ ===================== */
+  L('TR', 'tr_bahn', 'Dworzec i pociąg');
+  W('der Fahrplan', 'ч', 'rozkład jazdy', 'lm. die Fahrpläne', 'o', 'Laut {Fahrplan} fährt der Zug um 9:12.', 'Według rozkładu pociąg odjeżdża o 9:12.');
+  W('das Gleis', 'с', 'tor (peron, z którego odjeżdża pociąg)', 'lm. die Gleise', 'o', 'Der ICE nach Berlin fährt heute von {Gleis} 7.', 'ICE do Berlina odjeżdża dziś z toru 7.');
+  W('der Bahnsteig', 'ч', 'peron', 'lm. die Bahnsteige', 'o', 'Wir warten auf dem {Bahnsteig}.', 'Czekamy na peronie.');
+  W('die Abfahrt', 'ж', 'odjazd', 'lm. die Abfahrten', 'o', 'Die {Abfahrt} verzögert sich um zehn Minuten.', 'Odjazd opóźnia się o dziesięć minut.');
+  W('die Ankunft', 'ж', 'przyjazd', 'lm. die Ankünfte', 'o', 'Die {Ankunft} in Wien ist um 18 Uhr.', 'Przyjazd do Wiednia jest o 18.');
+  W('die Verspätung', 'ж', 'opóźnienie', 'lm. die Verspätungen', 'o', 'Der Zug hat 20 Minuten {Verspätung}.', 'Pociąg ma 20 minut opóźnienia.');
+  W('der Anschluss', 'ч', 'połączenie (przesiadkowe)', 'lm. die Anschlüsse', 'o', 'Ich habe meinen {Anschluss} verpasst.', 'Uciekło mi połączenie.');
+  W('der Fahrkartenautomat', 'ч', 'biletomat', 'lm. die Fahrkartenautomaten', 'p', 'Den Fahrschein bekommst du am {Fahrkartenautomaten}.', 'Bilet dostaniesz w biletomacie.');
+  W('die Platzreservierung', 'ж', 'miejscówka, rezerwacja miejsca', 'lm. die Platzreservierungen', 'p', 'Für den ICE empfehle ich eine {Platzreservierung}.', 'Do ICE polecam rezerwację miejsca.');
+  W('der Wagen', 'ч', 'wagon; samochód', 'lm. die Wagen', 'p', 'Unser Platz ist im {Wagen} 12.', 'Nasze miejsce jest w wagonie 12.');
+  W('der Zugbegleiter', 'ч', 'konduktor, kierownik pociągu', 'lm. die Zugbegleiter · ż. die Zugbegleiterin', 'o', 'Der {Zugbegleiter} kontrolliert die Fahrkarten.', 'Konduktor sprawdza bilety.');
+  W('hin und zurück', 'ф', 'tam i z powrotem (bilet w obie strony)', 'einfach – w jedną stronę', 'o', 'Einmal Dresden, {hin und zurück}, bitte.', 'Raz do Drezna, w obie strony, proszę.');
+  W('Ist dieser Platz frei?', 'ф', 'czy to miejsce jest wolne?', '', 'o', 'Entschuldigung, {ist dieser Platz frei}?', 'Przepraszam, czy to miejsce jest wolne?');
+  W('die Durchsage', 'ж', 'komunikat (przez głośnik)', 'lm. die Durchsagen', 'o', 'Hast du die {Durchsage} verstanden?', 'Zrozumiałeś komunikat?');
+  W('das Deutschlandticket', 'с', 'Deutschlandticket – miesięczny bilet na regionalne pociągi i komunikację w całych Niemczech', '', 'p', 'Mit dem {Deutschlandticket} fahren wir Regionalzug.', 'Z Deutschlandticket jeździmy pociągami regionalnymi.');
+  W('der Zug fällt aus', 'ф', 'pociąg jest odwołany', 'ausfallen – nie odbyć się', 'o', 'Achtung: {Der Zug fällt aus}!', 'Uwaga: pociąg jest odwołany!');
+
+  L('TR', 'tr_flug', 'Lotnisko i samolot');
+  W('der Flug', 'ч', 'lot', 'lm. die Flüge', 'o', 'Unser {Flug} hat eine Stunde Verspätung.', 'Nasz lot ma godzinę opóźnienia.');
+  W('der Abflug', 'ч', 'odlot', 'lm. die Abflüge', 'o', 'Der {Abflug} ist um 6:40.', 'Odlot jest o 6:40.');
+  W('die Landung', 'ж', 'lądowanie', 'lm. die Landungen', 'p', 'Nach der {Landung} schalten Sie bitte das Handy ein.', 'Po lądowaniu proszę włączyć telefon.');
+  W('das Gepäck', 'с', 'bagaż', 'bez lm.', 'o', 'Mein {Gepäck} ist nicht angekommen.', 'Mój bagaż nie dotarł.');
+  W('das Handgepäck', 'с', 'bagaż podręczny', 'bez lm.', 'o', 'Flüssigkeiten im {Handgepäck} sind begrenzt.', 'Płyny w bagażu podręcznym są ograniczone.');
+  W('die Bordkarte', 'ж', 'karta pokładowa', 'lm. die Bordkarten', 'o', 'Bitte zeigen Sie Ihre {Bordkarte}.', 'Proszę pokazać kartę pokładową.');
+  W('das Gate', 'с', 'wyjście (do samolotu)', 'lm. die Gates', 't', 'Das Boarding beginnt am {Gate} B12.', 'Boarding zaczyna się przy wyjściu B12.');
+  W('der Zoll', 'ч', 'cło; urząd celny', 'bez lm.', 'o', 'Am {Zoll} musste ich den Koffer öffnen.', 'Na odprawie celnej musiałem otworzyć walizkę.');
+  W('die Passkontrolle', 'ж', 'kontrola paszportowa', 'lm. die Passkontrollen', 'p', 'Bei der {Passkontrolle} ist eine lange Schlange.', 'Przy kontroli paszportowej jest długa kolejka.');
+  W('die Gepäckausgabe', 'ж', 'odbiór bagażu', 'bez lm.', 'o', 'Wo ist die {Gepäckausgabe}?', 'Gdzie jest odbiór bagażu?');
+  W('verpassen', 'д', 'spóźnić się na, przegapić', 'verpasst · verpasste · hat verpasst', 'o', 'Ich habe meinen Flug {verpasst}.', 'Spóźniłem się na samolot.');
+  W('annulliert', 'п', 'odwołany (lot)', 'też: gestrichen', 'p', 'Der Flug nach Danzig ist {annulliert}.', 'Lot do Gdańska jest odwołany.');
+  W('die Schlange', 'ж', 'kolejka; wąż', 'lm. die Schlangen · Schlange stehen', 'o', 'Wir stehen schon eine Stunde in der {Schlange}.', 'Stoimy w kolejce już godzinę.');
+  W('Ich habe nichts zu verzollen.', 'ф', 'nie mam nic do oclenia', '', 'o', 'Nein, {ich habe nichts zu verzollen}.', 'Nie, nie mam nic do oclenia.');
+
+  L('TR', 'tr_stadt2', 'Komunikacja miejska i taxi');
+  W('die Straßenbahn', 'ж', 'tramwaj', 'lm. die Straßenbahnen · potocznie: die Tram', 'o', 'Wir nehmen die {Straßenbahn} zum Zentrum.', 'Pojedziemy tramwajem do centrum.');
+  W('die U-Bahn', 'ж', 'metro', 'lm. die U-Bahnen', 'o', 'Die {U-Bahn} fährt alle fünf Minuten.', 'Metro jeździ co pięć minut.');
+  W('die S-Bahn', 'ж', 'kolej miejska / podmiejska', 'lm. die S-Bahnen', 'o', 'Mit der {S-Bahn} sind wir in 20 Minuten am Flughafen.', 'Koleją miejską będziemy na lotnisku za 20 minut.');
+  W('die Tageskarte', 'ж', 'bilet dobowy', 'lm. die Tageskarten · die Wochenkarte – tygodniowy', 'o', 'Eine {Tageskarte} lohnt sich, wenn man oft fährt.', 'Bilet dobowy się opłaca, gdy często się jeździ.');
+  W('einsteigen', 'д', 'wsiadać', 'steigt ein · stieg ein · ist eingestiegen', 'o', 'Bitte vorne {einsteigen}!', 'Proszę wsiadać przodem!');
+  W('aussteigen', 'д', 'wysiadać', 'steigt aus · stieg aus · ist ausgestiegen', 'o', 'An welcher Haltestelle muss ich {aussteigen}?', 'Na którym przystanku mam wysiąść?');
+  W('die Endstation', 'ж', 'stacja / przystanek końcowy', 'lm. die Endstationen', 'p', 'Wir fahren bis zur {Endstation}.', 'Jedziemy do stacji końcowej.');
+  W('die Quittung', 'ж', 'pokwitowanie, rachunek', 'lm. die Quittungen', 'o', 'Könnte ich bitte eine {Quittung} bekommen?', 'Czy mogę prosić o pokwitowanie?');
+  W('der Stadtplan', 'ч', 'plan miasta', 'lm. die Stadtpläne', 'o', 'Haben Sie einen {Stadtplan}?', 'Czy ma pan plan miasta?');
+  W('die Fußgängerzone', 'ж', 'deptak, strefa dla pieszych', 'lm. die Fußgängerzonen', 'o', 'Die Geschäfte sind in der {Fußgängerzone}.', 'Sklepy są na deptaku.');
+  W('Können Sie mich hier rauslassen?', 'ф', 'czy może mnie pan tu wysadzić?', '', 'o', '{Können Sie mich hier rauslassen}? Danke!', 'Może mnie pan tu wysadzić? Dziękuję!');
+  W('nächster Halt', 'ф', 'następny przystanek', '', 'p', '„{Nächster Halt}: Alexanderplatz.”', '„Następny przystanek: Alexanderplatz.”');
+  W('der Taxistand', 'ч', 'postój taksówek', 'lm. die Taxistände', 'p', 'Der {Taxistand} ist vor dem Bahnhof.', 'Postój taksówek jest przed dworcem.');
+
+  L('TR', 'tr_unterkunft', 'Nocleg');
+  W('Ich habe reserviert.', 'ф', 'mam rezerwację', 'auf den Namen … – na nazwisko…', 'p', 'Guten Abend, {ich habe reserviert}, auf den Namen Nowak.', 'Dobry wieczór, mam rezerwację na nazwisko Nowak.');
+  W('das Einzelzimmer', 'с', 'pokój jednoosobowy', 'lm. die Einzelzimmer · das Doppelzimmer – dwuosobowy', 'o', 'Ich hätte gern ein {Einzelzimmer}.', 'Chciałbym pokój jednoosobowy.');
+  W('Frühstück inklusive', 'ф', 'śniadanie w cenie', '', 'p', 'Ist das {Frühstück inklusive}?', 'Czy śniadanie jest w cenie?');
+  W('die Rezeption', 'ж', 'recepcja', 'lm. die Rezeptionen', 't', 'Den Schlüssel bekommen Sie an der {Rezeption}.', 'Klucz dostanie pan w recepcji.');
+  W('einchecken', 'д', 'zameldować się', 'checkt ein · checkte ein · hat eingecheckt', 'p', 'Ab wann kann man {einchecken}?', 'Od której można się zameldować?');
+  W('auschecken', 'д', 'wymeldować się', 'checkt aus · checkte aus · hat ausgecheckt', 'p', 'Wir müssen bis elf Uhr {auschecken}.', 'Musimy się wymeldować do jedenastej.');
+  W('das Handtuch', 'с', 'ręcznik', 'lm. die Handtücher', 'o', 'Könnten wir noch ein {Handtuch} bekommen?', 'Czy moglibyśmy dostać jeszcze jeden ręcznik?');
+  W('die Klimaanlage', 'ж', 'klimatyzacja', 'lm. die Klimaanlagen', 'p', 'Die {Klimaanlage} funktioniert nicht.', 'Klimatyzacja nie działa.');
+  W('funktioniert nicht', 'ф', 'nie działa', '', 'p', 'Die Dusche {funktioniert nicht}.', 'Prysznic nie działa.');
+  W('die Ferienwohnung', 'ж', 'mieszkanie wakacyjne (na wynajem)', 'lm. die Ferienwohnungen · skrót: FeWo', 'o', 'Wir haben eine {Ferienwohnung} am See gemietet.', 'Wynajęliśmy mieszkanie wakacyjne nad jeziorem.');
+  W('die Jugendherberge', 'ж', 'schronisko młodzieżowe', 'lm. die Jugendherbergen', 'o', 'Die Klasse übernachtet in einer {Jugendherberge}.', 'Klasa nocuje w schronisku młodzieżowym.');
+  W('Wie lautet das WLAN-Passwort?', 'ф', 'jakie jest hasło do Wi-Fi?', 'WLAN – czyt. [we-lan]', 'o', 'Entschuldigung, {wie lautet das WLAN-Passwort}?', 'Przepraszam, jakie jest hasło do Wi-Fi?');
+  W('die Kurtaxe', 'ж', 'opłata miejscowa (klimatyczna)', 'lm. die Kurtaxen · też: die Ortstaxe', 'o', 'Die {Kurtaxe} zahlt man vor Ort.', 'Opłatę miejscową płaci się na miejscu.');
+
+  L('TR', 'tr_essen2', 'Restauracja i jedzenie');
+  W('Einen Tisch für zwei, bitte.', 'ф', 'stolik dla dwojga, proszę', '', 'o', 'Guten Abend! {Einen Tisch für zwei, bitte.}', 'Dobry wieczór! Stolik dla dwojga, proszę.');
+  W('Was empfehlen Sie?', 'ф', 'co pan poleca?', '', 'o', '{Was empfehlen Sie} aus der regionalen Küche?', 'Co pan poleca z kuchni regionalnej?');
+  W('Ich bin allergisch gegen …', 'ф', 'mam alergię na…', '', 'p', '{Ich bin allergisch gegen} Nüsse.', 'Mam alergię na orzechy.');
+  W('Zahlen, bitte!', 'ф', 'rachunek, proszę!', '', 'o', 'Entschuldigung! {Zahlen, bitte}!', 'Przepraszam! Rachunek, proszę!');
+  W('Zusammen oder getrennt?', 'ф', 'razem czy osobno? (pytanie przy płaceniu)', '', 'o', '— {Zusammen oder getrennt}? — Getrennt, bitte.', '— Razem czy osobno? — Osobno, proszę.');
+  W('Stimmt so.', 'ф', 'reszty nie trzeba', '', 'o', 'Das macht 18,50. – Hier sind 20. {Stimmt so}.', 'Razem 18,50. – Proszę 20. Reszty nie trzeba.');
+  W('die Kneipe', 'ж', 'knajpa, pub', 'lm. die Kneipen', 'o', 'Nach der Arbeit gehen wir in die {Kneipe}.', 'Po pracy idziemy do knajpy.');
+  W('der Biergarten', 'ч', 'ogródek piwny', 'lm. die Biergärten', 'o', 'Im Sommer sitzen wir gern im {Biergarten}.', 'Latem lubimy siedzieć w ogródku piwnym.');
+  W('das Schnitzel', 'с', 'sznycel, kotlet panierowany', 'lm. die Schnitzel', 'p', 'Ein Wiener {Schnitzel} mit Kartoffelsalat, bitte.', 'Sznycel po wiedeńsku z sałatką ziemniaczaną, proszę.');
+  W('die Bratwurst', 'ж', 'kiełbaska z grilla', 'lm. die Bratwürste', 'o', 'Eine {Bratwurst} mit Senf, bitte.', 'Kiełbaskę z musztardą, proszę.');
+  W('die Brezel', 'ж', 'precel', 'lm. die Brezeln', 'p', 'Zum Bier essen wir eine {Brezel}.', 'Do piwa jemy precla.');
+  W('Kaffee und Kuchen', 'ф', 'kawa i ciasto (popołudniowy zwyczaj)', '', 'o', 'Am Sonntag gibt es bei Oma {Kaffee und Kuchen}.', 'W niedzielę u babci jest kawa i ciasto.');
+  W('zum Mitnehmen', 'ф', 'na wynos', 'hier essen – na miejscu', 'o', 'Einen Kaffee {zum Mitnehmen}, bitte.', 'Kawę na wynos, proszę.');
+  W('das Leitungswasser', 'с', 'woda z kranu', 'bez lm.', 'o', 'Kann ich ein Glas {Leitungswasser} haben?', 'Mogę dostać szklankę wody z kranu?');
+  W('der Ruhetag', 'ч', 'dzień, w którym lokal jest zamknięty', 'lm. die Ruhetage', 'o', 'Montag ist {Ruhetag}.', 'W poniedziałek lokal jest zamknięty.');
+
+  L('TR', 'tr_geld', 'Pieniądze i zakupy');
+  W('der Geldautomat', 'ч', 'bankomat', 'lm. die Geldautomaten', 'o', 'Wo ist der nächste {Geldautomat}?', 'Gdzie jest najbliższy bankomat?');
+  W('bar zahlen', 'ф', 'płacić gotówką', 'mit Karte zahlen – kartą', 'o', 'Hier kann man nur {bar zahlen}.', 'Tu można płacić tylko gotówką.');
+  W('das Kleingeld', 'с', 'drobne', 'bez lm.', 'o', 'Hast du {Kleingeld} für den Automaten?', 'Masz drobne do automatu?');
+  W('der Wechselkurs', 'ч', 'kurs wymiany', 'lm. die Wechselkurse', 'p', 'Wie ist der {Wechselkurs} heute?', 'Jaki jest dziś kurs wymiany?');
+  W('das Pfand', 'с', 'kaucja (za butelki, puszki)', 'bez lm. · der Pfandautomat', 'o', 'Auf die Flasche gibt es 25 Cent {Pfand}.', 'Za butelkę jest 25 centów kaucji.');
+  W('der Kassenbon', 'ч', 'paragon', 'lm. die Kassenbons', 'p', 'Brauchen Sie den {Kassenbon}?', 'Potrzebuje pan paragonu?');
+  W('die Öffnungszeiten', 'мн', 'godziny otwarcia', 'tylko lm.', 'o', 'Die {Öffnungszeiten} stehen an der Tür.', 'Godziny otwarcia są na drzwiach.');
+  W('sonntags geschlossen', 'ф', 'w niedziele zamknięte', '', 'o', 'Der Supermarkt ist {sonntags geschlossen}.', 'Supermarket w niedziele jest zamknięty.');
+  W('der Flohmarkt', 'ч', 'pchli targ', 'lm. die Flohmärkte', 'o', 'Am Samstag gehen wir auf den {Flohmarkt}.', 'W sobotę idziemy na pchli targ.');
+  W('Ich schaue mich nur um.', 'ф', 'tylko się rozglądam', '', 'o', 'Danke, {ich schaue mich nur um}.', 'Dziękuję, tylko się rozglądam.');
+  W('die Umkleidekabine', 'ж', 'przymierzalnia', 'lm. die Umkleidekabinen', 'p', 'Wo ist die {Umkleidekabine}?', 'Gdzie jest przymierzalnia?');
+  W('umtauschen', 'д', 'wymienić (towar)', 'tauscht um · tauschte um · hat umgetauscht', 'o', 'Kann ich das Hemd {umtauschen}?', 'Mogę wymienić tę koszulę?');
+
+  L('TR', 'tr_notfall', 'Zdrowie i nagłe wypadki');
+  W('Hilfe!', 'ф', 'pomocy!', '', 'o', '{Hilfe}! Rufen Sie einen Krankenwagen!', 'Pomocy! Proszę wezwać karetkę!');
+  W('der Notruf', 'ч', 'telefon alarmowy (112, policja 110)', 'lm. die Notrufe', 'o', 'Den {Notruf} 112 erreicht man kostenlos.', 'Pod numer alarmowy 112 dzwoni się bezpłatnie.');
+  W('die Notaufnahme', 'ж', 'izba przyjęć, SOR', 'lm. die Notaufnahmen', 'o', 'Wir müssen in die {Notaufnahme}.', 'Musimy jechać na izbę przyjęć.');
+  W('die Polizei', 'ж', 'policja', 'bez lm.', 'p', 'Rufen Sie die {Polizei}!', 'Proszę wezwać policję!');
+  W('Mir wurde … gestohlen.', 'ф', 'ukradziono mi…', '', 'o', '{Mir wurde} das Portemonnaie {gestohlen}.', 'Ukradziono mi portfel.');
+  W('Ich habe meinen Pass verloren.', 'ф', 'zgubiłem paszport', '', 'o', 'Was soll ich tun? {Ich habe meinen Pass verloren}.', 'Co mam zrobić? Zgubiłem paszport.');
+  W('die Botschaft', 'ж', 'ambasada; przesłanie', 'lm. die Botschaften · das Konsulat', 'o', 'Ich muss zur polnischen {Botschaft}.', 'Muszę iść do polskiej ambasady.');
+  W('das Fundbüro', 'с', 'biuro rzeczy znalezionych', 'lm. die Fundbüros', 'o', 'Fragen Sie im {Fundbüro}.', 'Proszę zapytać w biurze rzeczy znalezionych.');
+  W('der ärztliche Notdienst', 'ф', 'nocna i świąteczna pomoc lekarska (tel. 116 117)', '', 'o', 'Am Wochenende hilft der {ärztliche Notdienst}.', 'W weekend pomaga dyżurna pomoc lekarska.');
+  W('die Schmerztablette', 'ж', 'tabletka przeciwbólowa', 'lm. die Schmerztabletten', 'p', 'Haben Sie eine {Schmerztablette}?', 'Ma pan tabletkę przeciwbólową?');
+  W('das Pflaster', 'с', 'plaster; bruk', 'lm. die Pflaster', 'p', 'Ich brauche ein {Pflaster}.', 'Potrzebuję plastra.');
+  W('Mir ist schlecht.', 'ф', 'niedobrze mi, źle się czuję', '', 'o', 'Können wir anhalten? {Mir ist schlecht}.', 'Możemy się zatrzymać? Niedobrze mi.');
+
+  L('TR', 'tr_weg', 'Orientacja w mieście');
+  W('Wie komme ich zum …?', 'ф', 'jak dojdę/dojadę do…? (r. męski/nijaki)', 'zur … – do (r. żeński)', 'o', 'Entschuldigung, {wie komme ich zum} Brandenburger Tor?', 'Przepraszam, jak dojdę do Bramy Brandenburskiej?');
+  W('an der Ecke', 'ф', 'na rogu', '', 'o', 'Die Apotheke ist {an der Ecke}.', 'Apteka jest na rogu.');
+  W('gegenüber', 'з', 'naprzeciwko', '+ celownik', 'o', 'Das Hotel liegt {gegenüber} dem Bahnhof.', 'Hotel leży naprzeciwko dworca.');
+  W('in der Nähe', 'ф', 'w pobliżu', '', 'o', 'Gibt es hier {in der Nähe} eine Bank?', 'Czy jest tu w pobliżu bank?');
+  W('die Kreuzung', 'ж', 'skrzyżowanie', 'lm. die Kreuzungen', 'o', 'An der {Kreuzung} biegen Sie rechts ab.', 'Na skrzyżowaniu proszę skręcić w prawo.');
+  W('die Ampel', 'ж', 'sygnalizacja świetlna', 'lm. die Ampeln', 'o', 'Gehen Sie bis zur {Ampel}.', 'Proszę iść do świateł.');
+  W('die Gasse', 'ж', 'uliczka, zaułek', 'lm. die Gassen', 'o', 'Das Café ist in einer kleinen {Gasse}.', 'Kawiarnia jest w małej uliczce.');
+  W('abbiegen', 'д', 'skręcać', 'biegt ab · bog ab · ist abgebogen', 'o', 'Nach der Brücke links {abbiegen}.', 'Za mostem skręcić w lewo.');
+  W('Ich habe mich verlaufen.', 'ф', 'zgubiłem się (pieszo)', 'verfahren – samochodem', 'o', 'Entschuldigung, {ich habe mich verlaufen}.', 'Przepraszam, zgubiłem się.');
+  W('Können Sie mir das auf der Karte zeigen?', 'ф', 'może mi pan to pokazać na mapie?', '', 'o', 'Ich verstehe nicht ganz. {Können Sie mir das auf der Karte zeigen?}', 'Nie do końca rozumiem. Może mi pan to pokazać na mapie?');
+  W('die Unterführung', 'ж', 'przejście podziemne', 'lm. die Unterführungen', 'o', 'Nehmen Sie die {Unterführung}.', 'Proszę skorzystać z przejścia podziemnego.');
+  W('der Wegweiser', 'ч', 'drogowskaz', 'lm. die Wegweiser', 'o', 'Folgen Sie dem {Wegweiser} zum Schloss.', 'Proszę iść za drogowskazem do zamku.');
+
+  L('TR', 'tr_sehen', 'Zwiedzanie');
+  W('der Eintritt', 'ч', 'wstęp; wejście', 'lm. die Eintritte · Eintritt frei – wstęp wolny', 'o', 'Was kostet der {Eintritt}?', 'Ile kosztuje wstęp?');
+  W('die Ermäßigung', 'ж', 'zniżka, ulga', 'lm. die Ermäßigungen', 'o', 'Gibt es eine {Ermäßigung} für Lehrer?', 'Czy jest zniżka dla nauczycieli?');
+  W('die Führung', 'ж', 'zwiedzanie z przewodnikiem', 'lm. die Führungen', 'o', 'Die nächste {Führung} beginnt um 14 Uhr.', 'Następne zwiedzanie z przewodnikiem zaczyna się o 14.');
+  W('der Audioguide', 'ч', 'audioprzewodnik', 'lm. die Audioguides', 't', 'Gibt es einen {Audioguide} auf Polnisch?', 'Czy jest audioprzewodnik po polsku?');
+  W('Fotografieren verboten', 'ф', 'fotografowanie zabronione', '', 'p', 'Im Museum ist {Fotografieren verboten}.', 'W muzeum fotografowanie jest zabronione.');
+  W('das Schloss', 'с', 'pałac, zamek (rezydencja); zamek (do drzwi)', 'lm. die Schlösser', 'o', 'Das {Schloss} Sanssouci liegt in Potsdam.', 'Pałac Sanssouci leży w Poczdamie.');
+  W('die Burg', 'ж', 'zamek (warowny), gród', 'lm. die Burgen', 'p', 'Auf dem Berg steht eine alte {Burg}.', 'Na wzgórzu stoi stary zamek.');
+  W('die Altstadt', 'ж', 'stare miasto', 'lm. die Altstädte', 'o', 'Wir bummeln durch die {Altstadt}.', 'Spacerujemy po starym mieście.');
+  W('die Aussicht', 'ж', 'widok', 'lm. die Aussichten · der Aussichtsturm – wieża widokowa', 'o', 'Vom Turm hat man eine tolle {Aussicht}.', 'Z wieży jest wspaniały widok.');
+  W('die Gedenkstätte', 'ж', 'miejsce pamięci', 'lm. die Gedenkstätten', 'o', 'Wir besuchen die {Gedenkstätte} Berliner Mauer.', 'Odwiedzamy Miejsce Pamięci Muru Berlińskiego.');
+  W('das Kloster', 'с', 'klasztor', 'lm. die Klöster', 'p', 'Das {Kloster} stammt aus dem 12. Jahrhundert.', 'Klasztor pochodzi z XII wieku.');
+  W('die Kirche ist geöffnet', 'ф', 'kościół jest otwarty', 'geschlossen – zamknięty', 'o', 'Tagsüber {ist die Kirche geöffnet}.', 'W ciągu dnia kościół jest otwarty.');
+
+  L('TR', 'tr_gespraech', 'Rozmowa i grzeczność');
+  W('Woher kommen Sie?', 'ф', 'skąd pan(i) pochodzi?', 'na „ty”: Woher kommst du?', 'o', 'Sie sprechen gut Deutsch! {Woher kommen Sie}?', 'Dobrze pan mówi po niemiecku! Skąd pan pochodzi?');
+  W('Ich komme aus Polen.', 'ф', 'jestem z Polski', '', 'p', '{Ich komme aus Polen}, aus Krakau.', 'Jestem z Polski, z Krakowa.');
+  W('Sprechen Sie bitte langsamer.', 'ф', 'proszę mówić wolniej', '', 'o', 'Entschuldigung, {sprechen Sie bitte langsamer}.', 'Przepraszam, proszę mówić wolniej.');
+  W('Wie bitte?', 'ф', 'słucham? (proszę powtórzyć)', '', 'o', '{Wie bitte?} Ich habe Sie nicht verstanden.', 'Słucham? Nie zrozumiałem pana.');
+  W('Wie sagt man … auf Deutsch?', 'ф', 'jak się mówi … po niemiecku?', '', 'o', '{Wie sagt man} „widelec” {auf Deutsch}?', 'Jak się mówi „widelec” po niemiecku?');
+  W('Kein Problem.', 'ф', 'nie ma problemu', '', 'p', '— Darf ich hier sitzen? — {Kein Problem}.', '— Mogę tu usiąść? — Nie ma problemu.');
+  W('Gern geschehen.', 'ф', 'nie ma za co', 'też: Gerne!', 'o', '— Vielen Dank! — {Gern geschehen}.', '— Dziękuję bardzo! — Nie ma za co.');
+  W('Wollen wir uns duzen?', 'ф', 'przejdziemy na „ty”?', '', 'o', 'Wir sind doch Kollegen. {Wollen wir uns duzen?}', 'Przecież jesteśmy kolegami. Przejdziemy na „ty”?');
+  W('Schönen Tag noch!', 'ф', 'miłego dnia!', 'Schönes Wochenende! – miłego weekendu', 'o', 'Danke und {schönen Tag noch}!', 'Dziękuję i miłego dnia!');
+  W('Gute Reise!', 'ф', 'szczęśliwej podróży!', '', 'o', 'Tschüss und {gute Reise}!', 'Cześć i szczęśliwej podróży!');
+  W('Grüß Gott!', 'ф', 'dzień dobry (Bawaria, Austria)', 'Servus! – cześć (płd.), Moin! – cześć (płn.)', 'o', '{Grüß Gott}, was darf es sein?', 'Dzień dobry, co podać?');
+  W('Mahlzeit!', 'ф', 'smacznego / pozdrowienie w porze obiadu (w pracy)', '', 'o', '{Mahlzeit}! Gehst du auch in die Kantine?', 'Smacznego! Też idziesz do stołówki?');
+
+  /* ===================== ARCHIWUM I HISTORIA ===================== */
+  L('AR', 'ar_archiv', 'W archiwum');
+  W('das Archiv', 'с', 'archiwum', 'lm. die Archive', 't', 'Ich recherchiere seit einer Woche im {Archiv}.', 'Od tygodnia prowadzę kwerendę w archiwum.');
+  W('der Lesesaal', 'ч', 'czytelnia', 'lm. die Lesesäle', 'o', 'Der {Lesesaal} ist von 9 bis 16 Uhr geöffnet.', 'Czytelnia jest otwarta od 9 do 16.');
+  W('der Archivar', 'ч', 'archiwista', 'lm. die Archivare · ż. die Archivarin', 'p', 'Der {Archivar} hat mir das Findbuch gezeigt.', 'Archiwista pokazał mi inwentarz.');
+  W('der Bestand', 'ч', 'zespół archiwalny; zasób', 'lm. die Bestände', 'o', 'Die Akten gehören zum {Bestand} des Oberpräsidiums.', 'Akta należą do zespołu Naczelnego Prezydium.');
+  W('die Signatur', 'ж', 'sygnatura', 'lm. die Signaturen', 't', 'Notieren Sie bitte die vollständige {Signatur}.', 'Proszę zanotować pełną sygnaturę.');
+  W('die Akte', 'ж', 'akta, teczka', 'lm. die Akten', 'p', 'Ich habe drei {Akten} bestellt.', 'Zamówiłem trzy teczki akt.');
+  W('das Blatt', 'с', 'karta, kartka (Bl.)', 'lm. die Blätter · r = recto, v = verso', 'o', 'Der Eintrag steht auf {Blatt} 45v.', 'Wpis jest na karcie 45v.');
+  W('das Findbuch', 'с', 'inwentarz archiwalny, pomoc ewidencyjna', 'lm. die Findbücher · też: das Findmittel', 'o', 'Im {Findbuch} habe ich die Signatur gefunden.', 'W inwentarzu znalazłem sygnaturę.');
+  W('der Benutzungsantrag', 'ч', 'wniosek o udostępnienie (karta użytkownika)', 'lm. die Benutzungsanträge', 'o', 'Füllen Sie zuerst den {Benutzungsantrag} aus.', 'Proszę najpierw wypełnić wniosek o udostępnienie.');
+  W('die Sperrfrist', 'ж', 'okres karencji (zastrzeżenia dostępu)', 'lm. die Sperrfristen', 'o', 'Für Personalakten gilt eine {Sperrfrist}.', 'Akta osobowe obejmuje okres karencji.');
+  W('das Digitalisat', 'с', 'skan, kopia cyfrowa', 'lm. die Digitalisate', 'o', 'Das Kirchenbuch ist als {Digitalisat} online.', 'Księga kościelna jest dostępna online jako skan.');
+  W('die Abschrift', 'ж', 'odpis, kopia (przepisana)', 'lm. die Abschriften · beglaubigte Abschrift – uwierzytelniona', 'o', 'Im Archiv liegt nur eine {Abschrift} der Urkunde.', 'W archiwum jest tylko odpis dokumentu.');
+  W('das Original', 'с', 'oryginał', 'lm. die Originale', 't', 'Wir durften das {Original} sehen.', 'Pozwolono nam obejrzeć oryginał.');
+  W('recherchieren', 'д', 'prowadzić kwerendę, badać', 'recherchiert · recherchierte · hat recherchiert', 'p', 'Ich {recherchiere} zur Geschichte meiner Familie.', 'Prowadzę kwerendę o historii mojej rodziny.');
+
+  L('AR', 'ar_dokumente', 'Rodzaje dokumentów');
+  W('die Urkunde', 'ж', 'dokument (urzędowy), akt, dyplom', 'lm. die Urkunden', 'o', 'Die {Urkunde} trägt das Siegel des Königs.', 'Dokument nosi pieczęć króla.');
+  W('das Kirchenbuch', 'с', 'księga parafialna (metrykalna)', 'lm. die Kirchenbücher', 'o', 'Die Taufe ist im {Kirchenbuch} eingetragen.', 'Chrzest jest wpisany do księgi parafialnej.');
+  W('das Standesamt', 'с', 'urząd stanu cywilnego', 'lm. die Standesämter', 'o', 'Seit 1874 führte in Preußen das {Standesamt} die Register.', 'Od 1874 r. w Prusach rejestry prowadził urząd stanu cywilnego.');
+  W('die Geburtsurkunde', 'ж', 'akt urodzenia', 'lm. die Geburtsurkunden · Heirats-, Sterbeurkunde', 'o', 'Ich suche die {Geburtsurkunde} meines Urgroßvaters.', 'Szukam aktu urodzenia mojego pradziadka.');
+  W('das Grundbuch', 'с', 'księga wieczysta', 'lm. die Grundbücher', 'o', 'Laut {Grundbuch} gehörte das Haus der Familie Müller.', 'Według księgi wieczystej dom należał do rodziny Müllerów.');
+  W('das Adressbuch', 'с', 'księga adresowa', 'lm. die Adressbücher', 'o', 'Im {Adressbuch} von 1910 steht sein Beruf.', 'W księdze adresowej z 1910 r. podano jego zawód.');
+  W('der Erlass', 'ч', 'zarządzenie, dekret', 'lm. die Erlasse', 'o', 'Der {Erlass} verbot den Polnischunterricht.', 'Zarządzenie zakazało nauki polskiego.');
+  W('die Verordnung', 'ж', 'rozporządzenie', 'lm. die Verordnungen', 'o', 'Die {Verordnung} trat 1908 in Kraft.', 'Rozporządzenie weszło w życie w 1908 r.');
+  W('das Protokoll', 'с', 'protokół', 'lm. die Protokolle', 't', 'Das {Protokoll} der Sitzung ist erhalten.', 'Protokół posiedzenia się zachował.');
+  W('der Nachlass', 'ч', 'spuścizna (archiwalna); spadek', 'lm. die Nachlässe', 'o', 'Der {Nachlass} des Professors liegt in der Bibliothek.', 'Spuścizna profesora jest w bibliotece.');
+  W('der Briefwechsel', 'ч', 'korespondencja', 'lm. die Briefwechsel', 'o', 'Der {Briefwechsel} der Brüder wurde veröffentlicht.', 'Korespondencję braci opublikowano.');
+  W('die Chronik', 'ж', 'kronika', 'lm. die Chroniken', 'p', 'Die {Chronik} der Schule beginnt 1871.', 'Kronika szkoły zaczyna się w 1871 r.');
+  W('die Volkszählung', 'ж', 'spis ludności', 'lm. die Volkszählungen', 'o', 'Die {Volkszählung} von 1910 fragte nach der Muttersprache.', 'Spis ludności z 1910 r. pytał o język ojczysty.');
+
+  L('AR', 'ar_schrift', 'Pismo i daty');
+  W('die Kurrentschrift', 'ж', 'kurrenta (niemieckie pismo odręczne)', 'potocznie: die Kurrent', 'o', 'Der Brief ist in {Kurrentschrift} geschrieben.', 'List jest napisany kurrentą.');
+  W('die Sütterlinschrift', 'ж', 'pismo Sütterlina (szkolna odmiana kurrenty 1915–1941)', '', 'o', 'Meine Oma schrieb noch {Sütterlinschrift}.', 'Moja babcia pisała jeszcze pismem Sütterlina.');
+  W('die Fraktur', 'ж', 'fraktura (gotyckie pismo drukowane)', '', 'p', 'Die Zeitung ist in {Fraktur} gedruckt.', 'Gazeta jest wydrukowana frakturą.');
+  W('die Handschrift', 'ж', 'pismo odręczne; rękopis', 'lm. die Handschriften', 'o', 'Die {Handschrift} des Pfarrers ist kaum lesbar.', 'Pismo proboszcza jest ledwo czytelne.');
+  W('entziffern', 'д', 'odczytać, rozszyfrować', 'entziffert · entzifferte · hat entziffert', 'o', 'Ich kann dieses Wort nicht {entziffern}.', 'Nie mogę odczytać tego słowa.');
+  W('unleserlich', 'п', 'nieczytelny', '', 'o', 'Der Name ist leider {unleserlich}.', 'Nazwisko jest niestety nieczytelne.');
+  W('die Abkürzung', 'ж', 'skrót', 'lm. die Abkürzungen', 'o', 'Was bedeutet die {Abkürzung} „geb.”?', 'Co znaczy skrót „geb.”?');
+  W('das Siegel', 'с', 'pieczęć', 'lm. die Siegel', 'p', 'Das {Siegel} ist beschädigt.', 'Pieczęć jest uszkodzona.');
+  W('der Schreiber', 'ч', 'pisarz (kancelaryjny), skryba', 'lm. die Schreiber', 'o', 'Der {Schreiber} hat den Namen falsch notiert.', 'Pisarz błędnie zanotował nazwisko.');
+  W('geb.', 'з', 'urodzony, z domu (geboren)', 'gest. – zmarły (gestorben), verh. – zamężna', 'o', 'Anna Kowalski, {geb.} Nowak.', 'Anna Kowalska, z domu Nowak.');
+  W('die Datierung', 'ж', 'datowanie', 'lm. die Datierungen', 'p', 'Die {Datierung} der Urkunde ist umstritten.', 'Datowanie dokumentu jest sporne.');
+
+  L('AR', 'ar_preussen', 'Prusy i ziemie polskie');
+  W('das Königreich Preußen', 'ф', 'Królestwo Prus', '', 'p', 'Posen gehörte zum {Königreich Preußen}.', 'Poznań należał do Królestwa Prus.');
+  W('die Teilungen Polens', 'ф', 'rozbiory Polski', '', 'p', 'Nach den {Teilungen Polens} fiel Danzig an Preußen.', 'Po rozbiorach Polski Gdańsk przypadł Prusom.');
+  W('das Großherzogtum Posen', 'ф', 'Wielkie Księstwo Poznańskie', '', 'p', 'Das {Großherzogtum Posen} entstand 1815.', 'Wielkie Księstwo Poznańskie powstało w 1815 r.');
+  W('die Provinz', 'ж', 'prowincja', 'lm. die Provinzen', 't', 'Die {Provinz} Westpreußen hatte ihre Hauptstadt in Danzig.', 'Prowincja Prusy Zachodnie miała stolicę w Gdańsku.');
+  W('der Regierungsbezirk', 'ч', 'rejencja (okręg administracyjny)', 'lm. die Regierungsbezirke', 'o', 'Der {Regierungsbezirk} Oppeln umfasste Oberschlesien.', 'Rejencja opolska obejmowała Górny Śląsk.');
+  W('der Kreis', 'ч', 'powiat; koło', 'lm. die Kreise · der Landkreis', 'o', 'Das Dorf lag im {Kreis} Gnesen.', 'Wieś leżała w powiecie gnieźnieńskim.');
+  W('der Landrat', 'ч', 'starosta (powiatowy)', 'lm. die Landräte', 'o', 'Der {Landrat} berichtete über die Stimmung der Bevölkerung.', 'Starosta meldował o nastrojach ludności.');
+  W('das Rittergut', 'с', 'majątek rycerski (dobra ziemskie)', 'lm. die Rittergüter', 'o', 'Das {Rittergut} gehörte einer polnischen Adelsfamilie.', 'Majątek należał do polskiej rodziny szlacheckiej.');
+  W('der Kulturkampf', 'ч', 'Kulturkampf (walka z Kościołem katolickim, lata 70. XIX w.)', '', 'o', 'Im {Kulturkampf} wurde Erzbischof Ledóchowski verhaftet.', 'Podczas Kulturkampfu aresztowano arcybiskupa Ledóchowskiego.');
+  W('die Germanisierung', 'ж', 'germanizacja', 'bez lm.', 'p', 'Die {Germanisierung} betraf vor allem die Schulen.', 'Germanizacja dotyczyła przede wszystkim szkół.');
+  W('die Ansiedlungskommission', 'ж', 'Komisja Kolonizacyjna (1886)', '', 'o', 'Die {Ansiedlungskommission} kaufte polnischen Grundbesitz auf.', 'Komisja Kolonizacyjna wykupywała polską ziemię.');
+  W('der Schulstreik', 'ч', 'strajk szkolny (Września 1901)', 'lm. die Schulstreiks', 'o', 'Der {Schulstreik} in Wreschen wurde weltbekannt.', 'Strajk szkolny we Wrześni stał się głośny na świecie.');
+  W('die Volksabstimmung', 'ж', 'plebiscyt', 'lm. die Volksabstimmungen', 'o', 'Die {Volksabstimmung} in Oberschlesien fand 1921 statt.', 'Plebiscyt na Górnym Śląsku odbył się w 1921 r.');
+
+  L('AR', 'ar_besatzung', 'Wojna i okupacja');
+  W('die Besatzung', 'ж', 'okupacja; załoga', 'lm. die Besatzungen', 'o', 'Unter der deutschen {Besatzung} wurden die Universitäten geschlossen.', 'Pod okupacją niemiecką zamknięto uniwersytety.');
+  W('das Generalgouvernement', 'ф', 'Generalne Gubernatorstwo (1939–1945)', '', 'p', 'Krakau war die Hauptstadt des {Generalgouvernements}.', 'Kraków był stolicą Generalnego Gubernatorstwa.');
+  W('die Deportation', 'ж', 'deportacja', 'lm. die Deportationen', 't', 'Die {Deportation} der Familie ist in den Akten dokumentiert.', 'Deportacja rodziny jest udokumentowana w aktach.');
+  W('das Konzentrationslager', 'с', 'obóz koncentracyjny', 'lm. die Konzentrationslager · skrót: KZ', 'o', 'Er überlebte das {Konzentrationslager} Stutthof.', 'Przeżył obóz koncentracyjny Stutthof.');
+  W('das Vernichtungslager', 'с', 'obóz zagłady', 'lm. die Vernichtungslager', 'o', 'Treblinka war ein {Vernichtungslager}.', 'Treblinka była obozem zagłady.');
+  W('die Zwangsarbeit', 'ж', 'praca przymusowa', 'bez lm. · der Zwangsarbeiter – robotnik przymusowy', 'o', 'Sie wurde 1942 zur {Zwangsarbeit} nach Deutschland verschleppt.', 'Wywieziono ją w 1942 r. na roboty przymusowe do Niemiec.');
+  W('die Deutsche Volksliste', 'ф', 'niemiecka lista narodowościowa (Volkslista)', '', 'o', 'In Westpreußen wurden viele zur {Deutschen Volksliste} gezwungen.', 'Na Pomorzu wielu zmuszono do wpisu na Volkslistę.');
+  W('der Warschauer Aufstand', 'ф', 'powstanie warszawskie (1944)', '', 'p', 'Der {Warschauer Aufstand} begann am 1. August 1944.', 'Powstanie warszawskie zaczęło się 1 sierpnia 1944 r.');
+  W('die Umsiedlung', 'ж', 'przesiedlenie', 'lm. die Umsiedlungen', 'o', 'Die {Umsiedlung} der Bevölkerung wurde brutal durchgeführt.', 'Przesiedlenie ludności przeprowadzono brutalnie.');
+  W('die Entschädigung', 'ж', 'odszkodowanie', 'lm. die Entschädigungen', 'o', 'Ehemalige Zwangsarbeiter erhielten eine {Entschädigung}.', 'Byli robotnicy przymusowi otrzymali odszkodowanie.');
+  W('die Gestapo', 'ж', 'gestapo (tajna policja państwowa)', '', 't', 'Die {Gestapo} verhaftete ihn im Jahr 1940.', 'Gestapo aresztowało go w 1940 roku.');
+
+  L('AR', 'ar_ddr', 'Dwa państwa niemieckie');
+  W('die Teilung Deutschlands', 'ф', 'podział Niemiec', '', 'p', 'Die {Teilung Deutschlands} dauerte bis 1990.', 'Podział Niemiec trwał do 1990 roku.');
+  W('der Mauerbau', 'ч', 'budowa muru (1961)', 'bez lm.', 'o', 'Nach dem {Mauerbau} 1961 war die Flucht fast unmöglich.', 'Po budowie muru w 1961 r. ucieczka była prawie niemożliwa.');
+  W('die Stasi', 'ж', 'Stasi (Ministerstwo Bezpieczeństwa Państwowego NRD)', '', 't', 'Die {Stasi} überwachte Millionen Menschen.', 'Stasi inwigilowała miliony ludzi.');
+  W('die Stasi-Unterlagen', 'мн', 'akta Stasi', '', 'p', 'Seit 1992 kann man in die {Stasi-Unterlagen} Einsicht nehmen.', 'Od 1992 r. można wglądać do akt Stasi.');
+  W('die Akteneinsicht', 'ж', 'wgląd do akt', 'bez lm.', 'o', 'Er beantragte {Akteneinsicht} beim Bundesarchiv.', 'Złożył wniosek o wgląd do akt w Archiwum Federalnym.');
+  W('der inoffizielle Mitarbeiter', 'ф', 'tajny współpracownik (IM)', '', 'p', 'Sein Nachbar war ein {inoffizieller Mitarbeiter}.', 'Jego sąsiad był tajnym współpracownikiem.');
+  W('die Ostpolitik', 'ж', 'polityka wschodnia (Willy Brandt)', '', 'p', 'Die {Ostpolitik} führte zum Warschauer Vertrag von 1970.', 'Polityka wschodnia doprowadziła do układu warszawskiego z 1970 r.');
+  W('der Kniefall', 'ч', 'uklęknięcie (Brandta w Warszawie, 1970)', '', 'o', 'Der {Kniefall} von Warschau wurde zum Symbol.', 'Uklęknięcie w Warszawie stało się symbolem.');
+  W('die Oder-Neiße-Grenze', 'ф', 'granica na Odrze i Nysie', '', 'p', 'Die {Oder-Neiße-Grenze} wurde 1990 endgültig anerkannt.', 'Granicę na Odrze i Nysie ostatecznie uznano w 1990 r.');
+  W('der Nachbarschaftsvertrag', 'ч', 'traktat o dobrym sąsiedztwie (1991)', '', 'o', 'Der deutsch-polnische {Nachbarschaftsvertrag} wurde 1991 unterzeichnet.', 'Polsko-niemiecki traktat o dobrym sąsiedztwie podpisano w 1991 r.');
+  W('die Solidarność-Bewegung', 'ф', 'ruch Solidarności', '', 't', 'In der DDR beobachtete man die {Solidarność-Bewegung} mit Sorge.', 'W NRD z niepokojem obserwowano ruch Solidarności.');
+
+  L('AR', 'ar_historiker', 'Warsztat historyka');
+  W('die historische Quelle', 'ф', 'źródło historyczne', 'lm. die Quellen', 'p', 'Das Tagebuch ist eine wichtige {historische Quelle}.', 'Dziennik to ważne źródło historyczne.');
+  W('die Fußnote', 'ж', 'przypis', 'lm. die Fußnoten', 'o', 'Geben Sie die Signatur in der {Fußnote} an.', 'Proszę podać sygnaturę w przypisie.');
+  W('die Monografie', 'ж', 'monografia', 'lm. die Monografien', 't', 'Sie schrieb eine {Monografie} über Breslau.', 'Napisała monografię o Wrocławiu.');
+  W('die Quellenedition', 'ж', 'edycja źródeł', 'lm. die Quelleneditionen', 'p', 'Die {Quellenedition} erschien in zwei Bänden.', 'Edycja źródeł ukazała się w dwóch tomach.');
+  W('die Glaubwürdigkeit', 'ж', 'wiarygodność', 'bez lm.', 'o', 'Die {Glaubwürdigkeit} des Berichts ist zweifelhaft.', 'Wiarygodność relacji jest wątpliwa.');
+  W('die Fälschung', 'ж', 'fałszerstwo, falsyfikat', 'lm. die Fälschungen', 'o', 'Die Urkunde erwies sich als {Fälschung}.', 'Dokument okazał się falsyfikatem.');
+  W('der Zeitzeuge', 'ч', 'świadek epoki, naoczny świadek', 'lm. die Zeitzeugen · ż. die Zeitzeugin', 'o', 'Wir haben einen {Zeitzeugen} interviewt.', 'Przeprowadziliśmy wywiad ze świadkiem epoki.');
+  W('der Forschungsstand', 'ч', 'stan badań', 'bez lm.', 'o', 'Der {Forschungsstand} zu diesem Thema ist dürftig.', 'Stan badań nad tym tematem jest skromny.');
+  W('das Literaturverzeichnis', 'с', 'bibliografia', 'lm. die Literaturverzeichnisse', 'o', 'Das {Literaturverzeichnis} umfasst 200 Titel.', 'Bibliografia obejmuje 200 tytułów.');
+  W('die Geschichtspolitik', 'ж', 'polityka historyczna', 'bez lm.', 'o', 'Über {Geschichtspolitik} wird heftig gestritten.', 'O polityce historycznej toczą się ostre spory.');
+  W('die Erinnerungskultur', 'ж', 'kultura pamięci', 'bez lm.', 'o', 'Die deutsche {Erinnerungskultur} ist stark von der NS-Zeit geprägt.', 'Niemiecka kultura pamięci jest silnie naznaczona okresem nazizmu.');
+})();
+
+</script>
+<script>
+/* ============================================================
    TREŚCI: litery i dźwięki, fałszywi przyjaciele, wymowa, gramatyka, dialogi
    ============================================================ */
 var UA = window.UA || (window.UA = {});
@@ -1613,6 +1903,190 @@ UA.TEXTS = [
     text: 'Franz Kafka verfügte testamentarisch, dass seine unveröffentlichten Manuskripte nach seinem Tod verbrannt werden sollten. Sein Freund Max Brod widersetzte sich diesem Wunsch und veröffentlichte den „Prozess“ und das „Schloss“. Das Paradox besteht darin, dass wir einen der einflussreichsten Schriftsteller des zwanzigsten Jahrhunderts einem Vertrauensbruch verdanken. Ob Brod damit Verrat oder einen Akt höchster Freundschaft beging, bleibt bis heute umstritten.',
     pl: 'Franz Kafka zapisał w testamencie, że jego niepublikowane rękopisy mają zostać spalone po jego śmierci. Jego przyjaciel Max Brod sprzeciwił się tej woli i opublikował „Proces” i „Zamek”. Paradoks polega na tym, że jednego z najbardziej wpływowych pisarzy XX wieku zawdzięczamy złamaniu zaufania. Czy Brod popełnił zdradę, czy akt najwyższej przyjaźni – pozostaje do dziś sporne.',
     qs: [['Czego chciał Kafka?', ['żeby jego rękopisy spalono', 'żeby wydano je po polsku', 'żeby trafiły do muzeum', 'żeby przekazano je rodzinie'], 0], ['Co zrobił Max Brod?', ['spalił rękopisy', 'opublikował „Proces” i „Zamek”', 'sprzedał rękopisy', 'ukrył je w bibliotece'], 1], ['Na czym polega paradoks?', ['wielkiego pisarza zawdzięczamy złamaniu zaufania', 'Kafka pisał tylko po czesku', 'Brod nie znał Kafki', 'Kafka był za życia bardzo sławny'], 0]] }
+];
+
+</script>
+<script>
+/* ============================================================
+   TREŚCI ŚCIEŻEK TEMATYCZNYCH + CZASOWNIKI NIEREGULARNE
+   ============================================================ */
+var UA = window.UA || (window.UA = {});
+
+UA.TIPS = {
+  tr_bahn: ['<b>Gleis</b> to tor, z którego odjeżdża pociąg – na dworcu szukasz numeru toru, nie peronu (<b>Bahnsteig</b>).', 'Pociągi Deutsche Bahn często się spóźniają, a przesiadki bywają krótkie – sprawdzaj aplikację DB Navigator i komunikaty (<b>Durchsage</b>).', '<b>Deutschlandticket</b> to miesięczny bilet (w subskrypcji) na wszystkie pociągi regionalne i komunikację miejską w Niemczech – nie obejmuje ICE/IC.', 'Bilety na pociągi regionalne kupione w automacie są ważne od razu – w Niemczech zwykle nie kasuje się biletów kolejowych.'],
+  tr_flug: ['Na tablicach: <b>Abflug</b> – odloty, <b>Ankunft</b> – przyloty, <b>verspätet</b> – opóźniony, <b>annulliert / gestrichen</b> – odwołany.'],
+  tr_stadt2: ['Bilet na komunikację miejską trzeba często skasować (<b>entwerten</b>) w kasowniku – inaczej grozi mandat (<b>erhöhtes Beförderungsentgelt</b>).', 'Bilet u kierowcy kupisz tylko w niektórych miastach – bezpieczniej kupić go w automacie lub aplikacji.', '<b>U-Bahn</b> to metro, <b>S-Bahn</b> – szybka kolej miejska, <b>Straßenbahn / Tram</b> – tramwaj.'],
+  tr_unterkunft: ['W wielu miastach płaci się opłatę miejscową (<b>Kurtaxe</b>, <b>City-Tax</b>, <b>Bettensteuer</b>).', '<b>Ferienwohnung (FeWo)</b> – popularny wynajem mieszkań na wakacje; <b>Jugendherberge</b> – schroniska młodzieżowe, dobre na wycieczki szkolne.'],
+  tr_essen2: ['Kelner zapyta: <b>Zusammen oder getrennt?</b> – w Niemczech często płaci się osobno.', 'Napiwek: zwykle zaokrągla się rachunek o ok. 5–10% i mówi się kwotę przy płaceniu albo <b>Stimmt so</b> (reszty nie trzeba).', 'Woda z kranu (<b>Leitungswasser</b>) jest dobrej jakości, ale w restauracjach zamawia się zwykle wodę butelkowaną.', 'Wiele lokali ma jeden dzień w tygodniu zamknięty – <b>Ruhetag</b>.'],
+  tr_geld: ['W Niemczech gotówka jest wciąż popularna – w małych lokalach bywa napis <b>Nur Barzahlung</b> (tylko gotówka).', 'Za butelki i puszki płaci się kaucję (<b>Pfand</b>); oddajesz je w automacie w supermarkecie i dostajesz bon.', 'W niedziele i święta sklepy są zamknięte (otwarte są zwykle tylko na dworcach i stacjach benzynowych).'],
+  tr_notfall: ['Numery: <b>112</b> – pogotowie i straż pożarna, <b>110</b> – policja, <b>116 117</b> – dyżurna pomoc lekarska (nie w nagłych wypadkach).', 'Apteka (<b>Apotheke</b>, czerwone A) – w nocy i w święta działa <b>Notdienst</b>; adres jest na drzwiach każdej apteki.'],
+  tr_weg: ['<b>zum</b> = zu dem (r. męski i nijaki), <b>zur</b> = zu der (r. żeński): zum Bahnhof, zur Kirche.', 'Na tabliczkach: <b>Ausgang</b> – wyjście, <b>Eingang</b> – wejście, <b>Gleis</b> – tor, <b>Toiletten / WC</b>.'],
+  tr_sehen: ['Wiele muzeów jest zamkniętych w poniedziałki.', 'Miejsca pamięci (<b>Gedenkstätten</b>) – np. Mur Berliński, dawne obozy – mają zwykle wstęp wolny.', 'Nauczyciele i uczniowie często mają zniżkę (<b>Ermäßigung</b>) – warto mieć legitymację.'],
+  tr_gespraech: ['Regionalne powitania: <b>Grüß Gott</b> i <b>Servus</b> (Bawaria, Austria), <b>Moin</b> (północ), <b>Grüezi</b> (Szwajcaria).', 'Do obcych dorosłych mówi się <b>Sie</b>; propozycję przejścia na „du” zwykle składa starszy lub wyżej postawiony.'],
+  ar_archiv: ['Niemiecka sygnatura wygląda np. tak: <b>GStA PK, I. HA Rep. 77, Nr. 123, Bl. 45v</b> – archiwum, wydział (Hauptabteilung), zespół (Repositur), numer jednostki, karta (v = verso).', 'Ważne archiwa: <b>Geheimes Staatsarchiv Preußischer Kulturbesitz</b> (Berlin-Dahlem – akta pruskie, w tym zabór pruski), <b>Bundesarchiv</b> (Berlin, Koblenz, Freiburg – archiwum wojskowe), <b>Arolsen Archives</b> (dokumenty prześladowań nazistowskich, wyszukiwarka online).', 'Wiele niemieckojęzycznych akt leży w polskich archiwach państwowych: Szczecin, Gdańsk, Wrocław, Opole, Poznań, Olsztyn.'],
+  ar_dokumente: ['Urzędy stanu cywilnego (<b>Standesamt</b>) działały w Prusach od 1874 r., w całej Rzeszy od 1876 r. – wcześniej podstawowym źródłem są księgi parafialne (<b>Kirchenbücher</b>).', 'Księgi adresowe (<b>Adressbücher</b>) dużych miast podają zawód i adres – świetne źródło do genealogii.'],
+  ar_schrift: ['Do 1941 r. w Niemczech uczono pisma kurrent (od 1915 r. w odmianie Sütterlina); dopiero potem przeszło się na pismo łacińskie. W starych aktach trzeba umieć czytać kurrentę.', 'Częste skróty: <b>geb.</b> – urodzony / z domu, <b>gest.</b> – zmarły, <b>verh.</b> – zamężna, <b>ev.</b> – ewangelicki, <b>kath.</b> – katolicki, <b>Bl.</b> – karta, <b>Nr.</b> – numer.'],
+  ar_preussen: ['Struktura Prus: <b>Provinz</b> (prowincja) → <b>Regierungsbezirk</b> (rejencja) → <b>Kreis</b> (powiat, na czele <b>Landrat</b>) → <b>Gemeinde / Gutsbezirk</b>.', 'Nazwy miejscowości w aktach są niemieckie (Posen – Poznań, Bromberg – Bydgoszcz, Breslau – Wrocław, Wreschen – Września) – przydaje się słownik nazw.'],
+  ar_besatzung: ['Arolsen Archives (dawniej ITS) udostępniają online miliony dokumentów o ofiarach prześladowań, robotnikach przymusowych i więźniach obozów.', 'Ziemie polskie dzieliły się w czasie okupacji na tereny wcielone do Rzeszy (np. Kraj Warty, Prusy Zachodnie) i <b>Generalgouvernement</b>.'],
+  ar_ddr: ['Akta Stasi od 2021 r. są częścią Archiwum Federalnego (<b>Bundesarchiv – Stasi-Unterlagen-Archiv</b>); wniosek o wgląd mogą składać także badacze i osoby, których dotyczą akta.'],
+  ar_historiker: ['<b>Fußnote</b> – przypis, <b>a.a.O.</b> (am angegebenen Ort) – op. cit., <b>ebd.</b> (ebenda) – ibidem, <b>vgl.</b> – por., <b>Hg.</b> – red. (Herausgeber).', '<b>Erinnerungskultur</b> i <b>Geschichtspolitik</b> to kluczowe pojęcia w niemieckich debatach o pamięci historycznej.']
+};
+
+UA.DIALOGS.push(
+  { id: 'im_zug', unit: 'tr_bahn', t: 'W pociągu', ua: 'Im Zug', roles: ['Zugbegleiterin', 'Fahrgast'], lines: [
+    [0, 'Guten Tag, die Fahrkarten bitte!', 'Dzień dobry, bilety proszę!'],
+    [1, 'Hier, bitte. Ich habe ein Deutschlandticket.', 'Proszę. Mam Deutschlandticket.'],
+    [0, 'Das gilt leider nicht im ICE. Sie brauchen eine Fahrkarte.', 'Niestety nie obowiązuje w ICE. Potrzebuje pan biletu.'],
+    [1, 'Oh, das wusste ich nicht. Kann ich die Fahrkarte bei Ihnen kaufen?', 'Och, nie wiedziałem. Mogę kupić bilet u pani?'],
+    [0, 'Ja, aber mit Aufpreis. Wohin fahren Sie?', 'Tak, ale z dopłatą. Dokąd pan jedzie?'],
+    [1, 'Nach Leipzig. Erreiche ich dort meinen Anschluss nach Dresden?', 'Do Lipska. Zdążę tam na połączenie do Drezna?'],
+    [0, 'Wir haben zehn Minuten Verspätung, aber der Anschluss wartet.', 'Mamy dziesięć minut opóźnienia, ale połączenie zaczeka.'],
+    [1, 'Zum Glück! Vielen Dank.', 'Na szczęście! Dziękuję bardzo.']
+  ]},
+  { id: 'im_hotel', unit: 'tr_unterkunft', t: 'W hotelu', ua: 'Im Hotel', roles: ['Rezeptionist', 'Gast'], lines: [
+    [1, 'Guten Abend, ich habe reserviert, auf den Namen Nowak.', 'Dobry wieczór, mam rezerwację na nazwisko Nowak.'],
+    [0, 'Herzlich willkommen! Ein Einzelzimmer für drei Nächte, richtig?', 'Witamy serdecznie! Pokój jednoosobowy na trzy noce, zgadza się?'],
+    [1, 'Ja. Ist das Frühstück inklusive?', 'Tak. Czy śniadanie jest w cenie?'],
+    [0, 'Ja, von sieben bis zehn Uhr. Die Kurtaxe zahlen Sie bitte bei der Abreise.', 'Tak, od siódmej do dziesiątej. Opłatę miejscową proszę zapłacić przy wyjeździe.'],
+    [1, 'Wie lautet das WLAN-Passwort?', 'Jakie jest hasło do Wi-Fi?'],
+    [0, 'Es steht auf der Karte hier. Ihr Zimmer ist im dritten Stock.', 'Jest na tej karteczce. Pana pokój jest na trzecim piętrze.'],
+    [1, 'Bis wann muss ich auschecken?', 'Do której muszę się wymeldować?'],
+    [0, 'Bis elf Uhr. Ihr Gepäck können Sie danach bei uns lassen.', 'Do jedenastej. Bagaż może pan potem zostawić u nas.']
+  ]},
+  { id: 'im_archiv', unit: 'ar_archiv', t: 'W czytelni archiwum', ua: 'Im Lesesaal', roles: ['Archivarin', 'Forscher'], lines: [
+    [1, 'Guten Tag! Ich bin Geschichtslehrer aus Polen und möchte im Archiv recherchieren.', 'Dzień dobry! Jestem nauczycielem historii z Polski i chciałbym przeprowadzić kwerendę w archiwum.'],
+    [0, 'Gern. Bitte füllen Sie zuerst den Benutzungsantrag aus. Was ist Ihr Thema?', 'Chętnie. Proszę najpierw wypełnić wniosek o udostępnienie. Jaki jest pana temat?'],
+    [1, 'Der Schulstreik in der Provinz Posen 1906.', 'Strajk szkolny w prowincji poznańskiej w 1906 roku.'],
+    [0, 'Dann schauen Sie in die Findbücher zum Bestand des Kultusministeriums.', 'W takim razie proszę zajrzeć do inwentarzy zespołu Ministerstwa Wyznań.'],
+    [1, 'Wie bestelle ich die Akten?', 'Jak zamówić akta?'],
+    [0, 'Geben Sie die vollständige Signatur an. Die Akten liegen morgen im Lesesaal bereit.', 'Proszę podać pełną sygnaturę. Akta będą jutro przygotowane w czytelni.'],
+    [1, 'Darf ich die Dokumente fotografieren?', 'Czy mogę fotografować dokumenty?'],
+    [0, 'Ja, ohne Blitz. Für die Veröffentlichung brauchen Sie aber eine Genehmigung.', 'Tak, bez lampy błyskowej. Do publikacji potrzebuje pan jednak zgody.']
+  ]},
+  { id: 'ahnen', unit: 'ar_dokumente', t: 'Szukam przodka', ua: 'Ahnenforschung', roles: ['Archivar', 'Besucherin'], lines: [
+    [1, 'Ich suche Informationen über meinen Urgroßvater. Er wurde um 1880 bei Breslau geboren.', 'Szukam informacji o pradziadku. Urodził się około 1880 roku pod Wrocławiem.'],
+    [0, 'War er katholisch oder evangelisch?', 'Był katolikiem czy ewangelikiem?'],
+    [1, 'Katholisch, glaube ich.', 'Katolikiem, tak mi się wydaje.'],
+    [0, 'Ab 1874 gibt es in Preußen Standesamtsregister. Dort finden Sie die Geburtsurkunde.', 'Od 1874 roku w Prusach są rejestry stanu cywilnego. Tam znajdzie pani akt urodzenia.'],
+    [1, 'Und wo liegen diese Register heute?', 'A gdzie są dziś te rejestry?'],
+    [0, 'Viele im Staatsarchiv in Breslau, also in Wrocław. Manche sind auch als Digitalisat online.', 'Wiele w archiwum państwowym we Wrocławiu. Niektóre są też dostępne online jako skany.'],
+    [1, 'Sind die Einträge in Kurrentschrift?', 'Czy wpisy są pisane kurrentą?'],
+    [0, 'Meistens ja. Aber mit etwas Übung können Sie sie entziffern.', 'Przeważnie tak. Ale z odrobiną wprawy da się je odczytać.']
+  ]}
+);
+
+UA.TEXTS.push(
+  { id: 't_tr', level: 'TR', t: 'Koleją do Wiednia', ua: 'Mit der Bahn nach Wien',
+    text: 'Letzten Herbst bin ich mit dem Zug von Berlin nach Wien gefahren. Die Fahrkarte mit Platzreservierung habe ich online gekauft. In Dresden hatte der Zug zwanzig Minuten Verspätung, aber ich habe meinen Anschluss trotzdem erreicht. Im Speisewagen habe ich ein Schnitzel gegessen und die Landschaft genossen. Am Abend kam ich müde, aber glücklich in Wien an.',
+    pl: 'Zeszłej jesieni pojechałem pociągiem z Berlina do Wiednia. Bilet z miejscówką kupiłem online. W Dreźnie pociąg miał dwadzieścia minut opóźnienia, ale i tak zdążyłem na przesiadkę. W wagonie restauracyjnym zjadłem sznycel i podziwiałem krajobraz. Wieczorem przyjechałem do Wiednia zmęczony, ale szczęśliwy.',
+    qs: [['Jak kupił bilet?', ['w kasie', 'online, z miejscówką', 'u konduktora', 'w automacie'], 1], ['Co się stało w Dreźnie?', ['pociąg odwołano', 'pociąg miał 20 minut opóźnienia', 'zgubił bagaż', 'przesiadł się do autobusu'], 1], ['Co zjadł w wagonie restauracyjnym?', ['kiełbaskę', 'sznycel', 'precla', 'ciasto'], 1]] },
+  { id: 't_ar', level: 'AR', t: 'Akta strajku szkolnego', ua: 'Die Akte zum Schulstreik',
+    text: 'Im Lesesaal bekam ich eine dicke Akte aus dem Bestand des Regierungspräsidiums Posen. Auf den ersten Blättern berichtet ein Landrat über den Schulstreik von 1906: Polnische Kinder verweigerten die Antworten im Religionsunterricht, der auf Deutsch erteilt wurde. Die Eltern wurden mit Geldstrafen belegt. Die Berichte sind in Kurrentschrift geschrieben und an manchen Stellen kaum zu entziffern. Trotzdem zeigen sie deutlich, wie hart die Germanisierungspolitik war.',
+    pl: 'W czytelni dostałem grubą teczkę z zespołu Rejencji Poznańskiej. Na pierwszych kartach starosta melduje o strajku szkolnym z 1906 r.: polskie dzieci odmawiały odpowiedzi na lekcjach religii prowadzonych po niemiecku. Rodziców karano grzywnami. Raporty są pisane kurrentą i miejscami trudno je odczytać. Mimo to wyraźnie pokazują, jak twarda była polityka germanizacji.',
+    qs: [['Kto melduje o strajku?', ['proboszcz', 'starosta (Landrat)', 'nauczyciel', 'gazeta'], 1], ['Czego odmawiały dzieci?', ['chodzenia do szkoły', 'odpowiedzi na lekcjach religii po niemiecku', 'nauki matematyki', 'śpiewania hymnu'], 1], ['Jak karano rodziców?', ['więzieniem', 'grzywnami', 'wysiedleniem', 'odebraniem ziemi'], 1]] }
+);
+
+/* ---------- Czasowniki nieregularne ----------
+   [bezokolicznik, znaczenie, du (Präsens), er/sie/es (Präsens), Präteritum (er), posiłkowy, Partizip II] */
+UA.VERBS = [
+  ['befehlen', 'rozkazywać', 'befiehlst', 'befiehlt', 'befahl', 'hat', 'befohlen'],
+  ['beginnen', 'zaczynać', 'beginnst', 'beginnt', 'begann', 'hat', 'begonnen'],
+  ['beißen', 'gryźć', 'beißt', 'beißt', 'biss', 'hat', 'gebissen'],
+  ['bieten', 'oferować', 'bietest', 'bietet', 'bot', 'hat', 'geboten'],
+  ['binden', 'wiązać', 'bindest', 'bindet', 'band', 'hat', 'gebunden'],
+  ['bitten', 'prosić', 'bittest', 'bittet', 'bat', 'hat', 'gebeten'],
+  ['bleiben', 'zostawać', 'bleibst', 'bleibt', 'blieb', 'ist', 'geblieben'],
+  ['brechen', 'łamać', 'brichst', 'bricht', 'brach', 'hat', 'gebrochen'],
+  ['brennen', 'palić się', 'brennst', 'brennt', 'brannte', 'hat', 'gebrannt'],
+  ['bringen', 'przynosić', 'bringst', 'bringt', 'brachte', 'hat', 'gebracht'],
+  ['denken', 'myśleć', 'denkst', 'denkt', 'dachte', 'hat', 'gedacht'],
+  ['dürfen', 'móc (wolno)', 'darfst', 'darf', 'durfte', 'hat', 'gedurft'],
+  ['empfehlen', 'polecać', 'empfiehlst', 'empfiehlt', 'empfahl', 'hat', 'empfohlen'],
+  ['essen', 'jeść', 'isst', 'isst', 'aß', 'hat', 'gegessen'],
+  ['fahren', 'jechać', 'fährst', 'fährt', 'fuhr', 'ist', 'gefahren'],
+  ['fallen', 'padać, upadać', 'fällst', 'fällt', 'fiel', 'ist', 'gefallen'],
+  ['fangen', 'łapać', 'fängst', 'fängt', 'fing', 'hat', 'gefangen'],
+  ['finden', 'znajdować', 'findest', 'findet', 'fand', 'hat', 'gefunden'],
+  ['fliegen', 'lecieć', 'fliegst', 'fliegt', 'flog', 'ist', 'geflogen'],
+  ['fliehen', 'uciekać', 'fliehst', 'flieht', 'floh', 'ist', 'geflohen'],
+  ['fließen', 'płynąć (o cieczy)', 'fließt', 'fließt', 'floss', 'ist', 'geflossen'],
+  ['frieren', 'marznąć', 'frierst', 'friert', 'fror', 'hat', 'gefroren'],
+  ['geben', 'dawać', 'gibst', 'gibt', 'gab', 'hat', 'gegeben'],
+  ['gehen', 'iść', 'gehst', 'geht', 'ging', 'ist', 'gegangen'],
+  ['gelten', 'obowiązywać', 'giltst', 'gilt', 'galt', 'hat', 'gegolten'],
+  ['genießen', 'rozkoszować się', 'genießt', 'genießt', 'genoss', 'hat', 'genossen'],
+  ['gewinnen', 'wygrywać', 'gewinnst', 'gewinnt', 'gewann', 'hat', 'gewonnen'],
+  ['gießen', 'lać, podlewać', 'gießt', 'gießt', 'goss', 'hat', 'gegossen'],
+  ['greifen', 'chwytać', 'greifst', 'greift', 'griff', 'hat', 'gegriffen'],
+  ['haben', 'mieć', 'hast', 'hat', 'hatte', 'hat', 'gehabt'],
+  ['halten', 'trzymać; zatrzymywać się', 'hältst', 'hält', 'hielt', 'hat', 'gehalten'],
+  ['hängen', 'wisieć', 'hängst', 'hängt', 'hing', 'hat', 'gehangen'],
+  ['heben', 'podnosić', 'hebst', 'hebt', 'hob', 'hat', 'gehoben'],
+  ['heißen', 'nazywać się', 'heißt', 'heißt', 'hieß', 'hat', 'geheißen'],
+  ['helfen', 'pomagać', 'hilfst', 'hilft', 'half', 'hat', 'geholfen'],
+  ['kennen', 'znać', 'kennst', 'kennt', 'kannte', 'hat', 'gekannt'],
+  ['klingen', 'brzmieć', 'klingst', 'klingt', 'klang', 'hat', 'geklungen'],
+  ['kommen', 'przychodzić', 'kommst', 'kommt', 'kam', 'ist', 'gekommen'],
+  ['können', 'móc, umieć', 'kannst', 'kann', 'konnte', 'hat', 'gekonnt'],
+  ['laden', 'ładować', 'lädst', 'lädt', 'lud', 'hat', 'geladen'],
+  ['lassen', 'zostawiać; pozwalać', 'lässt', 'lässt', 'ließ', 'hat', 'gelassen'],
+  ['laufen', 'biec; iść', 'läufst', 'läuft', 'lief', 'ist', 'gelaufen'],
+  ['leiden', 'cierpieć', 'leidest', 'leidet', 'litt', 'hat', 'gelitten'],
+  ['leihen', 'pożyczać', 'leihst', 'leiht', 'lieh', 'hat', 'geliehen'],
+  ['lesen', 'czytać', 'liest', 'liest', 'las', 'hat', 'gelesen'],
+  ['liegen', 'leżeć', 'liegst', 'liegt', 'lag', 'hat', 'gelegen'],
+  ['lügen', 'kłamać', 'lügst', 'lügt', 'log', 'hat', 'gelogen'],
+  ['messen', 'mierzyć', 'misst', 'misst', 'maß', 'hat', 'gemessen'],
+  ['mögen', 'lubić', 'magst', 'mag', 'mochte', 'hat', 'gemocht'],
+  ['müssen', 'musieć', 'musst', 'muss', 'musste', 'hat', 'gemusst'],
+  ['nehmen', 'brać', 'nimmst', 'nimmt', 'nahm', 'hat', 'genommen'],
+  ['nennen', 'nazywać', 'nennst', 'nennt', 'nannte', 'hat', 'genannt'],
+  ['raten', 'radzić; zgadywać', 'rätst', 'rät', 'riet', 'hat', 'geraten'],
+  ['reiten', 'jeździć konno', 'reitest', 'reitet', 'ritt', 'ist', 'geritten'],
+  ['rennen', 'biec', 'rennst', 'rennt', 'rannte', 'ist', 'gerannt'],
+  ['riechen', 'pachnieć, wąchać', 'riechst', 'riecht', 'roch', 'hat', 'gerochen'],
+  ['rufen', 'wołać', 'rufst', 'ruft', 'rief', 'hat', 'gerufen'],
+  ['scheinen', 'świecić; wydawać się', 'scheinst', 'scheint', 'schien', 'hat', 'geschienen'],
+  ['schieben', 'pchać, przesuwać', 'schiebst', 'schiebt', 'schob', 'hat', 'geschoben'],
+  ['schießen', 'strzelać', 'schießt', 'schießt', 'schoss', 'hat', 'geschossen'],
+  ['schlafen', 'spać', 'schläfst', 'schläft', 'schlief', 'hat', 'geschlafen'],
+  ['schlagen', 'bić, uderzać', 'schlägst', 'schlägt', 'schlug', 'hat', 'geschlagen'],
+  ['schließen', 'zamykać', 'schließt', 'schließt', 'schloss', 'hat', 'geschlossen'],
+  ['schneiden', 'ciąć, kroić', 'schneidest', 'schneidet', 'schnitt', 'hat', 'geschnitten'],
+  ['schreiben', 'pisać', 'schreibst', 'schreibt', 'schrieb', 'hat', 'geschrieben'],
+  ['schreien', 'krzyczeć', 'schreist', 'schreit', 'schrie', 'hat', 'geschrien'],
+  ['schweigen', 'milczeć', 'schweigst', 'schweigt', 'schwieg', 'hat', 'geschwiegen'],
+  ['schwimmen', 'pływać', 'schwimmst', 'schwimmt', 'schwamm', 'ist', 'geschwommen'],
+  ['sehen', 'widzieć', 'siehst', 'sieht', 'sah', 'hat', 'gesehen'],
+  ['sein', 'być', 'bist', 'ist', 'war', 'ist', 'gewesen'],
+  ['singen', 'śpiewać', 'singst', 'singt', 'sang', 'hat', 'gesungen'],
+  ['sinken', 'opadać, tonąć', 'sinkst', 'sinkt', 'sank', 'ist', 'gesunken'],
+  ['sitzen', 'siedzieć', 'sitzt', 'sitzt', 'saß', 'hat', 'gesessen'],
+  ['sprechen', 'mówić', 'sprichst', 'spricht', 'sprach', 'hat', 'gesprochen'],
+  ['springen', 'skakać', 'springst', 'springt', 'sprang', 'ist', 'gesprungen'],
+  ['stehen', 'stać', 'stehst', 'steht', 'stand', 'hat', 'gestanden'],
+  ['stehlen', 'kraść', 'stiehlst', 'stiehlt', 'stahl', 'hat', 'gestohlen'],
+  ['steigen', 'wchodzić, wznosić się', 'steigst', 'steigt', 'stieg', 'ist', 'gestiegen'],
+  ['sterben', 'umierać', 'stirbst', 'stirbt', 'starb', 'ist', 'gestorben'],
+  ['stoßen', 'pchać, uderzać', 'stößt', 'stößt', 'stieß', 'hat', 'gestoßen'],
+  ['streiten', 'kłócić się', 'streitest', 'streitet', 'stritt', 'hat', 'gestritten'],
+  ['tragen', 'nosić, nieść', 'trägst', 'trägt', 'trug', 'hat', 'getragen'],
+  ['treffen', 'spotykać; trafiać', 'triffst', 'trifft', 'traf', 'hat', 'getroffen'],
+  ['treiben', 'pędzić; uprawiać (sport)', 'treibst', 'treibt', 'trieb', 'hat', 'getrieben'],
+  ['trinken', 'pić', 'trinkst', 'trinkt', 'trank', 'hat', 'getrunken'],
+  ['tun', 'robić', 'tust', 'tut', 'tat', 'hat', 'getan'],
+  ['vergessen', 'zapominać', 'vergisst', 'vergisst', 'vergaß', 'hat', 'vergessen'],
+  ['verlieren', 'gubić, przegrywać', 'verlierst', 'verliert', 'verlor', 'hat', 'verloren'],
+  ['verzeihen', 'wybaczać', 'verzeihst', 'verzeiht', 'verzieh', 'hat', 'verziehen'],
+  ['wachsen', 'rosnąć', 'wächst', 'wächst', 'wuchs', 'ist', 'gewachsen'],
+  ['waschen', 'prać, myć', 'wäschst', 'wäscht', 'wusch', 'hat', 'gewaschen'],
+  ['werden', 'stawać się, zostać', 'wirst', 'wird', 'wurde', 'ist', 'geworden'],
+  ['werfen', 'rzucać', 'wirfst', 'wirft', 'warf', 'hat', 'geworfen'],
+  ['wiegen', 'ważyć', 'wiegst', 'wiegt', 'wog', 'hat', 'gewogen'],
+  ['wissen', 'wiedzieć', 'weißt', 'weiß', 'wusste', 'hat', 'gewusst'],
+  ['wollen', 'chcieć', 'willst', 'will', 'wollte', 'hat', 'gewollt'],
+  ['ziehen', 'ciągnąć', 'ziehst', 'zieht', 'zog', 'hat', 'gezogen'],
+  ['zwingen', 'zmuszać', 'zwingst', 'zwingt', 'zwang', 'hat', 'gezwungen']
 ];
 
 </script>
@@ -1979,6 +2453,8 @@ var UA = window.UA || (window.UA = {});
     route: '<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
     headphones: '<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>',
     tag: '<path d="M12 2H2v10l9.29 9.29a1 1 0 0 0 1.42 0l8.58-8.58a1 1 0 0 0 0-1.42z"/><circle cx="7" cy="7" r="1.5"/>',
+    globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+    table: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/>',
     lock: '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
   };
   function ic(n, c) { return '<svg class="ic ' + (c || '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (IC[n] || '') + '</svg>'; }
@@ -2002,7 +2478,7 @@ var UA = window.UA || (window.UA = {});
   /* ---------- Nawigacja ---------- */
   var NAV = [
     ['start', 'Start', 'home', 1], ['sciezka', 'Ścieżka', 'route', 1], ['sluchanie', 'Słuchanie', 'headphones', 1], ['wymowa', 'Wymowa', 'ear', 1],
-    ['rodzajniki', 'Der · die · das', 'tag'], ['dialogi', 'Dialogi', 'chat'], ['alfabet', 'Litery i dźwięki', 'abc'], ['przyjaciele', 'Fałszywi przyjaciele', 'alert'], ['gramatyka', 'Gramatyka', 'book'],
+    ['rodzajniki', 'Der · die · das', 'tag'], ['czasowniki', 'Czasowniki nieregularne', 'table'], ['dialogi', 'Dialogi', 'chat'], ['alfabet', 'Litery i dźwięki', 'abc'], ['przyjaciele', 'Fałszywi przyjaciele', 'alert'], ['gramatyka', 'Gramatyka', 'book'],
     ['dyktando', 'Dyktando', 'pen'], ['slownik', 'Słownik', 'search'], ['ustawienia', 'Ustawienia', 'gear']
   ];
   function renderNav(cur) {
@@ -2050,7 +2526,9 @@ var UA = window.UA || (window.UA = {});
   /* ============================================================
      POZIOMY I ŚCIEŻKA A1 → C2
      ============================================================ */
-  var LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  var LEVELS = ['TR', 'AR', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  var THEME = { TR: ['Podróż', 'Podróż – praktyczne słownictwo na wyjazd'], AR: ['Archiwum', 'Archiwum i historia – kwerendy, dokumenty, źródła'] };
+  function lvLabel(lv) { return THEME[lv] ? THEME[lv][0] : lv; }
   var LEVEL_NAME = { A1: 'początkujący', A2: 'podstawowy', B1: 'średni', B2: 'średnio zaawansowany', C1: 'zaawansowany', C2: 'biegły' };
   S.unlocked = S.unlocked || {};
   S.stats.listen = S.stats.listen || 0;
@@ -2061,7 +2539,7 @@ var UA = window.UA || (window.UA = {});
   function unitById(id) { return UA.TOPICS.filter(function (t) { return t.id === id; })[0]; }
   function unlocked(u) {
     var i = UA.TOPICS.indexOf(u);
-    if (i <= 0 || S.unlocked[u.id]) return true;
+    if (i <= 0 || THEME[u.level] || S.unlocked[u.id]) return true; // ścieżki tematyczne otwarte od razu
     var prev = UA.TOPICS[i - 1];
     return unlocked(prev) && unitProg(prev) >= 0.7;
   }
@@ -2075,6 +2553,7 @@ var UA = window.UA || (window.UA = {});
     var r = 21, c = 2 * Math.PI * r;
     return '<span class="ring"><svg viewBox="0 0 50 50" aria-hidden="true"><circle cx="25" cy="25" r="' + r + '" class="rbg"/><circle cx="25" cy="25" r="' + r + '" class="rfg" stroke-dasharray="' + c + '" stroke-dashoffset="' + (c * (1 - p)) + '"/></svg><b>' + label + '</b></span>';
   }
+  G.BADGES.push(['verb', 'Verbprofi', '50 poprawnych form czasowników nieregularnych', function () { return (S.stats.verbs || 0) >= 50; }]);
   G.BADGES.push(['ucho', 'Zuhörer', '30 trafnych odpowiedzi w ćwiczeniach ze słuchu', function () { return S.stats.listen >= 30; }]);
   G.BADGES.push(['lvB1', 'Niveau B1', 'Odblokowany poziom B1', function () { return levelUnlocked('B1'); }]);
   G.BADGES.push(['lvC1', 'Niveau C1', 'Odblokowany poziom C1', function () { return levelUnlocked('C1'); }]);
@@ -2096,7 +2575,7 @@ var UA = window.UA || (window.UA = {});
     h += '<a class="card nextunit" href="#/etap/' + cu.id + '">' + ring(unitProg(cu), Math.round(unitProg(cu) * 100) + '%') + '<div><p class="kicker">Twoja lekcja · ' + cu.level + '</p><b>' + esc(cu.name) + '</b><small>' + unitWords(cu.id).filter(seen).length + ' z ' + unitWords(cu.id).length + ' słów poznanych</small></div>' + ic('next') + '</a>';
     h += '<section class="kpis"><div class="kpi"><b>' + r.learning + '</b><small>słów rozpoznajesz</small></div><div class="kpi"><b>' + p.learning + '</b><small>słów potrafisz napisać</small></div><div class="kpi"><b>' + r.known + '</b><small>opanowane na stałe</small></div><div class="kpi"><b>' + S.stats.listen + '</b><small>trafień ze słuchu</small></div></section>';
     h += '<h2 class="sec">Ćwiczenia</h2><section class="tiles">' + [
-      ['sciezka', 'route', 'Ścieżka A1–C2', UA.TOPICS.length + ' lekcji'], ['sluchanie', 'headphones', 'Słuchanie', 'słowa, zdania, czytanki'],
+      ['sciezka', 'route', 'Ścieżka A1–C2', UA.TOPICS.length + ' lekcji'], ['czasowniki', 'table', 'Czasowniki nieregularne', UA.VERBS.length + ' czasowników + zadania'], ['etap/tr_bahn', 'globe', 'Podróż', 'pociąg, hotel, jedzenie, pomoc'], ['etap/ar_archiv', 'book', 'Archiwum i historia', 'kwerendy, dokumenty, kurrenta'], ['sluchanie', 'headphones', 'Słuchanie', 'słowa, zdania, czytanki'],
       ['rodzajniki', 'tag', 'Der · die · das', 'rodzajnik i liczba mnoga'], ['wymowa', 'ear', 'Wymowa', 'umlauty, długie samogłoski, ch'], ['dialogi', 'chat', 'Dialogi', Object.keys(S.dialogs).length + '/' + UA.DIALOGS.length + ' przećwiczone'],
       ['przyjaciele', 'alert', 'Fałszywi przyjaciele', S.stats.ff + ' trafień'], ['gramatyka', 'book', 'Gramatyka', 'tylko to, co inne'],
       ['alfabet', 'abc', 'Litery i dźwięki', 'ä, ö, ü, ei, ie, sch…'], ['dyktando', 'pen', 'Dyktando', 'słuchaj i pisz']
@@ -2121,11 +2600,12 @@ var UA = window.UA || (window.UA = {});
   V.nauka = function () { location.replace('#/trening/all'); };
   V.sciezka = function () {
     var cu = currentUnit();
-    var h = head('Ścieżka A1 → C2', 'Lekcje otwierają się po kolei: następna – gdy poznasz 70% słów poprzedniej. Możesz też przeskoczyć dalej, zdając test lekcji.');
+    var h = head('Ścieżka', 'Ścieżki tematyczne „Podróż” oraz „Archiwum i historia” są otwarte od razu. W ścieżce A1 → C2 lekcje otwierają się po kolei: następna – gdy poznasz 70% słów poprzedniej (albo po zdanym teście lekcji).');
     h += '<div class="row"><a class="btn primary" href="#/trening/all">' + ic('play') + 'Codzienny trening</a><a class="btn" href="#/test">' + ic('check') + 'Test wejściowy (słowa przezroczyste)</a></div>';
     LEVELS.forEach(function (lv) {
       var units = UA.TOPICS.filter(function (t) { return t.level === lv; }), ws = levelWords(lv), kn = ws.filter(seen).length, text = (UA.TEXTS || []).filter(function (t) { return t.level === lv; })[0];
-      h += '<section class="lvl ' + (levelUnlocked(lv) ? '' : 'locked') + '"><div class="lvlh"><span class="lvtag lv-' + lv + '">' + lv + '</span><div><b>Poziom ' + lv + ' – ' + LEVEL_NAME[lv] + '</b><small>' + kn + ' / ' + ws.length + ' słów · ' + units.length + ' lekcji</small></div></div>' + bar(kn, ws.length) +
+      if (lv === 'TR') h += '<h2 class="sec">Ścieżki tematyczne – otwarte od razu</h2>'; if (lv === 'A1') h += '<h2 class="sec">Ścieżka A1 → C2</h2>';
+      h += '<section class="lvl ' + (levelUnlocked(lv) ? '' : 'locked') + '"><div class="lvlh"><span class="lvtag lv-' + lv + '">' + lvLabel(lv) + '</span><div><b>' + (THEME[lv] ? THEME[lv][1] : 'Poziom ' + lv + ' – ' + LEVEL_NAME[lv]) + '</b><small>' + kn + ' / ' + ws.length + ' słów · ' + units.length + ' lekcji</small></div></div>' + bar(kn, ws.length) +
         '<div class="units">' + units.map(function (u) {
           var ok = unlocked(u), p = unitProg(u);
           return '<a class="unode ' + (ok ? '' : 'lock') + (u === cu ? ' cur' : '') + (p >= 1 ? ' done' : '') + '" href="#/etap/' + u.id + '">' + (ok ? ring(p, p >= 1 ? '✓' : Math.round(p * 100) + '%') : '<span class="ring lockic">' + ic('lock') + '</span>') + '<span class="uname">' + esc(u.name) + '</span><small>' + unitWords(u.id).length + ' słów</small></a>';
@@ -2138,11 +2618,14 @@ var UA = window.UA || (window.UA = {});
     var u = unitById(id); if (!u) return location.replace('#/sciezka');
     var ws = unitWords(id), ok = unlocked(u), p = unitProg(u), idx = UA.TOPICS.indexOf(u), nxt = UA.TOPICS[idx + 1];
     var fresh = ws.filter(function (w) { return !SRS.card(w, 'r'); }).length, due = ws.filter(function (w) { return ['r', 'p'].some(function (d) { var c = SRS.card(w, d); return c && c.d <= U.today(); }); }).length;
-    var h = head('<span class="lvtag lv-' + u.level + '">' + u.level + '</span> ' + esc(u.name), ws.length + ' słów · poznane: ' + Math.round(p * 100) + '%', '#/sciezka');
+    var h = head('<span class="lvtag lv-' + u.level + '\">' + lvLabel(u.level) + '</span> ' + esc(u.name), ws.length + ' słów · poznane: ' + Math.round(p * 100) + '%', '#/sciezka');
     if (!ok) h += '<section class="card warn"><h2>' + ic('lock') + ' Lekcja zablokowana</h2><p>Otworzy się, gdy poznasz 70% słów poprzedniej lekcji. Jeśli znasz już ten materiał – zdaj test lekcji (min. 80%), a odblokujesz ją od razu.</p></section>';
     h += '<section class="card unithead">' + ring(p, Math.round(p * 100) + '%') + '<div class="row">' +
       (ok ? '<a class="btn primary" href="#/trening/' + id + '">' + ic('play') + (fresh ? 'Ucz się (' + fresh + ' nowych)' : 'Trening lekcji') + '</a>' : '') +
       '<button class="btn" id="utest">' + ic('target') + 'Test lekcji (10 pytań)</button>' + (due ? '<span class="muted small">' + due + ' słów czeka na powtórkę</span>' : '') + '</div></section>';
+    var tips = (UA.TIPS || {})[id], dls = UA.DIALOGS.filter(function (d) { return d.unit === id; });
+    if (dls.length) h += '<div class="row">' + dls.map(function (d) { return '<a class="btn" href="#/dialog/' + d.id + '">' + ic('chat') + 'Dialog: ' + esc(d.t) + '</a>'; }).join('') + '</div>';
+    if (tips) h += '<section class="card tipcard"><h2>' + ic('alert') + ' Dobrze wiedzieć</h2><ul>' + tips.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul></section>';
     h += '<section class="wlist">' + ws.map(function (w) {
       var r = SRS.card(w, 'r'), pc = SRS.card(w, 'p');
       return '<div class="wrow">' + say(w.ua) + '<div class="wmain"><div>' + uaw(w.ua) + '</div><div class="pl">' + esc(w.pl) + '</div>' + (w.ex ? '<div class="forms" lang="de">' + st(w.ex) + '</div>' : '') + '</div><div class="wside"><span class="tag ' + SIM[w.sim][1] + '">' + SIM[w.sim][0] + '</span><span class="dots" title="rozpoznawanie / produkcja"><i class="' + (r && r.n ? (r.i >= 21 ? 'k' : 'l') : '') + '"></i><i class="' + (pc && pc.n ? (pc.i >= 21 ? 'k' : 'l') : '') + '"></i></span></div></div>';
@@ -2320,7 +2803,7 @@ var UA = window.UA || (window.UA = {});
     }
     function intro(e) {
       e.shown = true; var w = e.w;
-      $('#stage').innerHTML = '<div class="card fc introcard"><span class="newtag">nowe słowo</span><div class="meta">' + esc(POS[w.pos] || '') + ' · ' + lvOf(w) + '</div><div class="big">' + uaw(w.ua) + '</div><div class="sayrow">' + sayBoth(w.ua) + '</div><div class="pl bigpl">' + esc(w.pl) + '</div>' +
+      $('#stage').innerHTML = '<div class="card fc introcard"><span class="newtag">nowe słowo</span><div class="meta">' + esc(POS[w.pos] || '') + ' · ' + lvLabel(lvOf(w)) + '</div><div class="big">' + uaw(w.ua) + '</div><div class="sayrow">' + sayBoth(w.ua) + '</div><div class="pl bigpl">' + esc(w.pl) + '</div>' +
         (w.forms ? '<div class="forms" lang="de">' + st(w.forms) + '</div>' : '') + '<div class="tags"><span class="tag ' + SIM[w.sim][1] + '">' + SIM[w.sim][0] + '</span></div>' +
         (w.ex ? '<div class="ex"><p lang="de">' + st(w.ex) + ' ' + say(w.ex) + '</p><p class="muted">' + esc(w.exPl) + '</p></div>' : '') + '</div><div class="actions"><button class="btn primary block" id="gotit">Zapamiętane – sprawdź mnie <kbd>Enter</kbd></button></div>';
       if (S.settings.autoplay) SP.speak(w.ua);
@@ -2401,21 +2884,21 @@ var UA = window.UA || (window.UA = {});
     if (lv === 'moje') { var m = UA.WORDS.filter(seen); return m.length >= 12 ? m : levelWords('A1'); }
     return levelWords(lv);
   }
-  function defaultLv() { var lv = 'A1'; LEVELS.forEach(function (l) { if (levelUnlocked(l) && levelWords(l).some(seen)) lv = l; }); return lv; }
+  function defaultLv() { var lv = 'A1'; LEVELS.forEach(function (l) { if (THEME[l]) return; if (levelUnlocked(l) && levelWords(l).some(seen)) lv = l; }); return lv; }
   V.sluchanie = function (mode, lv) {
     lv = lv || defaultLv();
     if (mode) return listenRun(mode, lv);
     var vs = SP.voiceStatus();
     var h = head('Słuchanie', 'Aplikacja czyta na głos słowa, zdania i teksty – Ty sprawdzasz, czy zrozumiałeś. Przycisk „wolniej” odtwarza nagranie w tempie 0,65×.');
     if (!vs.ok) h += voiceHelp(vs);
-    h += '<div class="chips" role="group" aria-label="Poziom">' + LEVELS.concat(['moje']).map(function (l) { return '<a class="chip ' + (l === lv ? 'on' : '') + '" href="#/sluchanie//' + l + '">' + (l === 'moje' ? 'Moje słowa' : l) + '</a>'; }).join('') + '</div>';
+    h += '<div class="chips" role="group" aria-label="Poziom">' + LEVELS.concat(['moje']).map(function (l) { return '<a class="chip ' + (l === lv ? 'on' : '') + '" href="#/sluchanie//' + l + '">' + (l === 'moje' ? 'Moje słowa' : lvLabel(l)) + '</a>'; }).join('') + '</div>';
     h += '<section class="tiles">' + [
       ['slowa', 'headphones', 'Usłysz i zrozum', 'słowo → tłumaczenie'], ['pisownia', 'pen', 'Pisownia ze słuchu', 'które słowo słyszysz?'],
       ['zdania', 'chat', 'Zdania', 'co znaczy usłyszane zdanie?'], ['prawda', 'check', 'Prawda czy fałsz?', 'czy tłumaczenie pasuje?']
-    ].map(function (t) { return '<a class="tile" href="#/sluchanie/' + t[0] + '/' + lv + '">' + ic(t[1]) + '<b>' + t[2] + '</b><small>' + t[3] + ' · ' + (lv === 'moje' ? 'moje słowa' : lv) + '</small></a>'; }).join('') + '</section>';
+    ].map(function (t) { return '<a class="tile" href="#/sluchanie/' + t[0] + '/' + lv + '">' + ic(t[1]) + '<b>' + t[2] + '</b><small>' + t[3] + ' · ' + (lv === 'moje' ? 'moje słowa' : lvLabel(lv)) + '</small></a>'; }).join('') + '</section>';
     h += '<h2 class="sec">Czytanki ze słuchu</h2><section class="dlist">' + (UA.TEXTS || []).map(function (t) {
       var okL = levelUnlocked(t.level), sc = S.stats.texts[t.id];
-      return '<a class="card dl" href="#/czytanka/' + t.id + '"><span class="lvtag lv-' + t.level + '">' + t.level + '</span><div><b>' + esc(t.t) + '</b><small lang="de">' + st(t.ua) + (okL ? '' : ' · poziom jeszcze zablokowany – możesz spróbować') + '</small></div>' + (sc != null ? '<span class="tag sim-t">' + sc + '/3</span>' : '') + '</a>';
+      return '<a class="card dl" href="#/czytanka/' + t.id + '"><span class="lvtag lv-' + t.level + '\">' + lvLabel(t.level) + '</span><div><b>' + esc(t.t) + '</b><small lang="de">' + st(t.ua) + (okL ? '' : ' · poziom jeszcze zablokowany – możesz spróbować') + '</small></div>' + (sc != null ? '<span class="tag sim-t">' + sc + '/3</span>' : '') + '</a>';
     }).join('') + '</section>';
     h += '<h2 class="sec">Więcej ze słuchu</h2><section class="row"><a class="btn" href="#/dyktando">' + ic('pen') + 'Dyktando</a><a class="btn" href="#/wymowa/pary/lang">' + ic('ear') + 'Długie i krótkie samogłoski</a><a class="btn" href="#/dialogi">' + ic('chat') + 'Dialogi</a></section>';
     main.innerHTML = h;
@@ -2435,12 +2918,12 @@ var UA = window.UA || (window.UA = {});
       return { title: 'Czy tłumaczenie pasuje do nagrania?', prompt: listenBtn(w.ex) + '<p class="trq">„' + esc(shown.exPl) + '”</p>', say: w.ex, listen: true, opts: ['Tak, pasuje', 'Nie, nie pasuje'], a: truth ? 0 : 1, reveal: '<div class="ex"><p lang="de">' + st(w.ex) + ' ' + say(w.ex) + '</p><p class="muted">' + esc(w.exPl) + '</p></div>' };
     });
     var names = { slowa: 'Usłysz i zrozum', pisownia: 'Pisownia ze słuchu', zdania: 'Zdania ze słuchu', prawda: 'Prawda czy fałsz?' };
-    runMC({ title: names[mode] + ' · ' + (lv === 'moje' ? 'moje słowa' : lv), back: back, items: items, counter: 'listen', again: function () { listenRun(mode, lv); } });
+    runMC({ title: names[mode] + ' · ' + (lv === 'moje' ? 'moje słowa' : lvLabel(lv)), back: back, items: items, counter: 'listen', again: function () { listenRun(mode, lv); } });
   }
   V.czytanka = function (id) {
     var t = (UA.TEXTS || []).filter(function (x) { return x.id === id; })[0]; if (!t) return location.replace('#/sluchanie');
     var showT = false, showP = false, rate = S.settings.rate;
-    var h = head('<span class="lvtag lv-' + t.level + '">' + t.level + '</span> ' + esc(t.t), '<span lang="de">' + st(t.ua) + '</span> · najpierw posłuchaj, potem odpowiedz na pytania. Tekst możesz odsłonić.', '#/sluchanie');
+    var h = head('<span class="lvtag lv-' + t.level + '\">' + lvLabel(t.level) + '</span> ' + esc(t.t), '<span lang="de">' + st(t.ua) + '</span> · najpierw posłuchaj, potem odpowiedz na pytania. Tekst możesz odsłonić.', '#/sluchanie');
     h += '<section class="card"><div class="row"><button class="btn primary" id="play">' + ic('play') + 'Odtwórz tekst</button><button class="btn" id="slow">' + ic('slow') + 'Wolniej</button><button class="btn" id="tt">' + ic('eye') + 'Pokaż tekst</button><button class="btn ghost" id="tp">Tłumaczenie</button></div><div id="txt"></div></section>';
     h += '<h2 class="sec">Pytania</h2>' + t.qs.map(function (q, i) { return '<div class="card qz" data-q="' + i + '"><p><b>' + (i + 1) + '.</b> ' + esc(q[0]) + '</p><div class="opts">' + q[1].map(function (o, k) { return '<button class="btn opt" data-k="' + k + '"><span>' + esc(o) + '</span></button>'; }).join('') + '</div></div>'; }).join('') + '<div id="sum"></div>';
     main.innerHTML = h;
@@ -2500,8 +2983,8 @@ var UA = window.UA || (window.UA = {});
      SŁOWNIK
      ============================================================ */
   V.slownik = function (topic) {
-    var h = head('Słownik', UA.WORDS.length + ' słów od A1 do C2. Szukaj po niemiecku (umlauty można pisać jako ae, oe, ue) lub po polsku.');
-    h += '<div class="filters"><input id="q" type="search" placeholder="Szukaj…" aria-label="Szukaj"><select id="ft" aria-label="Temat"><option value="">Wszystkie tematy</option>' + UA.TOPICS.map(function (t) { return '<option value="' + t.id + '"' + (t.id === topic ? ' selected' : '') + '>' + t.level + ' · ' + esc(t.name) + '</option>'; }).join('') + '</select>' +
+    var h = head('Słownik', UA.WORDS.length + ' słów: A1–C2, podróż, archiwum i historia. Szukaj po niemiecku (umlauty można pisać jako ae, oe, ue) lub po polsku.');
+    h += '<div class="filters"><input id="q" type="search" placeholder="Szukaj…" aria-label="Szukaj"><select id="ft" aria-label="Temat"><option value="">Wszystkie tematy</option>' + UA.TOPICS.map(function (t) { return '<option value="' + t.id + '"' + (t.id === topic ? ' selected' : '') + '>' + lvLabel(t.level) + ' · ' + esc(t.name) + '</option>'; }).join('') + '</select>' +
       '<select id="fs" aria-label="Podobieństwo"><option value="">Każde podobieństwo</option>' + Object.keys(SIM).map(function (k) { return '<option value="' + k + '">' + SIM[k][0] + '</option>'; }).join('') + '</select></div><div id="list" class="wlist"></div>';
     main.innerHTML = h;
     function draw() {
@@ -2680,6 +3163,109 @@ var UA = window.UA || (window.UA = {});
       });
     }
     q();
+  }
+
+
+  /* ============================================================
+     CZASOWNIKI NIEREGULARNE – tabela i zadania
+     ============================================================ */
+  var VF = { du: [2, 'du … (Präsens)'], er: [3, 'er / sie / es … (Präsens)'], prat: [4, 'Präteritum (er / sie / es)'], part: [6, 'Partizip II'] };
+  function vRegDu(v) { var st0 = v[0].replace(/e?n$/, ''); return st0 + (/[dt]$/.test(st0) ? 'est' : /[sßxz]$/.test(st0) ? 't' : 'st'); }
+  function vChange(v) { return v[2] !== vRegDu(v); }
+  function vMixed(v) { return /te$/.test(v[4]); }
+  function vStat(v, ok) { S.vstat = S.vstat || {}; var x = S.vstat[v[0]] || { ok: 0, bad: 0 }; if (ok) { x.ok++; S.stats.verbs = (S.stats.verbs || 0) + 1; } else x.bad++; S.vstat[v[0]] = x; G.save(); }
+  function vHard(v) { var x = (S.vstat || {})[v[0]]; return !!(x && x.bad > x.ok); }
+  function vPick(n) {
+    var hard = U.shuffle(UA.VERBS.filter(vHard)).slice(0, Math.ceil(n / 2)), out = hard.slice();
+    U.shuffle(UA.VERBS).forEach(function (v) { if (out.length < n && out.indexOf(v) < 0) out.push(v); });
+    return U.shuffle(out);
+  }
+  function vSay(v) { return v[0] + ', ' + v[3] + ', ' + v[4] + ', ' + v[5] + ' ' + v[6]; }
+  function vRow(v) {
+    var x = (S.vstat || {})[v[0]], dot = x ? (x.ok >= 3 && x.ok > x.bad ? 'k' : 'l') : '';
+    return '<tr><td>' + say(vSay(v)) + '</td><td data-l="Infinitiv"><b lang="de">' + esc(v[0]) + '</b><small>' + esc(v[1]) + '</small></td>' +
+      '<td data-l="du / er"><span lang="de" class="' + (vChange(v) ? 'vchg' : '') + '">' + esc(v[2]) + ' / ' + esc(v[3]) + '</span></td>' +
+      '<td data-l="Präteritum"><span lang="de">' + esc(v[4]) + '</span></td>' +
+      '<td data-l="Perfekt"><span lang="de"><span class="' + (v[5] === 'ist' ? 'vaux-ist' : 'vaux-hat') + '">' + v[5] + '</span> ' + esc(v[6]) + '</span></td>' +
+      '<td><span class="dots" title="opanowanie"><i class="' + dot + '"></i></span></td></tr>';
+  }
+  function vCard(v) {
+    return '<div class="reveal"><div class="big sm" lang="de">' + esc(v[0]) + '</div><div class="pl">' + esc(v[1]) + '</div><table class="tbl vmini"><tr><td>du</td><td lang="de">' + esc(v[2]) + '</td></tr><tr><td>er / sie / es</td><td lang="de">' + esc(v[3]) + '</td></tr><tr><td>Präteritum</td><td lang="de">' + esc(v[4]) + '</td></tr><tr><td>Perfekt</td><td lang="de">' + v[5] + ' ' + esc(v[6]) + '</td></tr></table>' + say(vSay(v)) + '</div>';
+  }
+  V.czasowniki = function (mode) {
+    S.vstat = S.vstat || {};
+    if (mode === 'forma' || mode === 'perfekt') return verbType(mode);
+    if (mode === 'abc') return verbAbc();
+    if (mode === 'hilf') return verbHilf();
+    var h = head('Czasowniki nieregularne', UA.VERBS.length + ' najważniejszych czasowników mocnych, mieszanych i modalnych: Präsens (du / er), Präteritum i Perfekt. Kolor pokazuje zmianę samogłoski i czasownik posiłkowy.');
+    h += '<section class="tiles">' + [
+      ['forma', 'pen', 'Wpisz formę', 'du, er, Präteritum, Partizip II'], ['perfekt', 'pen', 'Perfekt', 'hat / ist + Partizip II'],
+      ['abc', 'target', 'Wybierz Präteritum', 'ABCD'], ['hilf', 'check', 'haben czy sein?', 'czasownik posiłkowy w Perfekt']
+    ].map(function (t) { return '<a class="tile" href="#/czasowniki/' + t[0] + '">' + ic(t[1]) + '<b>' + t[2] + '</b><small>' + t[3] + '</small></a>'; }).join('') + '</section>';
+    h += '<div class="filters"><input id="vq" type="search" placeholder="Szukaj po niemiecku lub po polsku…" aria-label="Szukaj"></div><div class="chips" id="vf">' +
+      [['all', 'Wszystkie'], ['chg', 'Zmiana samogłoski (du/er)'], ['ist', 'Perfekt z „sein”'], ['mix', 'Mieszane i modalne (-te)'], ['hard', 'Moje trudne']].map(function (c, i) { return '<button class="chip' + (i ? '' : ' on') + '" data-f="' + c[0] + '">' + c[1] + '</button>'; }).join('') + '</div>';
+    h += '<div class="vwrap"><table class="vtab"><thead><tr><th></th><th>Infinitiv</th><th>du / er (Präsens)</th><th>Präteritum</th><th>Perfekt</th><th></th></tr></thead><tbody id="vbody"></tbody></table></div>';
+    h += '<p class="muted small">Legenda: <span class="vchg">pogrubienie</span> – zmiana samogłoski w 2. i 3. osobie Präsens; <span class="vaux-ist">ist</span> – Perfekt z „sein” (ruch, zmiana stanu, sein, bleiben, werden).</p>';
+    main.innerHTML = h;
+    var f = 'all';
+    function draw() {
+      var q = norm($('#vq').value);
+      var vs = UA.VERBS.filter(function (v) {
+        if (f === 'chg' && !vChange(v)) return false; if (f === 'ist' && v[5] !== 'ist') return false; if (f === 'mix' && !vMixed(v)) return false; if (f === 'hard' && !vHard(v)) return false;
+        return !q || v.some(function (x, i) { return i !== 5 && norm(x).indexOf(q) >= 0; });
+      });
+      $('#vbody').innerHTML = vs.map(vRow).join('') || '<tr><td colspan="6" class="muted">' + (f === 'hard' ? 'Brak – zrób kilka zadań, a tu pojawią się czasowniki, w których się mylisz.' : 'Brak wyników.') + '</td></tr>';
+    }
+    $('#vq').oninput = draw;
+    $$('#vf .chip').forEach(function (b) { b.onclick = function () { f = b.getAttribute('data-f'); $$('#vf .chip').forEach(function (x) { x.classList.toggle('on', x === b); }); draw(); }; });
+    draw();
+  };
+  function verbType(mode) {
+    var items = vPick(12), k = 0, good = 0, cur = null, finished = false;
+    main.innerHTML = head(mode === 'perfekt' ? 'Perfekt' : 'Wpisz formę', mode === 'perfekt' ? 'Wpisz czasownik posiłkowy i imiesłów, np. „ist gefahren”. Umlauty możesz pisać jako ae, oe, ue, ß jako ss.' : 'Wpisz wskazaną formę. Umlauty możesz pisać jako ae, oe, ue, ß jako ss.', '#/czasowniki') + '<div class="sessbar"></div><div id="stage"></div>';
+    function keyh(e) { if (e.key === 'Enter' && finished) { var nx = $('#nx'); if (nx) { e.preventDefault(); nx.click(); } } }
+    document.addEventListener('keydown', keyh); cleanup = function () { document.removeEventListener('keydown', keyh); };
+    function q() {
+      if (k >= items.length) {
+        G.addXP(good * 3); if (good >= items.length - 1) G.confetti(); G.checkBadges();
+        $('.sessbar').innerHTML = '';
+        $('#stage').innerHTML = '<section class="card empty"><h2>' + good + '/' + items.length + '</h2><p>' + (good >= items.length - 2 ? 'Sehr gut!' : 'Czasowniki z błędami trafią do filtra „Moje trudne” i będą wracać częściej.') + '</p><div class="row center"><button class="btn primary" id="again">Jeszcze raz</button><a class="btn" href="#/czasowniki">Tabela</a></div></section>';
+        $('#again').onclick = function () { verbType(mode); }; return;
+      }
+      var v = items[k], key = mode === 'perfekt' ? null : U.pick(['du', 'er', 'prat', 'part']);
+      var exp = mode === 'perfekt' ? v[5] + ' ' + v[6] : v[VF[key][0]], label = mode === 'perfekt' ? 'er / sie / es … (Perfekt)' : VF[key][1];
+      cur = { v: v, exp: exp }; finished = false;
+      $('.sessbar').innerHTML = bar(k, items.length) + '<span>' + (k + 1) + '/' + items.length + '</span>';
+      $('#stage').innerHTML = '<div class="card fc qcard"><p class="qtitle">' + esc(label) + '</p><div class="big" lang="de">' + esc(v[0]) + '</div><div class="meta">' + esc(v[1]) + '</div>' +
+        '<div class="ansrow"><input id="ans" class="answer" placeholder="' + (mode === 'perfekt' ? 'np. hat gemacht' : 'forma…') + '"><button class="btn primary" id="chk">Sprawdź</button></div><div id="kbh"></div></div><div id="fb"></div>';
+      var inp = $('#ans'); $('#kbh').appendChild(UA.KB(inp, check)); $('#chk').onclick = check;
+      if (!('ontouchstart' in window) || S.settings.sysKb) inp.focus();
+      function check() {
+        if (finished) return;
+        var a = norm(inp.value).replace(/^(er|sie|es|du|ich) /, ''); if (!a) return;
+        var ok = a === norm(exp); finished = true; inp.disabled = true; $('#kbh').innerHTML = '';
+        if (ok) good++; vStat(v, ok); G.sfx(ok ? 'ok' : 'bad'); SP.speak(vSay(v));
+        $('#fb').innerHTML = '<div class="verdict ' + (ok ? 'ok' : 'bad') + '"><b>' + (ok ? G.praise() : 'Niezupełnie.') + '</b> ' + (ok ? '' : 'Poprawnie: <b lang="de">' + esc(exp) + '</b>') + '</div>' + vCard(v) + '<button class="btn primary block" id="nx">Dalej <kbd>Enter</kbd></button>';
+        $('#nx').onclick = function () { k++; q(); };
+      }
+    }
+    q();
+  }
+  function verbAbc() {
+    var items = vPick(10).map(function (v) {
+      var stem = v[0].replace(/e?n$/, ''), cand = [stem + 'te'].concat(U.shuffle(UA.VERBS.filter(function (x) { return x !== v; })).slice(0, 6).map(function (x) { return x[4]; }));
+      var opts = [v[4]]; cand.forEach(function (c) { if (opts.length < 4 && opts.indexOf(c) < 0) opts.push(c); }); opts = U.shuffle(opts);
+      return { title: 'Präteritum (er / sie / es)', prompt: '<div class="big" lang="de">' + esc(v[0]) + '</div><div class="meta">' + esc(v[1]) + '</div>', opts: opts.map(function (o) { return '<span lang="de">' + esc(o) + '</span>'; }), a: opts.indexOf(v[4]), sayAfter: vSay(v), reveal: vCard(v), onAnswer: function (ok) { vStat(v, ok); } };
+    });
+    runMC({ title: 'Wybierz Präteritum', back: '#/czasowniki', items: items, again: verbAbc, onEnd: function () { G.checkBadges(); return ''; } });
+  }
+  function verbHilf() {
+    var ist = U.shuffle(UA.VERBS.filter(function (v) { return v[5] === 'ist'; })).slice(0, 5), hat = U.shuffle(UA.VERBS.filter(function (v) { return v[5] === 'hat'; })).slice(0, 5);
+    var items = U.shuffle(ist.concat(hat)).map(function (v) {
+      var opts = ['hat', 'ist'];
+      return { title: 'haben czy sein?', prompt: '<p class="cloze" lang="de">Er <span class="gap">…</span> ' + esc(v[6]) + '.</p><p class="muted">' + esc(v[0]) + ' – ' + esc(v[1]) + '</p>', opts: opts, a: opts.indexOf(v[5]), sayAfter: 'Er ' + v[5] + ' ' + v[6], reveal: vCard(v), onAnswer: function (ok) { vStat(v, ok); } };
+    });
+    runMC({ title: 'haben czy sein?', back: '#/czasowniki', items: items, again: verbHilf, onEnd: function () { G.checkBadges(); return '<div class="fb ok"><b>Reguła:</b><p>„sein” – czasowniki ruchu i zmiany stanu bez dopełnienia (fahren, gehen, kommen, fallen, sterben, werden) oraz sein i bleiben. Reszta – „haben”.</p></div>'; } });
   }
 
   /* ============================================================
@@ -2923,7 +3509,7 @@ var UA = window.UA || (window.UA = {});
     h += '<section class="card"><h2>' + ic('vol') + ' Głos</h2><p>' + (vs.ok ? 'Używany głos: <b>' + esc(vs.name) + '</b>' : esc(vs.msg)) + '</p><button class="btn" data-say="Hallo! Das ist die deutsche Sprache.">' + ic('play') + ' Test głosu</button></section>';
     if (!vs.ok) h += voiceHelp(vs);
     h += '<section class="card"><h2>Postęp</h2><p class="muted">Postęp jest zapisany tylko w tej przeglądarce. Zrób kopię, żeby przenieść go na inne urządzenie.</p><div class="row"><button class="btn" id="exp">Eksportuj (plik)</button><label class="btn">Importuj<input type="file" id="imp" accept=".json,application/json" hidden></label><button class="btn danger" id="rst">Wyzeruj wszystko</button></div></section>';
-    h += '<section class="card note"><h2>O treściach</h2><p>Słownictwo: ' + UA.WORDS.length + ' słów w ' + UA.TOPICS.length + ' lekcjach (A1–C2), ' + (UA.TEXTS || []).length + ' czytanek, ' + UA.FRIENDS.length + ' fałszywych przyjaciół, ' + UA.DIALOGS.length + ' dialogów, ' + UA.GRAMMAR.length + ' lekcji gramatyki. Niemiecki standardowy (Niemcy), nowa pisownia.</p><p><b>Ważne:</b> treść przygotowano bez udziału native speakera. Przykłady i dialogi warto skonsultować z germanistą – tego nie zastąpi ani model językowy, ani synteza mowy.</p></section>';
+    h += '<section class="card note"><h2>O treściach</h2><p>Słownictwo: ' + UA.WORDS.length + ' słów w ' + UA.TOPICS.length + ' lekcjach (A1–C2 + „Podróż” i „Archiwum i historia”), ' + UA.VERBS.length + ' czasowników nieregularnych, ' + (UA.TEXTS || []).length + ' czytanek, ' + UA.FRIENDS.length + ' fałszywych przyjaciół, ' + UA.DIALOGS.length + ' dialogów, ' + UA.GRAMMAR.length + ' lekcji gramatyki. Niemiecki standardowy (Niemcy), nowa pisownia.</p><p><b>Ważne:</b> treść przygotowano bez udziału native speakera. Przykłady i dialogi warto skonsultować z germanistą – tego nie zastąpi ani model językowy, ani synteza mowy.</p></section>';
     main.innerHTML = h;
     function upd(k, v) { s[k] = v; G.save(); }
     $('#npd').onchange = function () { upd('newPerDay', Math.max(0, Math.min(50, +this.value || 0))); };
