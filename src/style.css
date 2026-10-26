@@ -449,7 +449,7 @@ a { color: var(--primary-d); }
 .tbl td .g-der, .tbl td .g-die, .tbl td .g-das { font-size: 1.05rem; }
 
 /* ścieżki tematyczne i czasowniki nieregularne */
-.lv-TR { background: linear-gradient(135deg, #2563eb, #0d9488); } .lv-AR { background: linear-gradient(135deg, #7c4a1e, #b45309); }
+.lv-TR { background: linear-gradient(135deg, #2563eb, #0d9488); } .lv-AR { background: linear-gradient(135deg, #7c4a1e, #b45309); } .lv-AT { background: linear-gradient(180deg, #c8102e 0 33%, #9a0c23 33% 67%, #c8102e 67%); }
 .lvtag { padding: 0 10px; }
 .tipcard { border-left: 5px solid var(--gold-l); }
 .tipcard ul { margin: .3em 0 0; padding-left: 1.2em; } .tipcard li { margin: .35em 0; }

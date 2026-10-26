@@ -28,6 +28,7 @@
     stop: '<rect x="6" y="6" width="12" height="12" rx="2"/>',
     play: '<path d="m6 3 14 9-14 9z"/>',
     swap: '<path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>',
+    flag: '<path d="M4 22V4"/><path d="M4 4h14l-2 4 2 4H4"/>',
     check: '<path d="M20 6 9 17l-5-5"/>',
     x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
     flame: '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3.4.3 1.5 1.5 2.9 2.5 2.9"/>',
@@ -68,7 +69,7 @@
   /* ---------- Nawigacja ---------- */
   var NAV = [
     ['start', 'Start', 'home', 1], ['sciezka', 'Ścieżka', 'route', 1], ['sluchanie', 'Słuchanie', 'headphones', 1], ['wymowa', 'Wymowa', 'ear', 1],
-    ['rodzajniki', 'Der · die · das', 'tag'], ['czasowniki', 'Czasowniki nieregularne', 'table'], ['dialogi', 'Dialogi', 'chat'], ['alfabet', 'Litery i dźwięki', 'abc'], ['przyjaciele', 'Fałszywi przyjaciele', 'alert'], ['gramatyka', 'Gramatyka', 'book'],
+    ['rodzajniki', 'Der · die · das', 'tag'], ['czasowniki', 'Czasowniki nieregularne', 'table'], ['austria', 'Austria czy Niemcy?', 'flag'], ['dialogi', 'Dialogi', 'chat'], ['alfabet', 'Litery i dźwięki', 'abc'], ['przyjaciele', 'Fałszywi przyjaciele', 'alert'], ['gramatyka', 'Gramatyka', 'book'],
     ['dyktando', 'Dyktando', 'pen'], ['slownik', 'Słownik', 'search'], ['ustawienia', 'Ustawienia', 'gear']
   ];
   function renderNav(cur) {
@@ -116,8 +117,8 @@
   /* ============================================================
      POZIOMY I ŚCIEŻKA A1 → C2
      ============================================================ */
-  var LEVELS = ['TR', 'AR', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-  var THEME = { TR: ['Podróż', 'Podróż – praktyczne słownictwo na wyjazd'], AR: ['Archiwum', 'Archiwum i historia – kwerendy, dokumenty, źródła'] };
+  var LEVELS = ['TR', 'AR', 'AT', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  var THEME = { TR: ['Podróż', 'Podróż – praktyczne słownictwo na wyjazd'], AR: ['Archiwum', 'Archiwum i historia – kwerendy, dokumenty, źródła'], AT: ['Austria', 'Austria – austriacyzmy, kawiarnia, urzędy, Galicja'] };
   function lvLabel(lv) { return THEME[lv] ? THEME[lv][0] : lv; }
   var LEVEL_NAME = { A1: 'początkujący', A2: 'podstawowy', B1: 'średni', B2: 'średnio zaawansowany', C1: 'zaawansowany', C2: 'biegły' };
   S.unlocked = S.unlocked || {};
@@ -165,7 +166,7 @@
     h += '<a class="card nextunit" href="#/etap/' + cu.id + '">' + ring(unitProg(cu), Math.round(unitProg(cu) * 100) + '%') + '<div><p class="kicker">Twoja lekcja · ' + cu.level + '</p><b>' + esc(cu.name) + '</b><small>' + unitWords(cu.id).filter(seen).length + ' z ' + unitWords(cu.id).length + ' słów poznanych</small></div>' + ic('next') + '</a>';
     h += '<section class="kpis"><div class="kpi"><b>' + r.learning + '</b><small>słów rozpoznajesz</small></div><div class="kpi"><b>' + p.learning + '</b><small>słów potrafisz napisać</small></div><div class="kpi"><b>' + r.known + '</b><small>opanowane na stałe</small></div><div class="kpi"><b>' + S.stats.listen + '</b><small>trafień ze słuchu</small></div></section>';
     h += '<h2 class="sec">Ćwiczenia</h2><section class="tiles">' + [
-      ['sciezka', 'route', 'Ścieżka A1–C2', UA.TOPICS.length + ' lekcji'], ['czasowniki', 'table', 'Czasowniki nieregularne', UA.VERBS.length + ' czasowników + zadania'], ['etap/tr_bahn', 'globe', 'Podróż', 'pociąg, hotel, jedzenie, pomoc'], ['etap/ar_archiv', 'book', 'Archiwum i historia', 'kwerendy, dokumenty, kurrenta'], ['sluchanie', 'headphones', 'Słuchanie', 'słowa, zdania, czytanki'],
+      ['sciezka', 'route', 'Ścieżka A1–C2', UA.TOPICS.length + ' lekcji'], ['czasowniki', 'table', 'Czasowniki nieregularne', UA.VERBS.length + ' czasowników + zadania'], ['etap/tr_bahn', 'globe', 'Podróż', 'pociąg, hotel, jedzenie, pomoc'], ['etap/ar_archiv', 'book', 'Archiwum i historia', 'kwerendy, dokumenty, kurrenta'], ['etap/at_gruss', 'flag', 'Austria', 'austriacyzmy, kawiarnia, Galicja'], ['austria', 'swap', 'Austria czy Niemcy?', UA.ATDE.length + ' par · ' + (S.stats.atde || 0) + ' trafień'], ['sluchanie', 'headphones', 'Słuchanie', 'słowa, zdania, czytanki'],
       ['rodzajniki', 'tag', 'Der · die · das', 'rodzajnik i liczba mnoga'], ['wymowa', 'ear', 'Wymowa', 'umlauty, długie samogłoski, ch'], ['dialogi', 'chat', 'Dialogi', Object.keys(S.dialogs).length + '/' + UA.DIALOGS.length + ' przećwiczone'],
       ['przyjaciele', 'alert', 'Fałszywi przyjaciele', S.stats.ff + ' trafień'], ['gramatyka', 'book', 'Gramatyka', 'tylko to, co inne'],
       ['alfabet', 'abc', 'Litery i dźwięki', 'ä, ö, ü, ei, ie, sch…'], ['dyktando', 'pen', 'Dyktando', 'słuchaj i pisz']
@@ -190,7 +191,7 @@
   V.nauka = function () { location.replace('#/trening/all'); };
   V.sciezka = function () {
     var cu = currentUnit();
-    var h = head('Ścieżka', 'Ścieżki tematyczne „Podróż” oraz „Archiwum i historia” są otwarte od razu. W ścieżce A1 → C2 lekcje otwierają się po kolei: następna – gdy poznasz 70% słów poprzedniej (albo po zdanym teście lekcji).');
+    var h = head('Ścieżka', 'Ścieżki tematyczne „Podróż”, „Archiwum i historia” oraz „Austria” są otwarte od razu. W ścieżce A1 → C2 lekcje otwierają się po kolei: następna – gdy poznasz 70% słów poprzedniej (albo po zdanym teście lekcji).');
     h += '<div class="row"><a class="btn primary" href="#/trening/all">' + ic('play') + 'Codzienny trening</a><a class="btn" href="#/test">' + ic('check') + 'Test wejściowy (słowa przezroczyste)</a></div>';
     LEVELS.forEach(function (lv) {
       var units = UA.TOPICS.filter(function (t) { return t.level === lv; }), ws = levelWords(lv), kn = ws.filter(seen).length, text = (UA.TEXTS || []).filter(function (t) { return t.level === lv; })[0];
@@ -573,7 +574,7 @@
      SŁOWNIK
      ============================================================ */
   V.slownik = function (topic) {
-    var h = head('Słownik', UA.WORDS.length + ' słów: A1–C2, podróż, archiwum i historia. Szukaj po niemiecku (umlauty można pisać jako ae, oe, ue) lub po polsku.');
+    var h = head('Słownik', UA.WORDS.length + ' słów: A1–C2, podróż, archiwum i historia, austriacyzmy. Szukaj po niemiecku (umlauty można pisać jako ae, oe, ue) lub po polsku.');
     h += '<div class="filters"><input id="q" type="search" placeholder="Szukaj…" aria-label="Szukaj"><select id="ft" aria-label="Temat"><option value="">Wszystkie tematy</option>' + UA.TOPICS.map(function (t) { return '<option value="' + t.id + '"' + (t.id === topic ? ' selected' : '') + '>' + lvLabel(t.level) + ' · ' + esc(t.name) + '</option>'; }).join('') + '</select>' +
       '<select id="fs" aria-label="Podobieństwo"><option value="">Każde podobieństwo</option>' + Object.keys(SIM).map(function (k) { return '<option value="' + k + '">' + SIM[k][0] + '</option>'; }).join('') + '</select></div><div id="list" class="wlist"></div>';
     main.innerHTML = h;
@@ -861,6 +862,20 @@
   /* ============================================================
      DIALOGI
      ============================================================ */
+  /* ---------- Austria czy Niemcy? ---------- */
+  V.austria = function () {
+    var dirs = ['de', 'at', 'pl'];
+    var items = U.shuffle(UA.ATDE.slice()).slice(0, 10).map(function (p, i) {
+      var d = dirs[i % 3], pool = U.shuffle(UA.ATDE.filter(function (x) { return x !== p; })).slice(0, 3), opts, a, prompt, title;
+      if (d === 'de') { title = 'Jak to powiedzą w Austrii?'; prompt = '<div class="big" lang="de">' + esc(p[1]) + '</div><div class="meta">Niemcy · ' + esc(p[2]) + '</div>'; opts = [p[0]].concat(pool.map(function (x) { return x[0]; })); }
+      else if (d === 'at') { title = 'Jak to powiedzą w Niemczech?'; prompt = '<div class="big" lang="de-AT">' + esc(p[0]) + '</div><div class="meta">Austria · ' + esc(p[2]) + '</div>'; opts = [p[1]].concat(pool.map(function (x) { return x[1]; })); }
+      else { title = 'Które słowo jest austriackie?'; prompt = '<div class="big pl">' + esc(p[2]) + '</div><div class="meta">wybierz formę z Austrii</div>'; opts = [p[0], p[1]]; }
+      var good = opts[0]; opts = U.shuffle(opts); a = opts.indexOf(good);
+      return { title: title, prompt: prompt, opts: opts.map(function (o) { return '<span lang="de">' + esc(o) + '</span>'; }), a: a, sayAfter: p[0], reveal: '<div class="fb ok"><p><b lang="de">' + esc(p[0]) + '</b> (AT) = <b lang="de">' + esc(p[1]) + '</b> (DE) – ' + esc(p[2]) + '</p></div>' };
+    });
+    runMC({ title: 'Austria czy Niemcy?', sub: 'Austriacyzmy i ich odpowiedniki w Niemczech.', back: '#/start', items: items, counter: 'atde', again: function () { V.austria(); }, onEnd: function () { return '<p><a class="btn" href="#/etap/at_gruss">Ścieżka „Austria”</a></p>'; } });
+  };
+
   V.dialogi = function () {
     var h = head('Dialogi', 'Krótkie scenki z życia: odsłuch, tekst do odkrycia, odgrywanie ról, shadowing z nagrywaniem i dyktando.');
     h += '<section class="dlist">' + UA.DIALOGS.map(function (d) {
@@ -1099,7 +1114,7 @@
     h += '<section class="card"><h2>' + ic('vol') + ' Głos</h2><p>' + (vs.ok ? 'Używany głos: <b>' + esc(vs.name) + '</b>' : esc(vs.msg)) + '</p><button class="btn" data-say="Hallo! Das ist die deutsche Sprache.">' + ic('play') + ' Test głosu</button></section>';
     if (!vs.ok) h += voiceHelp(vs);
     h += '<section class="card"><h2>Postęp</h2><p class="muted">Postęp jest zapisany tylko w tej przeglądarce. Zrób kopię, żeby przenieść go na inne urządzenie.</p><div class="row"><button class="btn" id="exp">Eksportuj (plik)</button><label class="btn">Importuj<input type="file" id="imp" accept=".json,application/json" hidden></label><button class="btn danger" id="rst">Wyzeruj wszystko</button></div></section>';
-    h += '<section class="card note"><h2>O treściach</h2><p>Słownictwo: ' + UA.WORDS.length + ' słów w ' + UA.TOPICS.length + ' lekcjach (A1–C2 + „Podróż” i „Archiwum i historia”), ' + UA.VERBS.length + ' czasowników nieregularnych, ' + (UA.TEXTS || []).length + ' czytanek, ' + UA.FRIENDS.length + ' fałszywych przyjaciół, ' + UA.DIALOGS.length + ' dialogów, ' + UA.GRAMMAR.length + ' lekcji gramatyki. Niemiecki standardowy (Niemcy), nowa pisownia.</p><p><b>Ważne:</b> treść przygotowano bez udziału native speakera. Przykłady i dialogi warto skonsultować z germanistą – tego nie zastąpi ani model językowy, ani synteza mowy.</p></section>';
+    h += '<section class="card note"><h2>O treściach</h2><p>Słownictwo: ' + UA.WORDS.length + ' słów w ' + UA.TOPICS.length + ' lekcjach (A1–C2 + „Podróż”, „Archiwum i historia” i „Austria”), ' + UA.VERBS.length + ' czasowników nieregularnych, ' + (UA.TEXTS || []).length + ' czytanek, ' + UA.FRIENDS.length + ' fałszywych przyjaciół, ' + UA.DIALOGS.length + ' dialogów, ' + UA.GRAMMAR.length + ' lekcji gramatyki. Niemiecki standardowy (Niemcy), nowa pisownia; w ścieżce „Austria” – austriacka odmiana niemieckiego z odpowiednikami z Niemiec.</p><p><b>Ważne:</b> treść przygotowano bez udziału native speakera. Przykłady i dialogi warto skonsultować z germanistą – tego nie zastąpi ani model językowy, ani synteza mowy.</p></section>';
     main.innerHTML = h;
     function upd(k, v) { s[k] = v; G.save(); }
     $('#npd').onchange = function () { upd('newPerDay', Math.max(0, Math.min(50, +this.value || 0))); };

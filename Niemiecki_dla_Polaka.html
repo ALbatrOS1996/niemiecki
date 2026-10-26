@@ -467,7 +467,7 @@ a { color: var(--primary-d); }
 .tbl td .g-der, .tbl td .g-die, .tbl td .g-das { font-size: 1.05rem; }
 
 /* ścieżki tematyczne i czasowniki nieregularne */
-.lv-TR { background: linear-gradient(135deg, #2563eb, #0d9488); } .lv-AR { background: linear-gradient(135deg, #7c4a1e, #b45309); }
+.lv-TR { background: linear-gradient(135deg, #2563eb, #0d9488); } .lv-AR { background: linear-gradient(135deg, #7c4a1e, #b45309); } .lv-AT { background: linear-gradient(180deg, #c8102e 0 33%, #9a0c23 33% 67%, #c8102e 67%); }
 .lvtag { padding: 0 10px; }
 .tipcard { border-left: 5px solid var(--gold-l); }
 .tipcard ul { margin: .3em 0 0; padding-left: 1.2em; } .tipcard li { margin: .35em 0; }
@@ -1878,6 +1878,115 @@ UA.DIALOGS = [
 
 </script>
 <script>
+/* ============================================================
+   ŚCIEŻKA TEMATYCZNA „AUSTRIA” – austriacyzmy (otwarta od razu)
+   W(…) jak w words.js; w polu „formy” podajemy odpowiednik w Niemczech (DE: …).
+   ============================================================ */
+var UA = window.UA || (window.UA = {});
+(function () {
+  var cur;
+  function L(level, id, name) { cur = id; UA.TOPICS.push({ id: id, name: name, level: level }); }
+  function W(ua, pos, pl, forms, sim, ex, exPl) {
+    UA.WORDS.push({ ua: ua, pos: pos, pl: pl, forms: forms || '', sim: sim, ex: ex || '', exPl: exPl || '', topic: cur, at: true });
+  }
+
+  L('AT', 'at_gruss', 'Powitania i zwroty');
+  W('Servus!', 'ф', 'cześć (na powitanie i pożegnanie)', 'DE: Hallo! / Tschüss!', 'p', '{Servus}, wie geht’s dir?', 'Cześć, jak się masz?');
+  W('Grüß dich!', 'ф', 'cześć (na „ty”)', 'DE: Hallo!', 'o', '{Grüß dich}, Lukas!', 'Cześć, Lukas!');
+  W('Baba!', 'ф', 'pa! (pożegnanie, potocznie)', 'DE: Tschüss!', 'o', 'Also dann, {baba}!', 'No to pa!');
+  W('Habe die Ehre!', 'ф', 'moje uszanowanie (dawne wiedeńskie powitanie)', '', 'o', '{Habe die Ehre}, Herr Hofrat!', 'Moje uszanowanie, panie radco dworu!');
+  W('Passt!', 'ф', 'pasuje, w porządku, OK', 'DE: Okay! / Geht klar!', 'p', '— Um acht beim Café? — {Passt}!', '— O ósmej w kawiarni? — Pasuje!');
+  W('Gemma!', 'ф', 'chodźmy! (= gehen wir)', 'potoczne, Wiedeń', 'o', '{Gemma}, sonst kommen wir zu spät!', 'Chodźmy, bo się spóźnimy!');
+  W('leiwand', 'п', 'super, świetny (Wiedeń, potoczne)', 'DE: toll, super', 'o', 'Das Konzert war echt {leiwand}!', 'Koncert był naprawdę super!');
+  W('Oida!', 'ф', 'stary! (wykrzyknik, slang)', 'od: Alter', 'o', '{Oida}, hast du das gesehen?', 'Stary, widziałeś to?');
+  W('Gusto haben auf', 'ф', 'mieć ochotę na', 'DE: Lust haben auf', 'o', 'Ich hab {Gusto} auf ein Schnitzel.', 'Mam ochotę na sznycel.');
+  W('sich ausgehen', 'д', 'zmieścić się, zdążyć, wystarczyć', 'es geht sich aus – zdążymy / starczy', 'o', 'Der Zug fährt um neun – das {geht sich} noch {aus}.', 'Pociąg jest o dziewiątej – jeszcze zdążymy.');
+  W('Bitte schön?', 'ф', 'słucham? czym mogę służyć? (w sklepie, kawiarni)', '', 'o', '{Bitte schön?} Was darf’s sein?', 'Słucham? Co podać?');
+  W('Pfiat di!', 'ф', 'z Bogiem, cześć (pożegnanie, Austria/Bawaria)', '= Behüte dich Gott', 'o', '{Pfiat di}, und komm gut heim!', 'Cześć, wracaj bezpiecznie do domu!');
+
+  L('AT', 'at_essen', 'Kuchnia austriacka');
+  W('der Erdapfel', 'ч', 'ziemniak', 'lm. die Erdäpfel · DE: die Kartoffel', 'o', 'Zum Schnitzel gibt’s {Erdäpfel}salat.', 'Do sznycla jest sałatka ziemniaczana.');
+  W('der Paradeiser', 'ч', 'pomidor', 'lm. die Paradeiser · DE: die Tomate', 'o', 'Ein Kilo {Paradeiser}, bitte.', 'Kilogram pomidorów, proszę.');
+  W('die Marille', 'ж', 'morela', 'lm. die Marillen · DE: die Aprikose', 'o', 'Die Wachauer {Marillen} sind berühmt.', 'Morele z Wachau są sławne.');
+  W('der Karfiol', 'ч', 'kalafior', 'bez lm. · DE: der Blumenkohl', 'p', 'Heute gibt es {Karfiol} mit Butterbröseln.', 'Dziś jest kalafior z bułką tartą na maśle.');
+  W('die Fisole', 'ж', 'fasolka szparagowa', 'lm. die Fisolen · DE: die grüne Bohne', 'p', 'Als Beilage nehme ich {Fisolen}.', 'Jako dodatek wezmę fasolkę szparagową.');
+  W('der Topfen', 'ч', 'twaróg', 'bez lm. · DE: der Quark', 'o', 'Der Strudel ist mit {Topfen} gefüllt.', 'Strudel jest nadziewany twarogiem.');
+  W('das Schlagobers', 'с', 'bita śmietana', 'bez lm. · DE: die Schlagsahne', 'o', 'Eine Melange mit {Schlagobers}, bitte.', 'Melange z bitą śmietaną, proszę.');
+  W('der Kren', 'ч', 'chrzan', 'bez lm. · DE: der Meerrettich', 'p', 'Zum Tafelspitz gehört {Kren}.', 'Do tafelspitza podaje się chrzan.');
+  W('das Faschierte', 'с', 'mięso mielone', 'bez lm. · DE: das Hackfleisch', 'p', 'Für die Laibchen brauchen wir {Faschiertes}.', 'Na kotlety potrzebujemy mięsa mielonego.');
+  W('die Semmel', 'ж', 'bułka', 'lm. die Semmeln · DE: das Brötchen', 'p', 'Zwei {Semmeln} und ein Kipferl, bitte.', 'Dwie bułki i rogalik, proszę.');
+  W('die Palatschinke', 'ж', 'naleśnik', 'lm. die Palatschinken · DE: der Pfannkuchen', 'p', 'Zum Nachtisch gibt es {Palatschinken} mit Marmelade.', 'Na deser są naleśniki z dżemem.');
+  W('die Ribisel', 'ж', 'porzeczka', 'lm. die Ribiseln · DE: die Johannisbeere', 'o', 'Oma macht Marmelade aus {Ribiseln}.', 'Babcia robi dżem z porzeczek.');
+  W('der Powidl', 'ч', 'powidła śliwkowe', 'bez lm. · DE: das Pflaumenmus', 't', 'Die Buchteln sind mit {Powidl} gefüllt.', 'Buchteln są nadziewane powidłami.');
+  W('die Zwetschke', 'ж', 'śliwka', 'lm. die Zwetschken · DE: die Zwetschge / Pflaume', 'p', 'Im Herbst backen wir {Zwetschken}knödel.', 'Jesienią robimy knedle ze śliwkami.');
+  W('die Jause', 'ж', 'przekąska, podwieczorek', 'lm. die Jausen · DE: die Brotzeit, der Imbiss', 'o', 'Um zehn machen wir eine kleine {Jause}.', 'O dziesiątej robimy sobie małą przekąskę.');
+  W('die Mehlspeise', 'ж', 'ciasto, deser (słodkie wypieki)', 'lm. die Mehlspeisen · DE: die Süßspeise, der Kuchen', 'o', 'Die Wiener {Mehlspeisen} sind legendär.', 'Wiedeńskie słodkie wypieki są legendarne.');
+
+  L('AT', 'at_kaffee', 'Wiedeńska kawiarnia');
+  W('das Kaffeehaus', 'с', 'kawiarnia (wiedeńska)', 'lm. die Kaffeehäuser', 'p', 'Im {Kaffeehaus} kann man stundenlang Zeitung lesen.', 'W kawiarni można godzinami czytać gazety.');
+  W('die Melange', 'ж', 'melange – kawa z mlekiem i pianką', 'lm. die Melangen', 'p', 'Eine {Melange}, bitte!', 'Poproszę melange!');
+  W('der Verlängerte', 'ч', 'espresso dopełnione gorącą wodą', 'lm. die Verlängerten', 'o', 'Für mich einen {Verlängerten} mit Milch.', 'Dla mnie „przedłużoną” z mlekiem.');
+  W('der kleine Braune', 'ф', 'małe espresso ze śmietanką', 'großer Brauner – podwójne', 'o', 'Herr Ober, einen {kleinen Braunen}, bitte.', 'Panie kelnerze, poproszę małą kawę ze śmietanką.');
+  W('der Einspänner', 'ч', 'mocna kawa z bitą śmietaną w szklance', 'lm. die Einspänner', 'o', 'Probier mal einen {Einspänner}!', 'Spróbuj einspännera!');
+  W('das Häferl', 'с', 'kubek', 'lm. die Häferl · DE: der Becher', 'o', 'Ich trinke den Tee lieber aus dem {Häferl}.', 'Herbatę wolę pić z kubka.');
+  W('das Obers', 'с', 'śmietanka', 'bez lm. · DE: die Sahne', 'o', 'Kaffee mit {Obers}, bitte.', 'Kawę ze śmietanką, proszę.');
+  W('Herr Ober!', 'ф', 'panie kelnerze! (tradycyjnie w kawiarni)', '', 'o', '{Herr Ober}, zahlen bitte!', 'Panie kelnerze, płacę!');
+  W('der Schanigarten', 'ч', 'ogródek kawiarniany na chodniku', 'lm. die Schanigärten', 'o', 'Im Sommer sitzen wir im {Schanigarten}.', 'Latem siedzimy w ogródku kawiarnianym.');
+  W('der Heurige', 'ч', 'winiarnia z młodym winem; młode wino', 'lm. die Heurigen', 'o', 'Am Wochenende fahren wir zum {Heurigen} nach Grinzing.', 'W weekend jedziemy do winiarni w Grinzing.');
+  W('das Beisl', 'с', 'knajpka, gospoda (Wiedeń)', 'lm. die Beisln · DE: die Kneipe', 'o', 'Das Schnitzel im {Beisl} ums Eck ist super.', 'Sznycel w knajpce za rogiem jest super.');
+  W('die Sachertorte', 'ж', 'tort Sachera', 'lm. die Sachertorten', 't', 'Ein Stück {Sachertorte} mit Schlagobers, bitte.', 'Kawałek tortu Sachera z bitą śmietaną, proszę.');
+
+  L('AT', 'at_alltag', 'Codzienność');
+  W('der Jänner', 'ч', 'styczeń', 'DE: der Januar · też: der Feber (luty)', 'o', 'Im {Jänner} fahren wir Ski.', 'W styczniu jeździmy na nartach.');
+  W('heuer', 'пр', 'w tym roku', 'DE: dieses Jahr', 'o', '{Heuer} war der Sommer sehr heiß.', 'W tym roku lato było bardzo gorące.');
+  W('der Sessel', 'ч', 'krzesło (w Niemczech: fotel!)', 'lm. die Sessel · DE: der Stuhl', 'f', 'Nimm dir einen {Sessel} und setz dich.', 'Weź krzesło i usiądź.');
+  W('der Kasten', 'ч', 'szafa', 'lm. die Kästen · DE: der Schrank', 'o', 'Die Mäntel hängen im {Kasten}.', 'Płaszcze wiszą w szafie.');
+  W('der Polster', 'ч', 'poduszka (r. męski!)', 'lm. die Polster · DE: das Kissen', 'p', 'Der {Polster} ist zu hart.', 'Poduszka jest za twarda.');
+  W('die Stiege', 'ж', 'schody; klatka schodowa', 'lm. die Stiegen · DE: die Treppe', 'o', 'Er wohnt auf {Stiege} 3, Tür 12.', 'Mieszka na klatce 3, drzwi 12.');
+  W('das Sackerl', 'с', 'torebka, reklamówka', 'lm. die Sackerl · DE: die Tüte', 'o', 'Brauchen Sie ein {Sackerl}?', 'Potrzebuje pan torebki?');
+  W('die Trafik', 'ж', 'kiosk (tytoń, gazety, bilety)', 'lm. die Trafiken · DE: der Kiosk', 'p', 'Die Fahrscheine bekommst du in der {Trafik}.', 'Bilety dostaniesz w kiosku.');
+  W('das Spital', 'с', 'szpital', 'lm. die Spitäler · DE: das Krankenhaus', 't', 'Sie liegt seit Montag im {Spital}.', 'Leży w szpitalu od poniedziałku.');
+  W('der Bub', 'ч', 'chłopiec', 'lm. die Buben · DE: der Junge', 'o', 'Der {Bub} geht schon in die Volksschule.', 'Chłopiec chodzi już do szkoły podstawowej.');
+  W('das Zuckerl', 'с', 'cukierek', 'lm. die Zuckerl · DE: das Bonbon', 'p', 'Die Kinder bekommen ein {Zuckerl}.', 'Dzieci dostają cukierka.');
+  W('das Pickerl', 'с', 'naklejka; winieta (na autostradę)', 'lm. die Pickerl · DE: der Aufkleber, die Vignette', 'o', 'Ohne {Pickerl} darfst du nicht auf die Autobahn.', 'Bez winiety nie wolno wjechać na autostradę.');
+  W('die Kassa', 'ж', 'kasa', 'lm. die Kassen · DE: die Kasse', 't', 'Bitte zahlen Sie an der {Kassa}.', 'Proszę zapłacić przy kasie.');
+  W('angreifen', 'д', 'dotykać (w Niemczech: atakować!)', 'greift an · griff an · hat angegriffen · DE: anfassen', 'f', 'Bitte nichts {angreifen}!', 'Proszę niczego nie dotykać!');
+  W('sich verkühlen', 'д', 'przeziębić się', 'DE: sich erkälten', 'o', 'Zieh dich warm an, sonst {verkühlst} du dich.', 'Ubierz się ciepło, bo się przeziębisz.');
+  W('der Rauchfangkehrer', 'ч', 'kominiarz', 'lm. die Rauchfangkehrer · DE: der Schornsteinfeger', 'o', 'Zu Silvester bringt der {Rauchfangkehrer} Glück.', 'W sylwestra kominiarz przynosi szczęście.');
+
+  L('AT', 'at_amt', 'Szkoła, urzędy, polityka');
+  W('die Matura', 'ж', 'matura', 'DE: das Abitur · maturieren – zdawać maturę', 't', 'Nach der {Matura} will sie in Wien studieren.', 'Po maturze chce studiować w Wiedniu.');
+  W('die Volksschule', 'ж', 'szkoła podstawowa (klasy 1–4)', 'lm. die Volksschulen · DE: die Grundschule', 'o', 'Mein Sohn geht in die {Volksschule}.', 'Mój syn chodzi do szkoły podstawowej.');
+  W('die Schularbeit', 'ж', 'praca klasowa', 'lm. die Schularbeiten · DE: die Klassenarbeit', 'o', 'Morgen haben wir eine {Schularbeit} in Mathe.', 'Jutro mamy klasówkę z matematyki.');
+  W('der Akt', 'ч', 'teczka akt, akta (w Niemczech: die Akte)', 'lm. die Akten · DE: die Akte', 'o', 'Der {Akt} liegt beim Magistrat.', 'Akta leżą w magistracie.');
+  W('der Magistrat', 'ч', 'magistrat, urząd miasta', 'lm. die Magistrate · DE: die Stadtverwaltung', 'p', 'Den Pass beantragen Sie beim {Magistrat}.', 'O paszport występuje się w magistracie.');
+  W('der Meldezettel', 'ч', 'formularz zameldowania', 'lm. die Meldezettel · DE: die Meldebescheinigung', 'o', 'Ohne {Meldezettel} bekommst du kein Konto.', 'Bez meldunku nie dostaniesz konta.');
+  W('die Bezirkshauptmannschaft', 'ж', 'starostwo powiatowe', 'lm. die Bezirkshauptmannschaften · skrót: BH', 'o', 'Den Führerschein gibt es bei der {Bezirkshauptmannschaft}.', 'Prawo jazdy wydaje starostwo powiatowe.');
+  W('das Bundesland', 'с', 'kraj związkowy', 'lm. die Bundesländer · Austria ma 9 krajów', 'o', 'Österreich hat neun {Bundesländer}.', 'Austria ma dziewięć krajów związkowych.');
+  W('der Landeshauptmann', 'ч', 'premier kraju związkowego', 'lm. die Landeshauptleute', 'o', 'Der {Landeshauptmann} von Tirol hielt eine Rede.', 'Premier Tyrolu wygłosił przemówienie.');
+  W('der Nationalrat', 'ч', 'Rada Narodowa (izba niższa parlamentu)', 'DE: der Bundestag', 'p', 'Der {Nationalrat} hat das Gesetz beschlossen.', 'Rada Narodowa uchwaliła ustawę.');
+  W('der Erlagschein', 'ч', 'blankiet wpłaty, przekaz', 'lm. die Erlagscheine · DE: der Überweisungsträger', 'o', 'Die Rechnung kam mit einem {Erlagschein}.', 'Rachunek przyszedł z blankietem wpłaty.');
+  W('der Hofrat', 'ч', 'radca dworu (tytuł urzędniczy)', 'lm. die Hofräte', 'o', 'In Wien wird man gern mit „Herr {Hofrat}” angesprochen.', 'W Wiedniu chętnie zwraca się do kogoś „panie radco”.');
+
+  L('AT', 'at_geschichte', 'Habsburgowie i Galicja');
+  W('die Habsburgermonarchie', 'ж', 'monarchia habsburska', '', 'p', 'Galizien gehörte zur {Habsburgermonarchie}.', 'Galicja należała do monarchii habsburskiej.');
+  W('k. u. k.', 'з', 'cesarsko-królewski (kaiserlich und königlich)', 'k. k. – cesarsko-królewski (austriacki)', 'o', 'Er diente in der {k. u. k.} Armee.', 'Służył w armii cesarsko-królewskiej.');
+  W('der Ausgleich', 'ч', 'ugoda austro-węgierska (1867)', '', 'o', 'Nach dem {Ausgleich} von 1867 entstand Österreich-Ungarn.', 'Po ugodzie z 1867 r. powstały Austro-Węgry.');
+  W('Galizien', 'ф', 'Galicja', 'Königreich Galizien und Lodomerien', 'p', '{Galizien} war das größte Kronland Österreichs.', 'Galicja była największym krajem koronnym Austrii.');
+  W('Lemberg', 'ф', 'Lwów (nazwa niemiecka)', 'Krakau – Kraków', 'o', 'Die Statthalterei hatte ihren Sitz in {Lemberg}.', 'Namiestnictwo miało siedzibę we Lwowie.');
+  W('das Kronland', 'с', 'kraj koronny', 'lm. die Kronländer', 'o', 'Jedes {Kronland} hatte einen eigenen Landtag.', 'Każdy kraj koronny miał własny sejm krajowy.');
+  W('die Statthalterei', 'ж', 'namiestnictwo (urząd namiestnika)', 'der Statthalter – namiestnik', 'o', 'Die Akten der {Statthalterei} liegen heute in Lwiw.', 'Akta namiestnictwa leżą dziś we Lwowie.');
+  W('der Reichsrat', 'ч', 'Rada Państwa (parlament austriacki)', '', 'o', 'Polnische Abgeordnete saßen im Wiener {Reichsrat}.', 'Polscy posłowie zasiadali w wiedeńskiej Radzie Państwa.');
+  W('der Landtag', 'ч', 'sejm krajowy', 'galizischer Landtag – Sejm Krajowy w Lwowie', 'o', 'Der galizische {Landtag} tagte in Lemberg.', 'Galicyjski Sejm Krajowy obradował we Lwowie.');
+  W('die Matriken', 'мн', 'księgi metrykalne (austr.)', 'lm. · DE: die Kirchenbücher', 'o', 'Die {Matriken} der Pfarre sind digitalisiert.', 'Księgi metrykalne parafii są zdigitalizowane.');
+  W('der Anschluss Österreichs', 'ф', 'anszlus – przyłączenie Austrii do III Rzeszy (1938)', 'der Anschluss – też: przesiadka, połączenie', 'p', 'Der {Anschluss Österreichs} erfolgte im März 1938.', 'Anszlus Austrii nastąpił w marcu 1938 r.');
+  W('der Staatsvertrag', 'ч', 'traktat państwowy (1955)', '', 'o', 'Mit dem {Staatsvertrag} von 1955 wurde Österreich wieder frei.', 'Traktatem państwowym z 1955 r. Austria odzyskała niepodległość.');
+  W('die immerwährende Neutralität', 'ф', 'wieczysta neutralność (od 1955)', '', 'p', 'Österreich erklärte 1955 seine {immerwährende Neutralität}.', 'Austria ogłosiła w 1955 r. wieczystą neutralność.');
+  W('Kakanien', 'ф', 'Kakania (ironiczna nazwa Austro-Węgier u Musila)', 'od: k. u. k.', 'o', 'Robert Musil nannte die Monarchie ironisch „{Kakanien}”.', 'Robert Musil ironicznie nazywał monarchię „Kakanią”.');
+})();
+
+</script>
+<script>
 /* ---------- Czytanki do słuchania (A2–C2) ----------
    tekst czytany przez syntezę mowy + pytania o zrozumienie */
 var UA = window.UA || (window.UA = {});
@@ -2086,6 +2195,64 @@ UA.VERBS = [
   ['wollen', 'chcieć', 'willst', 'will', 'wollte', 'hat', 'gewollt'],
   ['ziehen', 'ciągnąć', 'ziehst', 'zieht', 'zog', 'hat', 'gezogen'],
   ['zwingen', 'zmuszać', 'zwingst', 'zwingt', 'zwang', 'hat', 'gezwungen']
+];
+
+</script>
+<script>
+/* ============================================================
+   AUSTRIA – porady, dialogi, czytanka i pary Austria / Niemcy
+   ============================================================ */
+var UA = window.UA || (window.UA = {});
+
+UA.TIPS.at_gruss = ['<b>Grüß Gott</b> to standardowe, uprzejme powitanie w całej Austrii (także w sklepie i urzędzie); <b>Servus</b> – na „ty”, na powitanie i pożegnanie.', '<b>Auf Wiederschauen</b> to austriacka forma „do widzenia” (w Niemczech: Auf Wiedersehen).', 'Austriacy chętnie używają tytułów: <b>Herr Magister</b>, <b>Frau Doktor</b>, <b>Herr Hofrat</b> – warto je zachować w korespondencji.'];
+UA.TIPS.at_essen = ['W menu w Austrii przeczytasz <b>Erdäpfel, Paradeiser, Karfiol, Fisolen</b> – w Niemczech te same rzeczy to Kartoffeln, Tomaten, Blumenkohl, grüne Bohnen.', '23 austriacyzmy kulinarne (m.in. Erdäpfel, Marillen, Topfen, Schlagobers) chroni Protokół nr 10 do traktatu akcesyjnego Austrii z UE (1995).', 'Polskie <b>powidła</b> i <b>palacinki</b> mają wspólne środkowoeuropejskie korzenie z austriackim Powidl i Palatschinken – to kuchnia dawnej monarchii.'];
+UA.TIPS.at_kaffee = ['Wiedeńska kultura kawiarniana jest na krajowej liście niematerialnego dziedzictwa UNESCO w Austrii (od 2011 r.).', 'Do kawy zawsze dostaniesz szklankę wody. Nad jedną melange możesz siedzieć godzinami – nikt nie popędza.', 'Kelnera woła się <b>Herr Ober!</b>; płacąc mówisz <b>Zahlen, bitte!</b>'];
+UA.TIPS.at_alltag = ['Perfekt czasowników <b>sitzen, stehen, liegen</b> tworzy się w Austrii z <b>sein</b>: <i>ich bin gesessen, ich bin gestanden, ich bin gelegen</i> (w Niemczech północnych: habe).', 'Zdrobnienia na <b>-erl</b> (Sackerl, Zuckerl, Pickerl, Häferl) są typowo austriackie; w Niemczech: -chen (Tütchen).', 'Uwaga na pułapki: <b>Sessel</b> to w Austrii krzesło, <b>angreifen</b> – dotknąć, <b>Kasten</b> – szafa.', 'Miesiące: <b>Jänner</b> (styczeń) i <b>Feber</b> (luty) – Jänner obowiązuje w Austrii także w pismach urzędowych.'];
+UA.TIPS.at_amt = ['Austria ma 9 krajów związkowych: Wien, Niederösterreich, Oberösterreich, Salzburg, Tirol, Vorarlberg, Kärnten, Steiermark, Burgenland.', 'Po przeprowadzce trzeba się zameldować w ciągu 3 dni (<b>Meldezettel</b>).', 'Parlament: <b>Nationalrat</b> (izba niższa) i <b>Bundesrat</b> (izba krajów); głowa państwa – <b>Bundespräsident</b>, szef rządu – <b>Bundeskanzler</b>.'];
+UA.TIPS.at_geschichte = ['Akta namiestnictwa galicyjskiego są dziś w Centralnym Państwowym Archiwum Historycznym we Lwowie; akta centralne monarchii – w <b>Österreichisches Staatsarchiv</b> w Wiedniu (Haus-, Hof- und Staatsarchiv, Allgemeines Verwaltungsarchiv, Kriegsarchiv).', 'Skróty: <b>k. k.</b> (kaiserlich-königlich) – instytucje austriackiej połowy monarchii (Przedlitawii); <b>k. u. k.</b> – wspólne dla Austrii i Węgier (armia, dyplomacja).', 'Galicja miała od lat 60. XIX w. szeroką autonomię: polski język urzędowy, Sejm Krajowy we Lwowie, polskie uniwersytety w Krakowie i Lwowie.', 'Księgi metrykalne (Matriken) prowadzili w Austrii duchowni jako urzędnicy stanu cywilnego – w Galicji często po łacinie.'];
+
+UA.DIALOGS.push(
+  { id: 'kaffeehaus', unit: 'at_kaffee', t: 'W wiedeńskiej kawiarni', ua: 'Im Kaffeehaus', roles: ['Ober', 'Gast'], lines: [
+    [0, 'Grüß Gott! Bitte schön?', 'Dzień dobry! Słucham?'],
+    [1, 'Grüß Gott! Eine Melange und ein Glas Wasser, bitte.', 'Dzień dobry! Melange i szklankę wody, proszę.'],
+    [0, 'Gern. Darf es auch eine Mehlspeise sein? Die Sachertorte ist heute ganz frisch.', 'Chętnie. Może też coś słodkiego? Tort Sachera jest dziś świeżutki.'],
+    [1, 'Lieber einen Apfelstrudel mit Schlagobers.', 'Wolę strudel jabłkowy z bitą śmietaną.'],
+    [0, 'Passt. Kommt sofort.', 'Dobrze. Zaraz podam.'],
+    [1, 'Herr Ober, zahlen, bitte!', 'Panie kelnerze, płacę!'],
+    [0, 'Das macht neun Euro achtzig.', 'Razem dziewięć euro osiemdziesiąt.'],
+    [1, 'Zehn, passt so. Auf Wiederschauen!', 'Dziesięć, reszty nie trzeba. Do widzenia!']
+  ]},
+  { id: 'staatsarchiv', unit: 'at_geschichte', t: 'Kwerenda w Wiedniu', ua: 'Im Staatsarchiv', roles: ['Archivar', 'Historikerin'], lines: [
+    [1, 'Grüß Gott! Ich forsche über die galizische Landesverwaltung um 1880.', 'Dzień dobry! Prowadzę badania nad galicyjską administracją krajową około 1880 roku.'],
+    [0, 'Dann sind Sie im Allgemeinen Verwaltungsarchiv richtig. Die Akten der Statthalterei liegen allerdings in Lemberg.', 'W takim razie dobrze pani trafiła do Ogólnego Archiwum Administracyjnego. Akta namiestnictwa są jednak we Lwowie.'],
+    [1, 'Ich suche die Berichte des Statthalters an das Innenministerium.', 'Szukam raportów namiestnika do Ministerstwa Spraw Wewnętrznych.'],
+    [0, 'Die finden Sie im Bestand des k. k. Ministeriums des Innern. Der Akt ist bestellbar.', 'Znajdzie je pani w zespole c.k. Ministerstwa Spraw Wewnętrznych. Akta można zamówić.'],
+    [1, 'Geht sich das heute noch aus?', 'Zdążę to jeszcze dziś?'],
+    [0, 'Leider nicht. Die Akten kommen morgen um neun in den Lesesaal.', 'Niestety nie. Akta będą jutro o dziewiątej w czytelni.']
+  ]}
+);
+
+UA.TEXTS.push(
+  { id: 't_at', level: 'AT', t: 'Dzień w Wiedniu', ua: 'Ein Tag in Wien',
+    text: 'Am Vormittag war ich im Staatsarchiv und habe Berichte aus Galizien gelesen. Zu Mittag bin ich in ein kleines Beisl gegangen: Es gab Schnitzel mit Erdäpfelsalat und zum Nachtisch Marillenknödel. Am Nachmittag bin ich lange im Kaffeehaus gesessen, habe eine Melange getrunken und Zeitung gelesen. Am Abend sind wir mit Freunden zum Heurigen gefahren. Heuer war es im Jänner sehr kalt, aber jetzt ist es warm. Servus, Wien – ich komme wieder!',
+    pl: 'Przed południem byłem w archiwum państwowym i czytałem raporty z Galicji. W południe poszedłem do małej knajpki: był sznycel z sałatką ziemniaczaną, a na deser knedle z morelami. Po południu długo siedziałem w kawiarni, piłem melange i czytałem gazetę. Wieczorem pojechaliśmy z przyjaciółmi do winiarni. W tym roku w styczniu było bardzo zimno, ale teraz jest ciepło. Cześć, Wiedniu – wrócę!',
+    qs: [['Co autor zjadł na deser?', ['tort Sachera', 'knedle z morelami', 'naleśniki', 'strudel'], 1], ['Jak brzmi austriacki Perfekt od „sitzen”?', ['ich habe gesessen', 'ich bin gesessen', 'ich war sitzen', 'ich sitzte'], 1], ['Co znaczy „heuer”?', ['wczoraj', 'w tym roku', 'tutaj', 'wkrótce'], 1]] }
+);
+
+/* Pary [Austria, Niemcy, polski] – quiz „Austria czy Niemcy?” */
+UA.ATDE = [
+  ['der Erdapfel', 'die Kartoffel', 'ziemniak'], ['der Paradeiser', 'die Tomate', 'pomidor'], ['die Marille', 'die Aprikose', 'morela'],
+  ['der Karfiol', 'der Blumenkohl', 'kalafior'], ['die Fisolen', 'die grünen Bohnen', 'fasolka szparagowa'], ['der Topfen', 'der Quark', 'twaróg'],
+  ['das Schlagobers', 'die Schlagsahne', 'bita śmietana'], ['der Kren', 'der Meerrettich', 'chrzan'], ['das Faschierte', 'das Hackfleisch', 'mięso mielone'],
+  ['die Semmel', 'das Brötchen', 'bułka'], ['die Palatschinke', 'der Pfannkuchen', 'naleśnik'], ['die Ribisel', 'die Johannisbeere', 'porzeczka'],
+  ['der Jänner', 'der Januar', 'styczeń'], ['heuer', 'dieses Jahr', 'w tym roku'], ['der Sessel', 'der Stuhl', 'krzesło'],
+  ['der Kasten', 'der Schrank', 'szafa'], ['der Polster', 'das Kissen', 'poduszka'], ['die Stiege', 'die Treppe', 'schody'],
+  ['das Sackerl', 'die Tüte', 'torebka'], ['die Trafik', 'der Kiosk', 'kiosk'], ['das Spital', 'das Krankenhaus', 'szpital'],
+  ['der Bub', 'der Junge', 'chłopiec'], ['das Zuckerl', 'das Bonbon', 'cukierek'], ['die Kassa', 'die Kasse', 'kasa'],
+  ['angreifen', 'anfassen', 'dotykać'], ['sich verkühlen', 'sich erkälten', 'przeziębić się'], ['die Matura', 'das Abitur', 'matura'],
+  ['die Schularbeit', 'die Klassenarbeit', 'praca klasowa'], ['der Rauchfangkehrer', 'der Schornsteinfeger', 'kominiarz'], ['Grüß Gott!', 'Guten Tag!', 'dzień dobry'],
+  ['Servus!', 'Tschüss!', 'cześć / pa'], ['Auf Wiederschauen!', 'Auf Wiedersehen!', 'do widzenia'], ['das Obers', 'die Sahne', 'śmietanka'],
+  ['ich bin gesessen', 'ich habe gesessen', 'siedziałem']
 ];
 
 </script>
@@ -2437,6 +2604,7 @@ var UA = window.UA || (window.UA = {});
     stop: '<rect x="6" y="6" width="12" height="12" rx="2"/>',
     play: '<path d="m6 3 14 9-14 9z"/>',
     swap: '<path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>',
+    flag: '<path d="M4 22V4"/><path d="M4 4h14l-2 4 2 4H4"/>',
     check: '<path d="M20 6 9 17l-5-5"/>',
     x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
     flame: '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3.4.3 1.5 1.5 2.9 2.5 2.9"/>',
@@ -2477,7 +2645,7 @@ var UA = window.UA || (window.UA = {});
   /* ---------- Nawigacja ---------- */
   var NAV = [
     ['start', 'Start', 'home', 1], ['sciezka', 'Ścieżka', 'route', 1], ['sluchanie', 'Słuchanie', 'headphones', 1], ['wymowa', 'Wymowa', 'ear', 1],
-    ['rodzajniki', 'Der · die · das', 'tag'], ['czasowniki', 'Czasowniki nieregularne', 'table'], ['dialogi', 'Dialogi', 'chat'], ['alfabet', 'Litery i dźwięki', 'abc'], ['przyjaciele', 'Fałszywi przyjaciele', 'alert'], ['gramatyka', 'Gramatyka', 'book'],
+    ['rodzajniki', 'Der · die · das', 'tag'], ['czasowniki', 'Czasowniki nieregularne', 'table'], ['austria', 'Austria czy Niemcy?', 'flag'], ['dialogi', 'Dialogi', 'chat'], ['alfabet', 'Litery i dźwięki', 'abc'], ['przyjaciele', 'Fałszywi przyjaciele', 'alert'], ['gramatyka', 'Gramatyka', 'book'],
     ['dyktando', 'Dyktando', 'pen'], ['slownik', 'Słownik', 'search'], ['ustawienia', 'Ustawienia', 'gear']
   ];
   function renderNav(cur) {
@@ -2525,8 +2693,8 @@ var UA = window.UA || (window.UA = {});
   /* ============================================================
      POZIOMY I ŚCIEŻKA A1 → C2
      ============================================================ */
-  var LEVELS = ['TR', 'AR', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-  var THEME = { TR: ['Podróż', 'Podróż – praktyczne słownictwo na wyjazd'], AR: ['Archiwum', 'Archiwum i historia – kwerendy, dokumenty, źródła'] };
+  var LEVELS = ['TR', 'AR', 'AT', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  var THEME = { TR: ['Podróż', 'Podróż – praktyczne słownictwo na wyjazd'], AR: ['Archiwum', 'Archiwum i historia – kwerendy, dokumenty, źródła'], AT: ['Austria', 'Austria – austriacyzmy, kawiarnia, urzędy, Galicja'] };
   function lvLabel(lv) { return THEME[lv] ? THEME[lv][0] : lv; }
   var LEVEL_NAME = { A1: 'początkujący', A2: 'podstawowy', B1: 'średni', B2: 'średnio zaawansowany', C1: 'zaawansowany', C2: 'biegły' };
   S.unlocked = S.unlocked || {};
@@ -2574,7 +2742,7 @@ var UA = window.UA || (window.UA = {});
     h += '<a class="card nextunit" href="#/etap/' + cu.id + '">' + ring(unitProg(cu), Math.round(unitProg(cu) * 100) + '%') + '<div><p class="kicker">Twoja lekcja · ' + cu.level + '</p><b>' + esc(cu.name) + '</b><small>' + unitWords(cu.id).filter(seen).length + ' z ' + unitWords(cu.id).length + ' słów poznanych</small></div>' + ic('next') + '</a>';
     h += '<section class="kpis"><div class="kpi"><b>' + r.learning + '</b><small>słów rozpoznajesz</small></div><div class="kpi"><b>' + p.learning + '</b><small>słów potrafisz napisać</small></div><div class="kpi"><b>' + r.known + '</b><small>opanowane na stałe</small></div><div class="kpi"><b>' + S.stats.listen + '</b><small>trafień ze słuchu</small></div></section>';
     h += '<h2 class="sec">Ćwiczenia</h2><section class="tiles">' + [
-      ['sciezka', 'route', 'Ścieżka A1–C2', UA.TOPICS.length + ' lekcji'], ['czasowniki', 'table', 'Czasowniki nieregularne', UA.VERBS.length + ' czasowników + zadania'], ['etap/tr_bahn', 'globe', 'Podróż', 'pociąg, hotel, jedzenie, pomoc'], ['etap/ar_archiv', 'book', 'Archiwum i historia', 'kwerendy, dokumenty, kurrenta'], ['sluchanie', 'headphones', 'Słuchanie', 'słowa, zdania, czytanki'],
+      ['sciezka', 'route', 'Ścieżka A1–C2', UA.TOPICS.length + ' lekcji'], ['czasowniki', 'table', 'Czasowniki nieregularne', UA.VERBS.length + ' czasowników + zadania'], ['etap/tr_bahn', 'globe', 'Podróż', 'pociąg, hotel, jedzenie, pomoc'], ['etap/ar_archiv', 'book', 'Archiwum i historia', 'kwerendy, dokumenty, kurrenta'], ['etap/at_gruss', 'flag', 'Austria', 'austriacyzmy, kawiarnia, Galicja'], ['austria', 'swap', 'Austria czy Niemcy?', UA.ATDE.length + ' par · ' + (S.stats.atde || 0) + ' trafień'], ['sluchanie', 'headphones', 'Słuchanie', 'słowa, zdania, czytanki'],
       ['rodzajniki', 'tag', 'Der · die · das', 'rodzajnik i liczba mnoga'], ['wymowa', 'ear', 'Wymowa', 'umlauty, długie samogłoski, ch'], ['dialogi', 'chat', 'Dialogi', Object.keys(S.dialogs).length + '/' + UA.DIALOGS.length + ' przećwiczone'],
       ['przyjaciele', 'alert', 'Fałszywi przyjaciele', S.stats.ff + ' trafień'], ['gramatyka', 'book', 'Gramatyka', 'tylko to, co inne'],
       ['alfabet', 'abc', 'Litery i dźwięki', 'ä, ö, ü, ei, ie, sch…'], ['dyktando', 'pen', 'Dyktando', 'słuchaj i pisz']
@@ -2599,7 +2767,7 @@ var UA = window.UA || (window.UA = {});
   V.nauka = function () { location.replace('#/trening/all'); };
   V.sciezka = function () {
     var cu = currentUnit();
-    var h = head('Ścieżka', 'Ścieżki tematyczne „Podróż” oraz „Archiwum i historia” są otwarte od razu. W ścieżce A1 → C2 lekcje otwierają się po kolei: następna – gdy poznasz 70% słów poprzedniej (albo po zdanym teście lekcji).');
+    var h = head('Ścieżka', 'Ścieżki tematyczne „Podróż”, „Archiwum i historia” oraz „Austria” są otwarte od razu. W ścieżce A1 → C2 lekcje otwierają się po kolei: następna – gdy poznasz 70% słów poprzedniej (albo po zdanym teście lekcji).');
     h += '<div class="row"><a class="btn primary" href="#/trening/all">' + ic('play') + 'Codzienny trening</a><a class="btn" href="#/test">' + ic('check') + 'Test wejściowy (słowa przezroczyste)</a></div>';
     LEVELS.forEach(function (lv) {
       var units = UA.TOPICS.filter(function (t) { return t.level === lv; }), ws = levelWords(lv), kn = ws.filter(seen).length, text = (UA.TEXTS || []).filter(function (t) { return t.level === lv; })[0];
@@ -2982,7 +3150,7 @@ var UA = window.UA || (window.UA = {});
      SŁOWNIK
      ============================================================ */
   V.slownik = function (topic) {
-    var h = head('Słownik', UA.WORDS.length + ' słów: A1–C2, podróż, archiwum i historia. Szukaj po niemiecku (umlauty można pisać jako ae, oe, ue) lub po polsku.');
+    var h = head('Słownik', UA.WORDS.length + ' słów: A1–C2, podróż, archiwum i historia, austriacyzmy. Szukaj po niemiecku (umlauty można pisać jako ae, oe, ue) lub po polsku.');
     h += '<div class="filters"><input id="q" type="search" placeholder="Szukaj…" aria-label="Szukaj"><select id="ft" aria-label="Temat"><option value="">Wszystkie tematy</option>' + UA.TOPICS.map(function (t) { return '<option value="' + t.id + '"' + (t.id === topic ? ' selected' : '') + '>' + lvLabel(t.level) + ' · ' + esc(t.name) + '</option>'; }).join('') + '</select>' +
       '<select id="fs" aria-label="Podobieństwo"><option value="">Każde podobieństwo</option>' + Object.keys(SIM).map(function (k) { return '<option value="' + k + '">' + SIM[k][0] + '</option>'; }).join('') + '</select></div><div id="list" class="wlist"></div>';
     main.innerHTML = h;
@@ -3270,6 +3438,20 @@ var UA = window.UA || (window.UA = {});
   /* ============================================================
      DIALOGI
      ============================================================ */
+  /* ---------- Austria czy Niemcy? ---------- */
+  V.austria = function () {
+    var dirs = ['de', 'at', 'pl'];
+    var items = U.shuffle(UA.ATDE.slice()).slice(0, 10).map(function (p, i) {
+      var d = dirs[i % 3], pool = U.shuffle(UA.ATDE.filter(function (x) { return x !== p; })).slice(0, 3), opts, a, prompt, title;
+      if (d === 'de') { title = 'Jak to powiedzą w Austrii?'; prompt = '<div class="big" lang="de">' + esc(p[1]) + '</div><div class="meta">Niemcy · ' + esc(p[2]) + '</div>'; opts = [p[0]].concat(pool.map(function (x) { return x[0]; })); }
+      else if (d === 'at') { title = 'Jak to powiedzą w Niemczech?'; prompt = '<div class="big" lang="de-AT">' + esc(p[0]) + '</div><div class="meta">Austria · ' + esc(p[2]) + '</div>'; opts = [p[1]].concat(pool.map(function (x) { return x[1]; })); }
+      else { title = 'Które słowo jest austriackie?'; prompt = '<div class="big pl">' + esc(p[2]) + '</div><div class="meta">wybierz formę z Austrii</div>'; opts = [p[0], p[1]]; }
+      var good = opts[0]; opts = U.shuffle(opts); a = opts.indexOf(good);
+      return { title: title, prompt: prompt, opts: opts.map(function (o) { return '<span lang="de">' + esc(o) + '</span>'; }), a: a, sayAfter: p[0], reveal: '<div class="fb ok"><p><b lang="de">' + esc(p[0]) + '</b> (AT) = <b lang="de">' + esc(p[1]) + '</b> (DE) – ' + esc(p[2]) + '</p></div>' };
+    });
+    runMC({ title: 'Austria czy Niemcy?', sub: 'Austriacyzmy i ich odpowiedniki w Niemczech.', back: '#/start', items: items, counter: 'atde', again: function () { V.austria(); }, onEnd: function () { return '<p><a class="btn" href="#/etap/at_gruss">Ścieżka „Austria”</a></p>'; } });
+  };
+
   V.dialogi = function () {
     var h = head('Dialogi', 'Krótkie scenki z życia: odsłuch, tekst do odkrycia, odgrywanie ról, shadowing z nagrywaniem i dyktando.');
     h += '<section class="dlist">' + UA.DIALOGS.map(function (d) {
@@ -3508,7 +3690,7 @@ var UA = window.UA || (window.UA = {});
     h += '<section class="card"><h2>' + ic('vol') + ' Głos</h2><p>' + (vs.ok ? 'Używany głos: <b>' + esc(vs.name) + '</b>' : esc(vs.msg)) + '</p><button class="btn" data-say="Hallo! Das ist die deutsche Sprache.">' + ic('play') + ' Test głosu</button></section>';
     if (!vs.ok) h += voiceHelp(vs);
     h += '<section class="card"><h2>Postęp</h2><p class="muted">Postęp jest zapisany tylko w tej przeglądarce. Zrób kopię, żeby przenieść go na inne urządzenie.</p><div class="row"><button class="btn" id="exp">Eksportuj (plik)</button><label class="btn">Importuj<input type="file" id="imp" accept=".json,application/json" hidden></label><button class="btn danger" id="rst">Wyzeruj wszystko</button></div></section>';
-    h += '<section class="card note"><h2>O treściach</h2><p>Słownictwo: ' + UA.WORDS.length + ' słów w ' + UA.TOPICS.length + ' lekcjach (A1–C2 + „Podróż” i „Archiwum i historia”), ' + UA.VERBS.length + ' czasowników nieregularnych, ' + (UA.TEXTS || []).length + ' czytanek, ' + UA.FRIENDS.length + ' fałszywych przyjaciół, ' + UA.DIALOGS.length + ' dialogów, ' + UA.GRAMMAR.length + ' lekcji gramatyki. Niemiecki standardowy (Niemcy), nowa pisownia.</p><p><b>Ważne:</b> treść przygotowano bez udziału native speakera. Przykłady i dialogi warto skonsultować z germanistą – tego nie zastąpi ani model językowy, ani synteza mowy.</p></section>';
+    h += '<section class="card note"><h2>O treściach</h2><p>Słownictwo: ' + UA.WORDS.length + ' słów w ' + UA.TOPICS.length + ' lekcjach (A1–C2 + „Podróż”, „Archiwum i historia” i „Austria”), ' + UA.VERBS.length + ' czasowników nieregularnych, ' + (UA.TEXTS || []).length + ' czytanek, ' + UA.FRIENDS.length + ' fałszywych przyjaciół, ' + UA.DIALOGS.length + ' dialogów, ' + UA.GRAMMAR.length + ' lekcji gramatyki. Niemiecki standardowy (Niemcy), nowa pisownia; w ścieżce „Austria” – austriacka odmiana niemieckiego z odpowiednikami z Niemiec.</p><p><b>Ważne:</b> treść przygotowano bez udziału native speakera. Przykłady i dialogi warto skonsultować z germanistą – tego nie zastąpi ani model językowy, ani synteza mowy.</p></section>';
     main.innerHTML = h;
     function upd(k, v) { s[k] = v; G.save(); }
     $('#npd').onchange = function () { upd('newPerDay', Math.max(0, Math.min(50, +this.value || 0))); };
