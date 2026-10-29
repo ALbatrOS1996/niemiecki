@@ -30,7 +30,7 @@ html = bundle(True)
 open(os.path.join(docs, 'index.html'), 'w', encoding='utf-8').write(html)
 manifest = {
     'id': 'niemiecki-dla-polaka',
-    'name': 'Niemiecki dla Polaka', 'short_name': 'Niemiecki', 'lang': 'pl',
+    'name': 'Niemiecki', 'short_name': 'Niemiecki', 'lang': 'pl',
     'description': 'Nauka języka niemieckiego dla osób polskojęzycznych.',
     'start_url': './', 'scope': './', 'display': 'standalone', 'orientation': 'portrait',
     'background_color': '#0b0a12', 'theme_color': '#0b0a12',
