@@ -130,7 +130,7 @@
   function unitById(id) { return UA.TOPICS.filter(function (t) { return t.id === id; })[0]; }
   function unlocked(u) {
     var i = UA.TOPICS.indexOf(u);
-    if (i <= 0 || THEME[u.level] || S.unlocked[u.id]) return true; // ścieżki tematyczne otwarte od razu
+    if (i <= 0 || THEME[u.level] || S.unlocked[u.id] || unitProg(u) > 0) return true; // ścieżki tematyczne i rozpoczęte lekcje otwarte
     var prev = UA.TOPICS[i - 1];
     return unlocked(prev) && unitProg(prev) >= 0.7;
   }
